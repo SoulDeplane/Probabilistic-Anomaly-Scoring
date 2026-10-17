@@ -1,5 +1,15 @@
-# Datasets: ~24 GB and redistribution-restricted (CIC requires registration); obtain from the original sources
-Datasets/
+# Datasets: the full data is ~24 GB (CICIoT2023 has 60 files over GitHub's 100 MB limit), so only the
+# inventory, samples, the MalMem CSV (19 MB) and dataset documentation are tracked. See Datasets/README.md.
+Datasets/*
+!Datasets/README.md
+!Datasets/inventory/
+!Datasets/samples/
+!Datasets/cicmalmem22/
+!Datasets/ciciot23/
+Datasets/ciciot23/*
+!Datasets/ciciot23/CSV/
+Datasets/ciciot23/CSV/*
+!Datasets/ciciot23/CSV/README.pdf
 
 # Python
 __pycache__/

@@ -1,0 +1,127 @@
+{
+  "cicmalmem22": {
+    "files": 1,
+    "size_bytes": 18979873,
+    "csv_data_rows": 58596,
+    "class_counts": {
+      "Benign": 29298,
+      "Spyware-Transponder": 2410,
+      "Spyware-Gator": 2200,
+      "Ransomware-Shade": 2128,
+      "Ransomware-Ako": 2000,
+      "Spyware-180solutions": 2000,
+      "Spyware-CWS": 2000,
+      "Trojan-Refroso": 2000,
+      "Trojan-Scar": 2000,
+      "Ransomware-Conti": 1988,
+      "Trojan-Emotet": 1967,
+      "Ransomware-Maze": 1958,
+      "Trojan-Zeus": 1950,
+      "Ransomware-Pysa": 1717,
+      "Trojan-Reconyc": 1570,
+      "Spyware-TIBS": 1410
+    }
+  },
+  "ciciot23": {
+    "files": 374,
+    "size_bytes": 18709165156,
+    "csv_data_rows": 94044682,
+    "class_counts": {
+      "DDOS-ICMP_FLOOD": 7200501,
+      "DDOS-UDP_FLOOD": 5412231,
+      "DDOS-TCP_FLOOD": 4497649,
+      "DDOS-PSHACK_FLOOD": 4094772,
+      "DDOS-SYN_FLOOD": 4059179,
+      "DDOS-RSTFINFLOOD": 4045279,
+      "DDOS-SYNONYMOUSIP_FLOOD": 3598133,
+      "DOS-UDP_FLOOD": 3318634,
+      "DOS-TCP_FLOOD": 2671430,
+      "DOS-SYN_FLOOD": 2028836,
+      "BENIGN": 1098191,
+      "MIRAI-GREETH_FLOOD": 991834,
+      "MIRAI-UDPPLAIN": 890574,
+      "MIRAI-GREIP_FLOOD": 751646,
+      "DDOS-ICMP_FRAGMENTATION": 452490,
+      "VULNERABILITYSCAN": 373351,
+      "MITM-ARPSPOOFING": 307560,
+      "DDOS-UDP_FRAGMENTATION": 286925,
+      "DDOS-ACK_FRAGMENTATION": 285075,
+      "DNS_SPOOFING": 178898,
+      "RECON-HOSTDISCOVERY": 134378,
+      "RECON-OSSCAN": 98259,
+      "RECON-PORTSCAN": 82284,
+      "DOS-HTTP_FLOOD": 71861,
+      "DDOS-HTTP_FLOOD": 28790,
+      "DDOS-SLOWLORIS": 23426,
+      "DICTIONARYBRUTEFORCE": 13064,
+      "BROWSERHIJACKING": 5859,
+      "COMMANDINJECTION": 5409,
+      "SQLINJECTION": 5245,
+      "XSS": 3846,
+      "BACKDOOR_MALWARE": 3218,
+      "RECON-PINGSWEEP": 2262,
+      "UPLOADING_ATTACK": 1252
+    }
+  },
+  "dumpware10": {
+    "files": 34352,
+    "size_bytes": 6495231402,
+    "csv_data_rows": 0,
+    "class_counts_per_variant": {
+      "Adposhel": {
+        "TEST": 93,
+        "TRAINING": 364
+      },
+      "Allaple": {
+        "TEST": 88,
+        "TRAINING": 349
+      },
+      "Amonetize": {
+        "TEST": 87,
+        "TRAINING": 349
+      },
+      "AutoRun": {
+        "TEST": 38,
+        "TRAINING": 158
+      },
+      "BrowseFox": {
+        "TEST": 38,
+        "TRAINING": 152
+      },
+      "Dinwod": {
+        "TEST": 29,
+        "TRAINING": 98
+      },
+      "InstallCore": {
+        "TEST": 91,
+        "TRAINING": 376
+      },
+      "MultiPlug": {
+        "TEST": 98,
+        "TRAINING": 390
+      },
+      "Other": {
+        "TEST": 121,
+        "TRAINING": 487
+      },
+      "VBA": {
+        "TEST": 100,
+        "TRAINING": 399
+      },
+      "Vilsel": {
+        "TEST": 78,
+        "TRAINING": 311
+      }
+    },
+    "variants": [
+      "224/224",
+      "224/300",
+      "300/224",
+      "300/300",
+      "4096/224",
+      "4096/300",
+      "SQUAREROOT/224",
+      "SQUAREROOT/300"
+    ]
+  }
+}
