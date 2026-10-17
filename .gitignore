@@ -1,0 +1,18 @@
+# Datasets: ~24 GB and redistribution-restricted (CIC requires registration); obtain from the original sources
+Datasets/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Office lock / temp files
+~$*
+*.tmp
+
+# OS clutter
+Thumbs.db
+desktop.ini
+.DS_Store

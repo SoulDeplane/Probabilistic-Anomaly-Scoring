@@ -1,0 +1,125 @@
+{
+  "data": {
+    "benign_rows": 608,
+    "malicious_rows": 31,
+    "malicious_families": {
+      "MultiPlug": 7,
+      "Amonetize": 6,
+      "Vilsel": 4,
+      "BrowseFox": 3,
+      "AutoRun": 3,
+      "InstallCore": 3,
+      "VBA": 3,
+      "Dinwod": 1,
+      "Allaple": 1
+    }
+  },
+  "majority_class_accuracy": 0.9514866979655712,
+  "autoencoder": [
+    {
+      "accuracy": 0.9499217527386542,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "confusion_matrix": [
+        [
+          607,
+          1
+        ],
+        [
+          31,
+          0
+        ]
+      ],
+      "tf_seed": 42,
+      "threshold": 7863.3203125,
+      "train_seconds": 149.6,
+      "final_loss": 5424.626953125,
+      "final_val_loss": 5566.2978515625
+    },
+    {
+      "accuracy": 0.9499217527386542,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "confusion_matrix": [
+        [
+          607,
+          1
+        ],
+        [
+          31,
+          0
+        ]
+      ],
+      "tf_seed": 1,
+      "threshold": 7936.861328125,
+      "train_seconds": 155.1,
+      "final_loss": 5446.36767578125,
+      "final_val_loss": 5518.3740234375
+    },
+    {
+      "accuracy": 0.9499217527386542,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "confusion_matrix": [
+        [
+          607,
+          1
+        ],
+        [
+          31,
+          0
+        ]
+      ],
+      "tf_seed": 2,
+      "threshold": 7882.6728515625,
+      "train_seconds": 154.8,
+      "final_loss": 5562.5732421875,
+      "final_val_loss": 5616.73486328125
+    },
+    {
+      "accuracy": 0.9499217527386542,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "confusion_matrix": [
+        [
+          607,
+          1
+        ],
+        [
+          31,
+          0
+        ]
+      ],
+      "tf_seed": 3,
+      "threshold": 8397.607421875,
+      "train_seconds": 157.0,
+      "final_loss": 5586.18115234375,
+      "final_val_loss": 5817.33642578125
+    },
+    {
+      "accuracy": 0.9514866979655712,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "confusion_matrix": [
+        [
+          608,
+          0
+        ],
+        [
+          31,
+          0
+        ]
+      ],
+      "tf_seed": 4,
+      "threshold": 8077.94287109375,
+      "train_seconds": 155.6,
+      "final_loss": 5518.90576171875,
+      "final_val_loss": 5529.05322265625
+    }
+  ]
+}

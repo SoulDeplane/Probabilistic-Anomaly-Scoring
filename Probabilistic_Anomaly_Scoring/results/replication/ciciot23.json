@@ -1,0 +1,31 @@
+{
+  "data": {
+    "benign_rows": 1098126,
+    "malicious_rows": 54907,
+    "dropped_non_finite": 76
+  },
+  "majority_class_accuracy": 0.9523803741957082,
+  "autoencoder": [
+    {
+      "accuracy": 0.9515278400531468,
+      "precision": 0.45062782521346056,
+      "recall": 0.08170178665743895,
+      "f1": 0.13832444266288427,
+      "confusion_matrix": [
+        [
+          1092657,
+          5469
+        ],
+        [
+          50421,
+          4486
+        ]
+      ],
+      "tf_seed": 42,
+      "threshold": 3157598.75,
+      "train_seconds": 3866.7,
+      "final_loss": 3732648.5,
+      "final_val_loss": 92730.2265625
+    }
+  ]
+}
