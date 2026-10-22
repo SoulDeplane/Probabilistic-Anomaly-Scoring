@@ -1,0 +1,146 @@
+{
+  "timestamps_without_timezone": 3712,
+  "shape": [
+    134435,
+    2381
+  ],
+  "class_counts": {
+    "benign": 77142,
+    "malware": 57293
+  },
+  "matches_paper": true,
+  "label_matches_metadata_family": true,
+  "category_file_matches_malware": true,
+  "unique_sha256": 134435,
+  "metadata_sorted_by_time": true,
+  "layout_checks": {
+    "byte_histogram_rows_sum_to_1": 1.0,
+    "general_flags_binary": true,
+    "coff_timestamp_median_as_date": "2014-02-27"
+  },
+  "non_finite_values": 0,
+  "constant_features": 49,
+  "duplicates": {
+    "rows_beyond_first_copy": 7,
+    "benign_rows_beyond_first_copy": 4,
+    "malware_rows_beyond_first_copy": 3,
+    "feature_vectors_labelled_both_benign_and_malware": 0,
+    "rows_in_any_duplicate_group": 14
+  },
+  "first_seen": {
+    "benign": [
+      "2007-01-01 08:46:39+00:00",
+      "2020-09-30 00:00:00+00:00"
+    ],
+    "malware": [
+      "2019-08-29 09:59:25+00:00",
+      "2020-09-30 03:05:27+00:00"
+    ]
+  },
+  "benign_first_seen_by_year": {
+    "2007": 6,
+    "2008": 13,
+    "2009": 37,
+    "2010": 36,
+    "2011": 90,
+    "2012": 53,
+    "2013": 54,
+    "2014": 78,
+    "2015": 1653,
+    "2016": 288,
+    "2017": 2462,
+    "2018": 5872,
+    "2019": 20686,
+    "2020": 45814
+  },
+  "malware_first_seen_by_month": {
+    "2019-08": 680,
+    "2019-09": 4061,
+    "2019-10": 4549,
+    "2019-11": 2494,
+    "2019-12": 4039,
+    "2020-01": 4510,
+    "2020-02": 4269,
+    "2020-03": 4990,
+    "2020-04": 4640,
+    "2020-05": 5449,
+    "2020-06": 4217,
+    "2020-07": 4995,
+    "2020-08": 3823,
+    "2020-09": 4577
+  },
+  "families": {
+    "count": 582,
+    "count_ignoring_case": 581,
+    "unknown_family_labels": 7,
+    "top10": {
+      "sfone": 4729,
+      "wacatac": 4694,
+      "upatre": 3901,
+      "wabot": 3673,
+      "small": 3339,
+      "ganelp": 2232,
+      "dinwod": 2057,
+      "mira": 1960,
+      "berbew": 1749,
+      "sillyp2p": 1616
+    },
+    "singletons": 198,
+    "with_at_least_100_samples": 57
+  },
+  "categories": {
+    "trojan": 29972,
+    "worm": 16697,
+    "backdoor": 7331,
+    "downloader": 1031,
+    "ransomware": 821,
+    "dropper": 715,
+    "informationstealer": 448,
+    "virus": 192,
+    "pua": 29,
+    "cryptominer": 20,
+    "p2p-worm": 16,
+    "exploit": 12,
+    "trojan-gamethief": 6,
+    "rootkit": 3
+  },
+  "feature_scale": {
+    "features_with_max_above_1e6": 135,
+    "largest": {
+      "header.coff_timestamp": 4294967296.0,
+      "data_directories.24": 4283486208.0,
+      "data_directories.8": 4082706176.0,
+      "data_directories.9": 4036129536.0,
+      "data_directories.25": 3914422016.0,
+      "data_directories.27": 3823243264.0,
+      "data_directories.26": 3771925760.0,
+      "data_directories.28": 3758096640.0,
+      "data_directories.18": 3758096640.0,
+      "data_directories.22": 3758096640.0
+    }
+  },
+  "majority_class_accuracy": 0.5738237810094098,
+  "best_single_feature_stumps": {
+    "header.32": 0.7843,
+    "strings.urls": 0.7609,
+    "section.242": 0.7478,
+    "data_directories.4": 0.7244,
+    "byte_histogram.32": 0.7241,
+    "data_directories.8": 0.7192,
+    "byte_histogram.53": 0.7188,
+    "data_directories.9": 0.7184,
+    "header.14": 0.7183,
+    "section.110": 0.7146
+  },
+  "best_stump_per_group": {
+    "byte_histogram": 0.7241,
+    "byte_entropy_histogram": 0.644,
+    "strings": 0.7609,
+    "general": 0.7025,
+    "header": 0.7843,
+    "section": 0.7478,
+    "imports": 0.6457,
+    "exports": 0.5738,
+    "data_directories": 0.7244
+  }
+}

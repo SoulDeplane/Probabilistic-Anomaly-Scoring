@@ -10,9 +10,10 @@ subset of the 1:1 set, so B differs from A only in imbalance, not in malware com
   F  model E, threshold = 99th / 95th percentile of benign training error (1% / 5% FP budget)
 
 Data: MalMem all 29,298 benign; CICIoT2023 50,000 sampled benign flows; Dumpware10 all 608
-benign images (224/224 rendering, raw RGB pixels flattened).
+benign images (224/224 rendering, raw RGB pixels flattened); BODMAS 50,000 sampled benign
+executables and 50,000 sampled malware (2,381 unnormalised EMBER features).
 
-Usage: python src/prove_imbalance.py {malmem,ciciot23,dumpware10} [--seeds 42 1 2]
+Usage: python src/prove_imbalance.py {malmem,ciciot23,dumpware10,bodmas} [--seeds 42 1 2]
 """
 import argparse
 import glob
@@ -31,6 +32,7 @@ from replicate_khalid import ROOT, fit_paper_autoencoder, reconstruction_mse
 DATASETS = os.path.join(ROOT, '..', 'Datasets')
 RESULTS = os.path.join(ROOT, 'results', 'prove_imbalance')
 CICIOT_N_BENIGN = 50_000
+BODMAS_N = 50_000
 
 
 def small_set(benign, mal_all):
@@ -71,7 +73,16 @@ def load_dumpware10():
     return load(benign_p), load(mal_p)
 
 
-LOADERS = {'malmem': load_malmem, 'ciciot23': load_ciciot23, 'dumpware10': load_dumpware10}
+def load_bodmas():
+    z = np.load(os.path.join(DATASETS, 'bodmas', 'bodmas.npz'), allow_pickle=False)
+    X, y = z['X'], z['y']
+    b, a = X[y == 0], X[y == 1]
+    b = b[np.random.default_rng(0).choice(len(b), BODMAS_N, replace=False)]
+    return b, a[np.random.default_rng(0).permutation(len(a))[:BODMAS_N]]
+
+
+LOADERS = {'malmem': load_malmem, 'ciciot23': load_ciciot23, 'dumpware10': load_dumpware10,
+           'bodmas': load_bodmas}
 
 
 def score(y, pred):

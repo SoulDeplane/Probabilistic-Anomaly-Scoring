@@ -5,6 +5,7 @@ The full datasets (~24 GB) cannot be hosted on GitHub. This script writes, under
   inventory/summary.json         per-dataset totals and class counts
   samples/ciciot23_sample.csv    up to 300 rows per class (39 features + Label), from each class's first capture
   samples/dumpware10/<class>/    5 images per class from the 224/224 TRAINING split
+No BODMAS sample is written: its terms of use forbid sharing the data beyond the project's co-authors.
 
 Usage: python src/build_dataset_inventory.py
 """
@@ -23,7 +24,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATASETS = os.path.normpath(os.path.join(ROOT, '..', 'Datasets'))
 INVENTORY = os.path.join(DATASETS, 'inventory')
 SAMPLES = os.path.join(DATASETS, 'samples')
-DATASET_DIRS = ['cicmalmem22', 'ciciot23', 'dumpware10']
+DATASET_DIRS = ['cicmalmem22', 'ciciot23', 'dumpware10', 'bodmas']
 CICIOT_ROWS_PER_CLASS = 300
 DUMPWARE_IMAGES_PER_CLASS = 5
 
@@ -95,6 +96,13 @@ def class_counts(summary):
     summary['dumpware10']['class_counts_per_variant'] = (
         one.groupby(['class', 'split']).size().unstack(fill_value=0).astype(int).to_dict(orient='index'))
     summary['dumpware10']['variants'] = sorted(inv['variant'].dropna().unique().tolist())
+
+    meta = pd.read_csv(os.path.join(DATASETS, 'bodmas', 'bodmas_metadata.csv'), usecols=['family'])
+    cat = pd.read_csv(os.path.join(DATASETS, 'bodmas', 'bodmas_malware_category.csv'))
+    summary['bodmas']['class_counts'] = {'benign': int(meta['family'].isna().sum()),
+                                         'malware': int(meta['family'].notna().sum())}
+    summary['bodmas']['malware_category_counts'] = cat['category'].value_counts().astype(int).to_dict()
+    summary['bodmas']['malware_families'] = int(meta['family'].dropna().str.lower().nunique())
 
 
 def build_samples():

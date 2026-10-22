@@ -1,0 +1,449 @@
+{
+  "runs": {
+    "42": {
+      "A_paper_20to1": {
+        "precision": 0.6,
+        "recall": 0.0156,
+        "f1": 0.0304,
+        "confusion_matrix": [
+          [
+            49974,
+            26
+          ],
+          [
+            2461,
+            39
+          ]
+        ]
+      },
+      "B_same_model_1to1_real": {
+        "precision": 0.9713,
+        "recall": 0.0176,
+        "f1": 0.0345,
+        "confusion_matrix": [
+          [
+            49974,
+            26
+          ],
+          [
+            49121,
+            879
+          ]
+        ]
+      },
+      "C_same_model_1to1_SMOTE": {
+        "precision": 0.967,
+        "recall": 0.0152,
+        "f1": 0.03,
+        "confusion_matrix": [
+          [
+            49974,
+            26
+          ],
+          [
+            49238,
+            762
+          ]
+        ],
+        "recall_on_real_malware_only": 0.0156
+      },
+      "D_undersampled_training_1to1": {
+        "precision": 0.1884,
+        "recall": 0.0156,
+        "f1": 0.0288,
+        "confusion_matrix": [
+          [
+            49832,
+            168
+          ],
+          [
+            2461,
+            39
+          ]
+        ]
+      },
+      "E_scaled_20to1": {
+        "precision": 0.3851,
+        "recall": 0.1596,
+        "f1": 0.2257,
+        "confusion_matrix": [
+          [
+            49363,
+            637
+          ],
+          [
+            2101,
+            399
+          ]
+        ]
+      },
+      "F_scaled_FP_budget_1pct": {
+        "precision": 0.409,
+        "recall": 0.1384,
+        "f1": 0.2068,
+        "confusion_matrix": [
+          [
+            49500,
+            500
+          ],
+          [
+            2154,
+            346
+          ]
+        ]
+      },
+      "F_scaled_FP_budget_5pct": {
+        "precision": 0.2066,
+        "recall": 0.2604,
+        "f1": 0.2304,
+        "confusion_matrix": [
+          [
+            47500,
+            2500
+          ],
+          [
+            1849,
+            651
+          ]
+        ]
+      }
+    },
+    "1": {
+      "A_paper_20to1": {
+        "precision": 0.5821,
+        "recall": 0.0156,
+        "f1": 0.0304,
+        "confusion_matrix": [
+          [
+            49972,
+            28
+          ],
+          [
+            2461,
+            39
+          ]
+        ]
+      },
+      "B_same_model_1to1_real": {
+        "precision": 0.9691,
+        "recall": 0.0176,
+        "f1": 0.0345,
+        "confusion_matrix": [
+          [
+            49972,
+            28
+          ],
+          [
+            49121,
+            879
+          ]
+        ]
+      },
+      "C_same_model_1to1_SMOTE": {
+        "precision": 0.9663,
+        "recall": 0.0161,
+        "f1": 0.0316,
+        "confusion_matrix": [
+          [
+            49972,
+            28
+          ],
+          [
+            49196,
+            804
+          ]
+        ],
+        "recall_on_real_malware_only": 0.0156
+      },
+      "D_undersampled_training_1to1": {
+        "precision": 0.1914,
+        "recall": 0.016,
+        "f1": 0.0295,
+        "confusion_matrix": [
+          [
+            49831,
+            169
+          ],
+          [
+            2460,
+            40
+          ]
+        ]
+      },
+      "E_scaled_20to1": {
+        "precision": 0.3762,
+        "recall": 0.1616,
+        "f1": 0.2261,
+        "confusion_matrix": [
+          [
+            49330,
+            670
+          ],
+          [
+            2096,
+            404
+          ]
+        ]
+      },
+      "F_scaled_FP_budget_1pct": {
+        "precision": 0.4179,
+        "recall": 0.1436,
+        "f1": 0.2138,
+        "confusion_matrix": [
+          [
+            49500,
+            500
+          ],
+          [
+            2141,
+            359
+          ]
+        ]
+      },
+      "F_scaled_FP_budget_5pct": {
+        "precision": 0.2063,
+        "recall": 0.26,
+        "f1": 0.2301,
+        "confusion_matrix": [
+          [
+            47500,
+            2500
+          ],
+          [
+            1850,
+            650
+          ]
+        ]
+      }
+    },
+    "2": {
+      "A_paper_20to1": {
+        "precision": 0.7091,
+        "recall": 0.0156,
+        "f1": 0.0305,
+        "confusion_matrix": [
+          [
+            49984,
+            16
+          ],
+          [
+            2461,
+            39
+          ]
+        ]
+      },
+      "B_same_model_1to1_real": {
+        "precision": 0.9821,
+        "recall": 0.0176,
+        "f1": 0.0345,
+        "confusion_matrix": [
+          [
+            49984,
+            16
+          ],
+          [
+            49122,
+            878
+          ]
+        ]
+      },
+      "C_same_model_1to1_SMOTE": {
+        "precision": 0.9804,
+        "recall": 0.016,
+        "f1": 0.0315,
+        "confusion_matrix": [
+          [
+            49984,
+            16
+          ],
+          [
+            49200,
+            800
+          ]
+        ],
+        "recall_on_real_malware_only": 0.0156
+      },
+      "D_undersampled_training_1to1": {
+        "precision": 0.0922,
+        "recall": 0.016,
+        "f1": 0.0273,
+        "confusion_matrix": [
+          [
+            49606,
+            394
+          ],
+          [
+            2460,
+            40
+          ]
+        ]
+      },
+      "E_scaled_20to1": {
+        "precision": 0.3731,
+        "recall": 0.16,
+        "f1": 0.224,
+        "confusion_matrix": [
+          [
+            49328,
+            672
+          ],
+          [
+            2100,
+            400
+          ]
+        ]
+      },
+      "F_scaled_FP_budget_1pct": {
+        "precision": 0.399,
+        "recall": 0.1328,
+        "f1": 0.1993,
+        "confusion_matrix": [
+          [
+            49500,
+            500
+          ],
+          [
+            2168,
+            332
+          ]
+        ]
+      },
+      "F_scaled_FP_budget_5pct": {
+        "precision": 0.2051,
+        "recall": 0.258,
+        "f1": 0.2285,
+        "confusion_matrix": [
+          [
+            47500,
+            2500
+          ],
+          [
+            1855,
+            645
+          ]
+        ]
+      }
+    }
+  },
+  "summary": {
+    "A_paper_20to1": {
+      "precision": [
+        0.6,
+        0.5821,
+        0.7091
+      ],
+      "recall": [
+        0.0156,
+        0.0156,
+        0.0156
+      ],
+      "f1": [
+        0.0304,
+        0.0304,
+        0.0305
+      ]
+    },
+    "B_same_model_1to1_real": {
+      "precision": [
+        0.9713,
+        0.9691,
+        0.9821
+      ],
+      "recall": [
+        0.0176,
+        0.0176,
+        0.0176
+      ],
+      "f1": [
+        0.0345,
+        0.0345,
+        0.0345
+      ]
+    },
+    "C_same_model_1to1_SMOTE": {
+      "precision": [
+        0.967,
+        0.9663,
+        0.9804
+      ],
+      "recall": [
+        0.0152,
+        0.0161,
+        0.016
+      ],
+      "f1": [
+        0.03,
+        0.0316,
+        0.0315
+      ]
+    },
+    "D_undersampled_training_1to1": {
+      "precision": [
+        0.1884,
+        0.1914,
+        0.0922
+      ],
+      "recall": [
+        0.0156,
+        0.016,
+        0.016
+      ],
+      "f1": [
+        0.0288,
+        0.0295,
+        0.0273
+      ]
+    },
+    "E_scaled_20to1": {
+      "precision": [
+        0.3851,
+        0.3762,
+        0.3731
+      ],
+      "recall": [
+        0.1596,
+        0.1616,
+        0.16
+      ],
+      "f1": [
+        0.2257,
+        0.2261,
+        0.224
+      ]
+    },
+    "F_scaled_FP_budget_1pct": {
+      "precision": [
+        0.409,
+        0.4179,
+        0.399
+      ],
+      "recall": [
+        0.1384,
+        0.1436,
+        0.1328
+      ],
+      "f1": [
+        0.2068,
+        0.2138,
+        0.1993
+      ]
+    },
+    "F_scaled_FP_budget_5pct": {
+      "precision": [
+        0.2066,
+        0.2063,
+        0.2051
+      ],
+      "recall": [
+        0.2604,
+        0.26,
+        0.258
+      ],
+      "f1": [
+        0.2304,
+        0.2301,
+        0.2285
+      ]
+    }
+  }
+}

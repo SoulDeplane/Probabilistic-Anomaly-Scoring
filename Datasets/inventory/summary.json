@@ -123,5 +123,31 @@
       "SQUAREROOT/224",
       "SQUAREROOT/300"
     ]
+  },
+  "bodmas": {
+    "files": 3,
+    "size_bytes": 278383000,
+    "csv_data_rows": 191728,
+    "class_counts": {
+      "benign": 77142,
+      "malware": 57293
+    },
+    "malware_category_counts": {
+      "trojan": 29972,
+      "worm": 16697,
+      "backdoor": 7331,
+      "downloader": 1031,
+      "ransomware": 821,
+      "dropper": 715,
+      "informationstealer": 448,
+      "virus": 192,
+      "pua": 29,
+      "cryptominer": 20,
+      "p2p-worm": 16,
+      "exploit": 12,
+      "trojan-gamethief": 6,
+      "rootkit": 3
+    },
+    "malware_families": 581
   }
 }
