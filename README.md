@@ -1,1 +1,90 @@
-# Probabilistic-Anomaly-Scoring
+# Probabilistic Anomaly Scoring for Explainable Digital Forensic Triage
+
+B.Tech major project MP2026CSE75, Dept. of CSE, Graphic Era Deemed to be University (guide: Dr. Rehan).
+
+Examiners seize more evidence than they can read, so they have to decide what to examine first (triage). This project scores every artefact (memory dump, executable, network flow) by how unusual it is compared with **clean data only**, turns the score into a p-value with a false-alarm rate fixed in advance, and audits what the score is really picking up. The base paper is Khalid, Iqbal & Saqib (2025), *Forensic Sci. Int.: Digital Investigation* 53, 301924.
+
+Status: the base paper is replicated, and its pipeline is tested on three datasets with held-out, conformal and time-ordered evaluation. The variational autoencoder and the SHAP audit are still to come; `src/protocol.py` fixes the partitions they will use.
+
+## Repository layout
+
+| Path | Contents |
+|---|---|
+| `Probabilistic_Anomaly_Scoring/src/` | All experiment scripts (below) |
+| `Probabilistic_Anomaly_Scoring/results/` | Their JSON / CSV / PNG outputs, committed |
+| `Datasets/` | MalMem CSV, checksummed inventory and samples of the other datasets; see `Datasets/README.md` |
+| `Writeup/` | Synopsis, slides, project updates |
+| `Research Papers/` | Papers reviewed |
+
+## Setup
+
+Python 3.12, CPU only.
+
+```bash
+python -m venv .venv && .venv/Scripts/activate      # Windows; source .venv/bin/activate elsewhere
+pip install -r requirements.txt
+```
+
+CIC MalMemAnalysis-2022 is included. CICIoT2023, BODMAS and Dumpware10 must be downloaded from their publishers into `Datasets/` (sources and expected layout in `Datasets/README.md`); BODMAS may not be redistributed. TensorFlow on CPU is not bit-for-bit deterministic, so reruns of the autoencoder vary slightly.
+
+## Scripts
+
+Run from any directory, e.g. `python Probabilistic_Anomaly_Scoring/src/heldout_eval.py malmem`.
+
+| Script | What it does | Output (`results/`) |
+|---|---|---|
+| `replicate_khalid.py` | Base paper's Isolation Forest and autoencoder on its exact MalMem subset | `replication/results.json` |
+| `khalid_ae_other_datasets.py` | Same pipeline, unchanged, on CICIoT2023, Dumpware10, BODMAS | `replication/<dataset>.json` |
+| `prove_imbalance.py` | Tests A–F: is class imbalance the problem? (no; scaling is) | `prove_imbalance/` |
+| `scaled_on_paper_testset.py` | Scaled autoencoder on the paper's own test set | `replication/scaled_paper_testset.json` |
+| `audit_malmem.py`, `audit_ciciot23.py`, `audit_bodmas.py`, `audit_dumpware10.py` | Dataset audits: duplicates, one-feature stumps, scale, time span, near-twin images | `audit/` |
+| `protocol.py` | Shared protocol: de-duplication, 60/20/20 clean split, conformal p-values, metrics, baselines | (library) |
+| `heldout_eval.py` | Held-out evaluation with conformal thresholds, baselines, per-family recall; `--drop svcscan`, `--drop window`, `--temporal` | `heldout/` |
+| `group_split.py` | Random vs hash-grouped splits for a supervised Random Forest on MalMem | `group_split/malmem.json` |
+| `dumpware10_benign_only.py` | Can any benign-only detector separate Dumpware10 malware images? | `dumpware10/benign_only.json` |
+| `triage_report.py` | Ranked triage list with score, p-value, top reconstruction-error features, PR curve | `triage/` |
+| `build_dataset_inventory.py` | Rebuilds `Datasets/inventory` and `Datasets/samples` | `Datasets/` |
+
+## Evaluation protocol (`protocol.py`)
+
+1. **Split.** Duplicate feature vectors are dropped. Clean rows are split 60/20/20 into train / calibrate / test with a fixed seed, so every model sees the same partitions. Malware is split 50/50 into rows that only the supervised stump baseline may see and test rows; on MalMem this split is grouped by the binary's SHA-256.
+2. **Scaling and training.** A StandardScaler and the detectors are fitted on the clean training rows only.
+3. **Conformal p-value.** For a score `s`, `p = (1 + #calibration scores ≥ s) / (n + 1)`. An artefact is flagged when `p ≤ 0.01`, which keeps false alarms on unseen clean data at about 1%.
+4. **Metrics.** False-alarm rate and recall at that line, ROC-AUC, and precision / F1 / PR-AUC at the base paper's 20:1 clean:malware ratio (test malware is weighted to make up 1/21 of the test set). Baselines are "always clean" and the best single-feature decision stump.
+
+## Results
+
+### Held-out test, autoencoder flagged at p ≤ 0.01 (mean of 5 seeds)
+
+| Dataset | False alarms on unseen clean | Recall | Precision (20:1) | F1 | ROC-AUC | PR-AUC | Best one-feature stump (F1) |
+|---|---|---|---|---|---|---|---|
+| CIC MalMem-2022 | 0.92% | 1.000 | 0.845 | 0.916 | 0.999 | 0.977 | `svcscan.nservices` ≤ 390.5 (0.961) |
+| MalMem without `svcscan.*` | 0.87% | 0.991 | 0.851 | 0.916 | 0.999 | 0.959 | `handles.nmutant` ≤ 294.5 (0.847) |
+| CICIoT2023 | 0.89% | 0.971 | 0.845 | 0.903 | 0.993 | 0.979 | `Number` > 10.5 (0.983) |
+| CICIoT2023 without window features | 0.95% | 0.757 | 0.800 | 0.777 | 0.953 | 0.819 | `HTTPS` ≤ 0.097 (0.633) |
+| BODMAS, random split | 1.07% | 0.130 | 0.380 | 0.194 | 0.732 | 0.208 | `header.32` > −0.5 (0.231) |
+| BODMAS, files first seen after Mar 2020 | 0.84% | 0.154 | 0.480 | 0.234 | 0.713 | 0.223 | same (0.280) |
+
+- "Always clean" scores accuracy 0.952 and F1 0 at 20:1.
+- Isolation Forest is far weaker at the same line: recall 0.13 on MalMem, 0.37 on CICIoT2023, 0.00 on BODMAS.
+- **MalMem families.** The autoencoder catches all 15 malware families (recall 1.00 each); without `svcscan.*`, 0.98–1.00 each. The base paper's own test malware covers only 2 families (Conti 1,155 rows, Ako 310).
+- **CICIoT2023 attack classes.** Recall comes from floods. DNS spoofing, ARP spoofing, vulnerability scans and web attacks are caught at 0–9%. Dropping the five window-sensitive features costs 0.21 recall.
+- **BODMAS over time.** Training before March 2020 and testing on later files did not raise false alarms (0.84% vs 1.15% on held-out older files). Recall stays low: worms 0.33, droppers 0.14, trojans 0.07, backdoors 0.00.
+- **Old thresholds on held-out data.** The former "1% budget" (99th percentile of training error) gives 0.93–1.19% false alarms on unseen clean rows, and 1.57% on the BODMAS temporal split.
+
+### Audits and splits
+
+| Finding | Value | Source |
+|---|---|---|
+| MalMem duplicate records / duplicate feature vectors | 534 / 569 | `audit/malmem.json` |
+| MalMem best one-feature rule (`svcscan.nservices`) | 99.66% (majority 50%) | `audit/malmem.json` |
+| MalMem clean rows with fractional values in count features (SMOTE trace) | 0 of 29,298 | `audit/malmem.json` |
+| CICIoT2023 rows repeating an earlier flow, all 63 merged files | 53.5% (25.2 M of 47.0 M); clean 0.4%, the ten TCP / UDP / ICMP / SYN flood classes 42–73% | `audit/ciciot23.json` |
+| CICIoT2023 best stump, Merged01 | accuracy 97.95% vs 97.67% "always attack"; `Number` alone 98.7% balanced accuracy | `audit/ciciot23.json` |
+| BODMAS best one-feature rule | 78.4% (majority 57.4%) | `audit/bodmas.json` |
+| Dumpware10 test images with a near-twin in training (≤ 5 of 256 hash bits) | 35.3% | `audit/dumpware10.json` |
+| Dumpware10 no-learning nearest-hash rule | 81.0% | `audit/dumpware10.json` |
+| Dumpware10 benign-only detectors, malware caught at 1% false alarms | ≤ 5.2% (supervised ROC-AUC 0.982) | `dumpware10/benign_only.json` |
+| MalMem Random Forest, random vs hash-grouped 5-fold | macro-F1 −4.0 points at 4 classes, −8.7 at 16 classes; binary unchanged | `group_split/malmem.json` |
+
+The triage report for MalMem is `Probabilistic_Anomaly_Scoring/results/triage/malmem_report.md`.

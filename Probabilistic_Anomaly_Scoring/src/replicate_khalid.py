@@ -63,9 +63,9 @@ def run_isolation_forest(data):
 
 def run_autoencoder(data, tf_seed):
     labels = data['Class']
-    X_scaled = data.drop(columns=['Class'])
+    X = data.drop(columns=['Class'])  # unscaled, as in the authors' notebook
     y_test = (labels == 'Malware').astype(int).to_numpy()  # LabelEncoder: Benign=0, Malware=1
-    return train_paper_autoencoder(X_scaled[labels == 'Benign'], X_scaled, y_test, tf_seed)
+    return train_paper_autoencoder(X[labels == 'Benign'], X, y_test, tf_seed)
 
 
 def fit_paper_autoencoder(X_train, tf_seed, verbose=2):

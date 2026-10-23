@@ -1,0 +1,92 @@
+{
+  "results": [
+    {
+      "representation": "EfficientNetV2 features",
+      "detector": "5-NN distance",
+      "roc_auc": 0.6258913814509441,
+      "malware_caught_at_1pct_false_alarms": 0.025935973955507324,
+      "malware_caught_at_5pct_false_alarms": 0.10656538252848616
+    },
+    {
+      "representation": "EfficientNetV2 features",
+      "detector": "Mahalanobis",
+      "roc_auc": 0.5266421505907846,
+      "malware_caught_at_1pct_false_alarms": 0.01692892023874118,
+      "malware_caught_at_5pct_false_alarms": 0.07710255018990778
+    },
+    {
+      "representation": "raw 64x64 pixels",
+      "detector": "5-NN distance",
+      "roc_auc": 0.7865901164455408,
+      "malware_caught_at_1pct_false_alarms": 0.03917525773195876,
+      "malware_caught_at_5pct_false_alarms": 0.22403689636462293
+    },
+    {
+      "representation": "raw 64x64 pixels",
+      "detector": "Mahalanobis",
+      "roc_auc": 0.7357932551521215,
+      "malware_caught_at_1pct_false_alarms": 0.05198046663049377,
+      "malware_caught_at_5pct_false_alarms": 0.20949538795442213
+    },
+    {
+      "representation": "EfficientNetV2 features",
+      "detector": "supervised logistic regression (upper bound)",
+      "roc_auc": 0.9824879701287946
+    },
+    {
+      "representation": "raw 64x64 pixels",
+      "detector": "supervised logistic regression (upper bound)",
+      "roc_auc": 0.8837607001599224
+    }
+  ],
+  "recall_by_family_at_5pct_false_alarms": {
+    "EfficientNetV2 features / 5-NN distance": {
+      "Adposhel": 0.126,
+      "Allaple": 0.14,
+      "Amonetize": 0.005,
+      "AutoRun": 0.17,
+      "BrowseFox": 0.053,
+      "Dinwod": 0.035,
+      "InstallCore": 0.203,
+      "MultiPlug": 0.1,
+      "VBA": 0.161,
+      "Vilsel": 0.001
+    },
+    "EfficientNetV2 features / Mahalanobis": {
+      "Adposhel": 0.02,
+      "Allaple": 0.104,
+      "Amonetize": 0.001,
+      "AutoRun": 0.117,
+      "BrowseFox": 0.053,
+      "Dinwod": 0.013,
+      "InstallCore": 0.162,
+      "MultiPlug": 0.033,
+      "VBA": 0.193,
+      "Vilsel": 0.015
+    },
+    "raw 64x64 pixels / 5-NN distance": {
+      "Adposhel": 0.017,
+      "Allaple": 0.001,
+      "Amonetize": 0.14,
+      "AutoRun": 0.03,
+      "BrowseFox": 0.006,
+      "Dinwod": 0.057,
+      "InstallCore": 0.019,
+      "MultiPlug": 0.736,
+      "VBA": 0.002,
+      "Vilsel": 0.959
+    },
+    "raw 64x64 pixels / Mahalanobis": {
+      "Adposhel": 0.038,
+      "Allaple": 0.0,
+      "Amonetize": 0.462,
+      "AutoRun": 0.045,
+      "BrowseFox": 0.062,
+      "Dinwod": 0.132,
+      "InstallCore": 0.022,
+      "MultiPlug": 0.61,
+      "VBA": 0.002,
+      "Vilsel": 0.532
+    }
+  }
+}

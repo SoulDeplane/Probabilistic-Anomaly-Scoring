@@ -1,0 +1,151 @@
+{
+  "images": 4294,
+  "distinct_files": 4294,
+  "distinct_ahash_16x16": 3467,
+  "distinct_ahash_8x8": 1438,
+  "per_class": {
+    "Adposhel": {
+      "images": 457,
+      "distinct_files": 457,
+      "distinct_ahash_16x16": 438,
+      "distinct_ahash_8x8": 192
+    },
+    "Allaple": {
+      "images": 437,
+      "distinct_files": 437,
+      "distinct_ahash_16x16": 352,
+      "distinct_ahash_8x8": 101
+    },
+    "Amonetize": {
+      "images": 436,
+      "distinct_files": 436,
+      "distinct_ahash_16x16": 217,
+      "distinct_ahash_8x8": 135
+    },
+    "AutoRun": {
+      "images": 196,
+      "distinct_files": 196,
+      "distinct_ahash_16x16": 186,
+      "distinct_ahash_8x8": 93
+    },
+    "BrowseFox": {
+      "images": 190,
+      "distinct_files": 190,
+      "distinct_ahash_16x16": 179,
+      "distinct_ahash_8x8": 115
+    },
+    "Dinwod": {
+      "images": 127,
+      "distinct_files": 127,
+      "distinct_ahash_16x16": 119,
+      "distinct_ahash_8x8": 60
+    },
+    "InstallCore": {
+      "images": 467,
+      "distinct_files": 467,
+      "distinct_ahash_16x16": 455,
+      "distinct_ahash_8x8": 370
+    },
+    "MultiPlug": {
+      "images": 488,
+      "distinct_files": 488,
+      "distinct_ahash_16x16": 437,
+      "distinct_ahash_8x8": 160
+    },
+    "Other": {
+      "images": 608,
+      "distinct_files": 608,
+      "distinct_ahash_16x16": 597,
+      "distinct_ahash_8x8": 359
+    },
+    "VBA": {
+      "images": 499,
+      "distinct_files": 499,
+      "distinct_ahash_16x16": 119,
+      "distinct_ahash_8x8": 49
+    },
+    "Vilsel": {
+      "images": 389,
+      "distinct_files": 389,
+      "distinct_ahash_16x16": 376,
+      "distinct_ahash_8x8": 118
+    }
+  },
+  "identical_files_under_two_classes": 0,
+  "identical_files_in_training_and_test": 0,
+  "near_twins": {
+    "test_images": 861,
+    "identical_hash_in_training": 0.17305458768873402,
+    "within_5_bits_of_training": 0.3530778164924506,
+    "per_class": {
+      "Adposhel": {
+        "test_images": 93,
+        "identical_hash_in_training": 0.032,
+        "within_5_bits_of_training": 0.258,
+        "nearest_training_image_same_class": 0.839
+      },
+      "Allaple": {
+        "test_images": 88,
+        "identical_hash_in_training": 0.159,
+        "within_5_bits_of_training": 0.193,
+        "nearest_training_image_same_class": 0.841
+      },
+      "Amonetize": {
+        "test_images": 87,
+        "identical_hash_in_training": 0.218,
+        "within_5_bits_of_training": 0.379,
+        "nearest_training_image_same_class": 0.874
+      },
+      "AutoRun": {
+        "test_images": 38,
+        "identical_hash_in_training": 0.026,
+        "within_5_bits_of_training": 0.053,
+        "nearest_training_image_same_class": 0.684
+      },
+      "BrowseFox": {
+        "test_images": 38,
+        "identical_hash_in_training": 0.132,
+        "within_5_bits_of_training": 0.158,
+        "nearest_training_image_same_class": 0.763
+      },
+      "Dinwod": {
+        "test_images": 29,
+        "identical_hash_in_training": 0.207,
+        "within_5_bits_of_training": 0.345,
+        "nearest_training_image_same_class": 0.586
+      },
+      "InstallCore": {
+        "test_images": 91,
+        "identical_hash_in_training": 0.011,
+        "within_5_bits_of_training": 0.187,
+        "nearest_training_image_same_class": 0.956
+      },
+      "MultiPlug": {
+        "test_images": 98,
+        "identical_hash_in_training": 0.153,
+        "within_5_bits_of_training": 0.561,
+        "nearest_training_image_same_class": 0.878
+      },
+      "Other": {
+        "test_images": 121,
+        "identical_hash_in_training": 0.025,
+        "within_5_bits_of_training": 0.14,
+        "nearest_training_image_same_class": 0.446
+      },
+      "VBA": {
+        "test_images": 100,
+        "identical_hash_in_training": 0.79,
+        "within_5_bits_of_training": 0.96,
+        "nearest_training_image_same_class": 0.99
+      },
+      "Vilsel": {
+        "test_images": 78,
+        "identical_hash_in_training": 0.038,
+        "within_5_bits_of_training": 0.346,
+        "nearest_training_image_same_class": 0.91
+      }
+    }
+  },
+  "no_learning_1nn_ahash_accuracy": 0.8095238095238095,
+  "majority_class_accuracy_on_test": 0.140534262485482
+}

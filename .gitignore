@@ -11,6 +11,11 @@ Datasets/ciciot23/*
 Datasets/ciciot23/CSV/*
 !Datasets/ciciot23/CSV/README.pdf
 
+# Derived features cached by the scripts (regenerated on demand)
+Probabilistic_Anomaly_Scoring/cache/
+# BODMAS triage lists carry per-file feature values; its terms forbid sharing the data
+Probabilistic_Anomaly_Scoring/results/triage/bodmas_*
+
 # Python
 __pycache__/
 *.py[cod]

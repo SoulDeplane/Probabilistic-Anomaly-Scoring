@@ -1,0 +1,171 @@
+{
+  "files": 63,
+  "rows": 47022341,
+  "rows_with_non_finite_values": 1041,
+  "duplicates": {
+    "rows_repeating_an_earlier_flow": 25171410,
+    "share": 0.5353074616170216,
+    "of_which_within_the_same_file": 11338122,
+    "of_which_only_across_files": 13833288,
+    "repeated_feature_vectors_ignoring_label": 25815285,
+    "feature_vectors_under_more_than_one_label": 548443,
+    "share_by_class": {
+      "DDOS-ICMP_FLOOD": 0.7252,
+      "DDOS-RSTFINFLOOD": 0.678,
+      "DDOS-SYNONYMOUSIP_FLOOD": 0.6624,
+      "DDOS-TCP_FLOOD": 0.6396,
+      "DDOS-UDP_FLOOD": 0.6227,
+      "DDOS-PSHACK_FLOOD": 0.5836,
+      "DOS-TCP_FLOOD": 0.5642,
+      "DDOS-SYN_FLOOD": 0.5478,
+      "DOS-UDP_FLOOD": 0.4191,
+      "DOS-SYN_FLOOD": 0.4158,
+      "MIRAI-UDPPLAIN": 0.1024,
+      "MITM-ARPSPOOFING": 0.0866,
+      "MIRAI-GREETH_FLOOD": 0.056,
+      "MIRAI-GREIP_FLOOD": 0.0362,
+      "DNS_SPOOFING": 0.0262,
+      "RECON-PORTSCAN": 0.0248,
+      "RECON-OSSCAN": 0.0179,
+      "BROWSERHIJACKING": 0.0121,
+      "RECON-HOSTDISCOVERY": 0.0063,
+      "DDOS-UDP_FRAGMENTATION": 0.0056,
+      "DOS-HTTP_FLOOD": 0.0052,
+      "DDOS-ICMP_FRAGMENTATION": 0.0048,
+      "DDOS-ACK_FRAGMENTATION": 0.0046,
+      "BENIGN": 0.0039,
+      "COMMANDINJECTION": 0.0039,
+      "VULNERABILITYSCAN": 0.0036,
+      "BACKDOOR_MALWARE": 0.0009,
+      "DICTIONARYBRUTEFORCE": 0.0002,
+      "DDOS-SLOWLORIS": 0.0,
+      "DDOS-HTTP_FLOOD": 0.0,
+      "RECON-PINGSWEEP": 0.0,
+      "SQLINJECTION": 0.0,
+      "UPLOADING_ATTACK": 0.0,
+      "XSS": 0.0
+    }
+  },
+  "packet_window_number_mean_by_class": {
+    "DDOS-UDP_FLOOD": 99.96,
+    "DDOS-ICMP_FLOOD": 99.96,
+    "DDOS-SYNONYMOUSIP_FLOOD": 99.96,
+    "DDOS-RSTFINFLOOD": 99.96,
+    "DDOS-PSHACK_FLOOD": 99.96,
+    "DOS-SYN_FLOOD": 99.96,
+    "DDOS-SYN_FLOOD": 99.96,
+    "DOS-TCP_FLOOD": 99.96,
+    "DDOS-TCP_FLOOD": 99.96,
+    "DOS-UDP_FLOOD": 99.95,
+    "DDOS-HTTP_FLOOD": 99.88,
+    "DDOS-SLOWLORIS": 99.85,
+    "DOS-HTTP_FLOOD": 99.75,
+    "MIRAI-UDPPLAIN": 99.71,
+    "MIRAI-GREIP_FLOOD": 99.71,
+    "MIRAI-GREETH_FLOOD": 99.7,
+    "DDOS-ACK_FRAGMENTATION": 99.56,
+    "DDOS-ICMP_FRAGMENTATION": 99.56,
+    "DDOS-UDP_FRAGMENTATION": 99.54,
+    "RECON-PINGSWEEP": 10.0,
+    "DICTIONARYBRUTEFORCE": 10.0,
+    "BACKDOOR_MALWARE": 10.0,
+    "RECON-HOSTDISCOVERY": 10.0,
+    "RECON-PORTSCAN": 10.0,
+    "VULNERABILITYSCAN": 10.0,
+    "COMMANDINJECTION": 10.0,
+    "DNS_SPOOFING": 10.0,
+    "RECON-OSSCAN": 10.0,
+    "SQLINJECTION": 10.0,
+    "BENIGN": 10.0,
+    "MITM-ARPSPOOFING": 10.0,
+    "BROWSERHIJACKING": 10.0,
+    "XSS": 10.0,
+    "UPLOADING_ATTACK": 9.99
+  },
+  "rows_by_class": {
+    "DDOS-ICMP_FLOOD": 7200501,
+    "DDOS-UDP_FLOOD": 5412231,
+    "DDOS-TCP_FLOOD": 4497649,
+    "DDOS-PSHACK_FLOOD": 4094772,
+    "DDOS-SYN_FLOOD": 4059179,
+    "DDOS-RSTFINFLOOD": 4045279,
+    "DDOS-SYNONYMOUSIP_FLOOD": 3598133,
+    "DOS-UDP_FLOOD": 3318634,
+    "DOS-TCP_FLOOD": 2671430,
+    "DOS-SYN_FLOOD": 2028836,
+    "BENIGN": 1098191,
+    "MIRAI-GREETH_FLOOD": 991834,
+    "MIRAI-UDPPLAIN": 890574,
+    "MIRAI-GREIP_FLOOD": 751646,
+    "DDOS-ICMP_FRAGMENTATION": 452490,
+    "VULNERABILITYSCAN": 373351,
+    "MITM-ARPSPOOFING": 307560,
+    "DDOS-UDP_FRAGMENTATION": 286925,
+    "DDOS-ACK_FRAGMENTATION": 285075,
+    "DNS_SPOOFING": 178898,
+    "RECON-HOSTDISCOVERY": 134378,
+    "RECON-OSSCAN": 98259,
+    "RECON-PORTSCAN": 82284,
+    "DOS-HTTP_FLOOD": 71861,
+    "DDOS-HTTP_FLOOD": 28790,
+    "DDOS-SLOWLORIS": 23426,
+    "DICTIONARYBRUTEFORCE": 13064,
+    "BROWSERHIJACKING": 5859,
+    "COMMANDINJECTION": 5409,
+    "SQLINJECTION": 5245,
+    "XSS": 3846,
+    "BACKDOOR_MALWARE": 3218,
+    "RECON-PINGSWEEP": 2262,
+    "UPLOADING_ATTACK": 1252
+  },
+  "trivial_baselines": {
+    "file": "Merged01.csv",
+    "rows": 712297,
+    "attack_share": 0.9767316161657286,
+    "majority_class_accuracy": 0.9767316161657286,
+    "best_stumps_by_accuracy": {
+      "AVG": {
+        "accuracy": 0.9795,
+        "balanced_accuracy": 0.9258
+      },
+      "Tot size": {
+        "accuracy": 0.9795,
+        "balanced_accuracy": 0.9258
+      },
+      "Std": {
+        "accuracy": 0.979,
+        "balanced_accuracy": 0.8967
+      },
+      "Variance": {
+        "accuracy": 0.979,
+        "balanced_accuracy": 0.8967
+      },
+      "Max": {
+        "accuracy": 0.9769,
+        "balanced_accuracy": 0.8585
+      }
+    },
+    "best_stumps_by_balanced_accuracy": {
+      "Number": {
+        "accuracy": 0.9767,
+        "balanced_accuracy": 0.9867
+      },
+      "HTTPS": {
+        "accuracy": 0.9767,
+        "balanced_accuracy": 0.9484
+      },
+      "IAT": {
+        "accuracy": 0.9767,
+        "balanced_accuracy": 0.9325
+      },
+      "ack_flag_number": {
+        "accuracy": 0.9767,
+        "balanced_accuracy": 0.9308
+      },
+      "Rate": {
+        "accuracy": 0.9767,
+        "balanced_accuracy": 0.9286
+      }
+    }
+  }
+}

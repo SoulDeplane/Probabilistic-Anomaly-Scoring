@@ -1,0 +1,9 @@
+# Python 3.12. Versions the committed results were produced with (CPU only; TensorFlow has no GPU support on native Windows).
+numpy==2.5.3
+pandas==3.0.6
+scikit-learn==1.9.1
+imbalanced-learn==0.14.2
+tensorflow==2.21.0  # includes Keras 3, used for the autoencoder and the EfficientNetV2 features
+matplotlib==3.11.2
+seaborn==0.13.2
+pillow==12.3.0

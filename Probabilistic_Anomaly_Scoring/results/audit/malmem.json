@@ -1,0 +1,394 @@
+{
+  "shape": [
+    58596,
+    57
+  ],
+  "class_counts": {
+    "Benign": 29298,
+    "Malware": 29298
+  },
+  "families": {
+    "Spyware-Transponder": 2410,
+    "Spyware-Gator": 2200,
+    "Ransomware-Shade": 2128,
+    "Ransomware-Ako": 2000,
+    "Spyware-180solutions": 2000,
+    "Spyware-CWS": 2000,
+    "Trojan-Refroso": 2000,
+    "Trojan-Scar": 2000,
+    "Ransomware-Conti": 1988,
+    "Trojan-Emotet": 1967,
+    "Ransomware-Maze": 1958,
+    "Trojan-Zeus": 1950,
+    "Ransomware-Pysa": 1717,
+    "Trojan-Reconyc": 1570,
+    "Spyware-TIBS": 1410
+  },
+  "malware_binaries": {
+    "count": 2887,
+    "binaries_by_dumps": {
+      "1": 9,
+      "2": 9,
+      "3": 12,
+      "4": 20,
+      "5": 15,
+      "6": 28,
+      "7": 15,
+      "8": 16,
+      "9": 15,
+      "10": 2637,
+      "12": 2,
+      "13": 2,
+      "17": 1,
+      "18": 2,
+      "19": 9,
+      "20": 95
+    },
+    "binaries_listed_under_two_families": 19
+  },
+  "duplicates": {
+    "exact_duplicate_records_all_columns": 534,
+    "duplicate_feature_vectors_beyond_first": 569,
+    "by_class": {
+      "Malware": 502,
+      "Benign": 67
+    },
+    "feature_vectors_labelled_both_classes": 0,
+    "malware_vectors_shared_by_different_binaries": 32
+  },
+  "paper_test_malware": {
+    "rows": 1465,
+    "families": {
+      "Ransomware-Conti": 1155,
+      "Ransomware-Ako": 310
+    },
+    "binaries": 147
+  },
+  "synthetic_balancing_check": {
+    "whole_number_features": 40,
+    "benign_rows_with_a_fractional_value_in_them": 0,
+    "malware_rows_with_a_fractional_value_in_them": 0
+  },
+  "svcscan.nservices_values": {
+    "Benign": {
+      "395": 21511,
+      "392": 7249,
+      "393": 224,
+      "394": 170,
+      "388": 85,
+      "389": 25,
+      "391": 21,
+      "390": 13
+    },
+    "Malware": {
+      "389": 27242,
+      "385": 1438,
+      "378": 371,
+      "392": 71,
+      "387": 65,
+      "386": 20,
+      "304": 19,
+      "390": 15,
+      "307": 8,
+      "339": 6,
+      "356": 5,
+      "379": 5,
+      "328": 5,
+      "388": 4,
+      "314": 3,
+      "395": 3,
+      "349": 3,
+      "383": 2,
+      "320": 2,
+      "323": 2,
+      "94": 1,
+      "394": 1,
+      "116": 1,
+      "331": 1,
+      "199": 1,
+      "269": 1,
+      "105": 1,
+      "195": 1,
+      "325": 1
+    }
+  },
+  "non_finite_values": 0,
+  "constant_features": [
+    "pslist.nprocs64bit",
+    "handles.nport",
+    "svcscan.interactive_process_services"
+  ],
+  "largest_feature_values": {
+    "handles.nhandles": 1047310.0,
+    "handles.nfile": 807008.0,
+    "malfind.commitCharge": 220850.0,
+    "handles.avg_handles_per_proc": 33784.19355,
+    "pslist.avg_handlers": 24845.95122
+  },
+  "majority_class_accuracy": 0.5,
+  "single_feature_stumps": {
+    "svcscan.nservices": {
+      "accuracy": 0.9966,
+      "rule": "malware if svcscan.nservices <= 390.5"
+    },
+    "svcscan.shared_process_services": {
+      "accuracy": 0.9963,
+      "rule": "malware if svcscan.shared_process_services <= 116.5"
+    },
+    "svcscan.kernel_drivers": {
+      "accuracy": 0.9958,
+      "rule": "malware if svcscan.kernel_drivers <= 221.5"
+    },
+    "handles.nmutant": {
+      "accuracy": 0.9877,
+      "rule": "malware if handles.nmutant <= 295.5"
+    },
+    "dlllist.avg_dlls_per_proc": {
+      "accuracy": 0.9872,
+      "rule": "malware if dlllist.avg_dlls_per_proc <= 42.5459"
+    },
+    "handles.nsection": {
+      "accuracy": 0.9854,
+      "rule": "malware if handles.nsection <= 231.5"
+    },
+    "handles.avg_handles_per_proc": {
+      "accuracy": 0.9851,
+      "rule": "malware if handles.avg_handles_per_proc <= 241.895"
+    },
+    "handles.nevent": {
+      "accuracy": 0.9848,
+      "rule": "malware if handles.nevent <= 3328.5"
+    },
+    "pslist.avg_handlers": {
+      "accuracy": 0.9846,
+      "rule": "malware if pslist.avg_handlers <= 235.701"
+    },
+    "handles.nhandles": {
+      "accuracy": 0.9813,
+      "rule": "malware if handles.nhandles <= 9754"
+    },
+    "handles.nkey": {
+      "accuracy": 0.9796,
+      "rule": "malware if handles.nkey <= 763.5"
+    },
+    "dlllist.ndlls": {
+      "accuracy": 0.9752,
+      "rule": "malware if dlllist.ndlls <= 1738.5"
+    },
+    "handles.nsemaphore": {
+      "accuracy": 0.9746,
+      "rule": "malware if handles.nsemaphore <= 704.5"
+    },
+    "handles.nthread": {
+      "accuracy": 0.9586,
+      "rule": "malware if handles.nthread <= 855.5"
+    },
+    "ldrmodules.not_in_load": {
+      "accuracy": 0.9565,
+      "rule": "malware if ldrmodules.not_in_load <= 59.5"
+    },
+    "ldrmodules.not_in_mem": {
+      "accuracy": 0.9565,
+      "rule": "malware if ldrmodules.not_in_mem <= 59.5"
+    },
+    "handles.ntimer": {
+      "accuracy": 0.9506,
+      "rule": "malware if handles.ntimer <= 129.5"
+    },
+    "handles.nfile": {
+      "accuracy": 0.9429,
+      "rule": "malware if handles.nfile <= 777.5"
+    },
+    "ldrmodules.not_in_init": {
+      "accuracy": 0.9339,
+      "rule": "malware if ldrmodules.not_in_init <= 94.5"
+    },
+    "svcscan.nactive": {
+      "accuracy": 0.9255,
+      "rule": "malware if svcscan.nactive <= 122.5"
+    },
+    "pslist.avg_threads": {
+      "accuracy": 0.9184,
+      "rule": "malware if pslist.avg_threads <= 10.8128"
+    },
+    "ldrmodules.not_in_load_avg": {
+      "accuracy": 0.9081,
+      "rule": "malware if ldrmodules.not_in_load_avg <= 0.0313436"
+    },
+    "ldrmodules.not_in_mem_avg": {
+      "accuracy": 0.9081,
+      "rule": "malware if ldrmodules.not_in_mem_avg <= 0.0313436"
+    },
+    "malfind.uniqueInjections": {
+      "accuracy": 0.902,
+      "rule": "malware if malfind.uniqueInjections <= 1.00022"
+    },
+    "svcscan.process_services": {
+      "accuracy": 0.876,
+      "rule": "malware if svcscan.process_services <= 24.5"
+    },
+    "malfind.commitCharge": {
+      "accuracy": 0.8497,
+      "rule": "malware if malfind.commitCharge <= 3.5"
+    },
+    "pslist.nppid": {
+      "accuracy": 0.8232,
+      "rule": "malware if pslist.nppid > 13.5"
+    },
+    "callbacks.ncallbacks": {
+      "accuracy": 0.8107,
+      "rule": "malware if callbacks.ncallbacks <= 87.5"
+    },
+    "malfind.protection": {
+      "accuracy": 0.755,
+      "rule": "malware if malfind.protection <= 18.5"
+    },
+    "malfind.ninjections": {
+      "accuracy": 0.7444,
+      "rule": "malware if malfind.ninjections <= 3.5"
+    },
+    "handles.ndesktop": {
+      "accuracy": 0.7363,
+      "rule": "malware if handles.ndesktop <= 43.5"
+    },
+    "psxview.not_in_deskthrd_false_avg": {
+      "accuracy": 0.6735,
+      "rule": "malware if psxview.not_in_deskthrd_false_avg > 0.15555"
+    },
+    "handles.ndirectory": {
+      "accuracy": 0.6698,
+      "rule": "malware if handles.ndirectory <= 98.5"
+    },
+    "ldrmodules.not_in_init_avg": {
+      "accuracy": 0.6644,
+      "rule": "malware if ldrmodules.not_in_init_avg <= 0.0547134"
+    },
+    "psxview.not_in_csrss_handles_false_avg": {
+      "accuracy": 0.6616,
+      "rule": "malware if psxview.not_in_csrss_handles_false_avg > 0.105253"
+    },
+    "pslist.nproc": {
+      "accuracy": 0.6521,
+      "rule": "malware if pslist.nproc <= 39.5"
+    },
+    "psxview.not_in_session_false_avg": {
+      "accuracy": 0.64,
+      "rule": "malware if psxview.not_in_session_false_avg > 0.0526205"
+    },
+    "psxview.not_in_deskthrd": {
+      "accuracy": 0.6167,
+      "rule": "malware if psxview.not_in_deskthrd > 6.5"
+    },
+    "psxview.not_in_csrss_handles": {
+      "accuracy": 0.6064,
+      "rule": "malware if psxview.not_in_csrss_handles > 4.5"
+    },
+    "psxview.not_in_ethread_pool": {
+      "accuracy": 0.6063,
+      "rule": "malware if psxview.not_in_ethread_pool > 0.5"
+    },
+    "psxview.not_in_ethread_pool_false_avg": {
+      "accuracy": 0.6041,
+      "rule": "malware if psxview.not_in_ethread_pool_false_avg > 0.0217352"
+    },
+    "psxview.not_in_pspcid_list_false_avg": {
+      "accuracy": 0.5956,
+      "rule": "malware if psxview.not_in_pspcid_list_false_avg > 0.043459"
+    },
+    "psxview.not_in_pslist_false_avg": {
+      "accuracy": 0.5953,
+      "rule": "malware if psxview.not_in_pslist_false_avg > 0.0434731"
+    },
+    "psxview.not_in_pspcid_list": {
+      "accuracy": 0.5948,
+      "rule": "malware if psxview.not_in_pspcid_list > 1.5"
+    },
+    "psxview.not_in_pslist": {
+      "accuracy": 0.5947,
+      "rule": "malware if psxview.not_in_pslist > 1.5"
+    },
+    "psxview.not_in_session": {
+      "accuracy": 0.5946,
+      "rule": "malware if psxview.not_in_session > 3.5"
+    },
+    "modules.nmodules": {
+      "accuracy": 0.5234,
+      "rule": "malware if modules.nmodules <= 137.5"
+    },
+    "psxview.not_in_eprocess_pool": {
+      "accuracy": 0.5015,
+      "rule": "malware if psxview.not_in_eprocess_pool > 0.5"
+    },
+    "psxview.not_in_eprocess_pool_false_avg": {
+      "accuracy": 0.5014,
+      "rule": "malware if psxview.not_in_eprocess_pool_false_avg > 0.0215819"
+    },
+    "svcscan.fs_drivers": {
+      "accuracy": 0.501,
+      "rule": "malware if svcscan.fs_drivers <= 25.5"
+    },
+    "callbacks.nanonymous": {
+      "accuracy": 0.5009,
+      "rule": "malware if callbacks.nanonymous > 0.5"
+    },
+    "callbacks.ngeneric": {
+      "accuracy": 0.5001,
+      "rule": "malware if callbacks.ngeneric <= 7.5"
+    }
+  },
+  "best_stump_per_plugin": {
+    "svcscan": {
+      "feature": "svcscan.nservices",
+      "accuracy": 0.9966,
+      "rule": "malware if svcscan.nservices <= 390.5"
+    },
+    "handles": {
+      "feature": "handles.nmutant",
+      "accuracy": 0.9877,
+      "rule": "malware if handles.nmutant <= 295.5"
+    },
+    "dlllist": {
+      "feature": "dlllist.avg_dlls_per_proc",
+      "accuracy": 0.9872,
+      "rule": "malware if dlllist.avg_dlls_per_proc <= 42.5459"
+    },
+    "pslist": {
+      "feature": "pslist.avg_handlers",
+      "accuracy": 0.9846,
+      "rule": "malware if pslist.avg_handlers <= 235.701"
+    },
+    "ldrmodules": {
+      "feature": "ldrmodules.not_in_load",
+      "accuracy": 0.9565,
+      "rule": "malware if ldrmodules.not_in_load <= 59.5"
+    },
+    "malfind": {
+      "feature": "malfind.uniqueInjections",
+      "accuracy": 0.902,
+      "rule": "malware if malfind.uniqueInjections <= 1.00022"
+    },
+    "callbacks": {
+      "feature": "callbacks.ncallbacks",
+      "accuracy": 0.8107,
+      "rule": "malware if callbacks.ncallbacks <= 87.5"
+    },
+    "psxview": {
+      "feature": "psxview.not_in_deskthrd_false_avg",
+      "accuracy": 0.6735,
+      "rule": "malware if psxview.not_in_deskthrd_false_avg > 0.15555"
+    },
+    "modules": {
+      "feature": "modules.nmodules",
+      "accuracy": 0.5234,
+      "rule": "malware if modules.nmodules <= 137.5"
+    }
+  },
+  "paper_subset": {
+    "majority_class_accuracy": 0.9523778565159444,
+    "best_stump": {
+      "accuracy": 0.9962,
+      "rule": "malware if svcscan.nservices <= 389.5",
+      "feature": "svcscan.nservices"
+    }
+  }
+}
