@@ -5,7 +5,8 @@ the same clean rows. The protocol is in src/protocol.py: duplicate rows dropped;
 into train / calibrate / test; scaler and models fitted on the training rows only; every number is measured
 on clean rows that no model or threshold has seen.
 
-Detectors, 5 seeds: the base paper's autoencoder (input-64-32-64-input, scaled features) and Isolation Forest.
+Detectors, 5 seeds: the base paper's autoencoder (input-64-32-64-input, scaled features), the VAE of src/vae.py
+(score = negative ELBO) and Isolation Forest.
 Flag lines, all tested on the same unseen rows:
   paper_mean_plus_3std   mean + 3 std of training error (the base paper)
   train_99th_percentile  99th percentile of training error (the old '1% budget', set on training rows)
@@ -17,10 +18,11 @@ MalMem also for the base paper's own 1,465 test malware (Conti and Ako only), as
 Options:
   --drop svcscan  retrain without MalMem's svcscan.* features (the one-feature shortcut)
   --drop window   retrain without CICIoT2023's Number, Tot sum, IAT, Variance and Rate (window-sensitive)
+  --detectors ... train only these; their results are merged into the existing JSON, the others kept
   --temporal      BODMAS: train and calibrate on files first seen before March 2020; test on held-out older
                   files (test_old) and on everything first seen later (test_new)
 
-Usage: python src/heldout_eval.py {malmem,ciciot23,bodmas} [--drop svcscan|window] [--temporal] [--seeds ...]
+Usage: python src/heldout_eval.py {malmem,ciciot23,bodmas} [--drop svcscan|window] [--temporal] [--detectors ...] [--seeds ...]
 """
 import argparse
 import json
@@ -34,7 +36,7 @@ import protocol as P
 from replicate_khalid import ROOT
 
 RESULTS = os.path.join(ROOT, 'results', 'heldout')
-DETECTORS = ('autoencoder', 'isolation_forest')
+DETECTORS = ('autoencoder', 'vae', 'isolation_forest')
 
 
 def test_sets(ds):
@@ -85,6 +87,7 @@ def main():
     ap.add_argument('dataset', choices=sorted(P.LOADERS))
     ap.add_argument('--drop', choices=sorted(P.DROP_GROUPS))
     ap.add_argument('--temporal', action='store_true')
+    ap.add_argument('--detectors', nargs='+', choices=DETECTORS, default=list(DETECTORS))
     ap.add_argument('--seeds', type=int, nargs='+', default=[42, 1, 2, 3, 4])
     args = ap.parse_args()
     if args.temporal and args.dataset != 'bodmas':
@@ -107,7 +110,7 @@ def main():
         print(f'stump {name:14s} ROC-AUC {r["roc_auc"]:.3f}  PR-AUC {r["pr_auc_20to1"]:.3f} | false alarms '
               f'{r["false_alarm_rate"]:.2%}  recall {r["recall"]:.3f}  F1 {r["f1_20to1"]:.3f}', flush=True)
 
-    for det in DETECTORS:
+    for det in args.detectors:
         runs = {}
         for seed in args.seeds:
             t0 = time.time()
@@ -121,7 +124,13 @@ def main():
 
     os.makedirs(RESULTS, exist_ok=True)
     tag = args.dataset + ('_temporal' if args.temporal else '') + (f'_no-{args.drop}' if args.drop else '')
-    with open(os.path.join(RESULTS, f'{tag}.json'), 'w') as f:
+    path = os.path.join(RESULTS, f'{tag}.json')
+    if set(args.detectors) != set(DETECTORS) and os.path.exists(path):
+        with open(path) as f:
+            old = json.load(f)
+        for key in ('runs', 'summary'):
+            results[key] = {**old[key], **results[key]}
+    with open(path, 'w') as f:
         json.dump(results, f, indent=2)
 
 

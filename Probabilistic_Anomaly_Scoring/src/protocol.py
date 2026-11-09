@@ -1,7 +1,7 @@
 """Held-out evaluation protocol shared by the newer experiments (study guide, section 5, steps 1-3).
 
   split      duplicate feature vectors dropped; clean rows split 60/20/20 into train / cal(ibrate) / test with
-             a fixed seed, so every model (including the VAE still to come) sees identical partitions; malware
+             a fixed seed, so every model (autoencoder, VAE, Isolation Forest) sees identical partitions; malware
              split 50/50 into 'fit' (used only by the supervised stump baseline) and 'test'. On MalMem the
              malware split is grouped by the sample's SHA-256, so all dumps of one binary fall on one side.
   scaling    StandardScaler fitted on the clean training rows only
@@ -184,6 +184,10 @@ def fit_detector(name, X_train, seed):
     if name == 'autoencoder':
         model, _, _ = fit_paper_autoencoder(X_train, seed, verbose=0)
         return lambda X: finite(reconstruction_mse(model, X)), model
+    if name == 'vae':
+        from vae import fit_vae, neg_elbo
+        model, _ = fit_vae(X_train, seed)
+        return lambda X: finite(neg_elbo(model, X)), model
     if name == 'isolation_forest':
         iso = IsolationForest(n_estimators=100, max_samples='auto', max_features=1.0, random_state=seed,
                               n_jobs=-1).fit(X_train)

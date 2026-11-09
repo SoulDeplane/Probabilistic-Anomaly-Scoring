@@ -1111,6 +1111,513 @@
         },
         "seconds": 2.8
       }
+    },
+    "vae": {
+      "42": {
+        "test": {
+          "roc_auc": 0.7347192062562313,
+          "pr_auc_20to1": 0.2098379622785415,
+          "paper_mean_plus_3std": {
+            "false_alarms": 226,
+            "false_alarm_rate": 0.01464869069224786,
+            "caught": 4594,
+            "recall": 0.1603770291499389,
+            "precision_20to1": 0.35375919473418616,
+            "f1_20to1": 0.2206996747178439,
+            "accuracy_20to1": 0.9460668197764277
+          },
+          "train_99th_percentile": {
+            "false_alarms": 187,
+            "false_alarm_rate": 0.012120819289603318,
+            "caught": 3756,
+            "recall": 0.13112235992319776,
+            "precision_20to1": 0.3510274675043961,
+            "f1_20to1": 0.190926335834693,
+            "accuracy_20to1": 0.9470812368633872
+          },
+          "conformal_1pct": {
+            "false_alarms": 158,
+            "false_alarm_rate": 0.010241120041483018,
+            "caught": 3690,
+            "recall": 0.12881829289579333,
+            "precision_20to1": 0.3860988641924937,
+            "f1_20to1": 0.19318290676320973,
+            "accuracy_20to1": 0.9487617091460063
+          },
+          "conformal_5pct": {
+            "false_alarms": 776,
+            "false_alarm_rate": 0.05029815919108115,
+            "caught": 7416,
+            "recall": 0.25889334962471633,
+            "precision_20to1": 0.20468198786095745,
+            "f1_20to1": 0.228617880030369,
+            "accuracy_20to1": 0.916806198371576
+          },
+          "recall_by_family_conformal_1pct": {
+            "backdoor": {
+              "recall": 0.0019214932747735384,
+              "n": 3643
+            },
+            "cryptominer": {
+              "recall": 0.0,
+              "n": 8
+            },
+            "downloader": {
+              "recall": 0.024574669187145556,
+              "n": 529
+            },
+            "dropper": {
+              "recall": 0.2569060773480663,
+              "n": 362
+            },
+            "exploit": {
+              "recall": 0.0,
+              "n": 6
+            },
+            "informationstealer": {
+              "recall": 0.04310344827586207,
+              "n": 232
+            },
+            "p2p-worm": {
+              "recall": 0.8,
+              "n": 10
+            },
+            "pua": {
+              "recall": 0.0,
+              "n": 10
+            },
+            "ransomware": {
+              "recall": 0.05398457583547558,
+              "n": 389
+            },
+            "rootkit": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "trojan": {
+              "recall": 0.0754328932528362,
+              "n": 15073
+            },
+            "trojan-gamethief": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "virus": {
+              "recall": 0.012987012987012988,
+              "n": 77
+            },
+            "worm": {
+              "recall": 0.2890869669959046,
+              "n": 8302
+            }
+          }
+        },
+        "seconds": 397.8
+      },
+      "1": {
+        "test": {
+          "roc_auc": 0.7360772293105688,
+          "pr_auc_20to1": 0.21033815886107246,
+          "paper_mean_plus_3std": {
+            "false_alarms": 226,
+            "false_alarm_rate": 0.01464869069224786,
+            "caught": 4638,
+            "recall": 0.1619130738348752,
+            "precision_20to1": 0.35594139602642516,
+            "f1_20to1": 0.2225782295599414,
+            "accuracy_20to1": 0.9461399647614247
+          },
+          "train_99th_percentile": {
+            "false_alarms": 185,
+            "false_alarm_rate": 0.01199118485869847,
+            "caught": 3771,
+            "recall": 0.13164601152033514,
+            "precision_20to1": 0.35439231904820334,
+            "f1_20to1": 0.19197800824294914,
+            "accuracy_20to1": 0.9472296340164936
+          },
+          "conformal_1pct": {
+            "false_alarms": 165,
+            "false_alarm_rate": 0.010694840549649988,
+            "caught": 3704,
+            "recall": 0.12930703438645488,
+            "precision_20to1": 0.3767645267595701,
+            "f1_20to1": 0.1925352355582718,
+            "accuracy_20to1": 0.9483528677806408
+          },
+          "conformal_5pct": {
+            "false_alarms": 772,
+            "false_alarm_rate": 0.05003889032927145,
+            "caught": 7437,
+            "recall": 0.2596264618607087,
+            "precision_20to1": 0.20598665710707528,
+            "f1_20to1": 0.22971683913796784,
+            "accuracy_20to1": 0.9170880312035848
+          },
+          "recall_by_family_conformal_1pct": {
+            "backdoor": {
+              "recall": 0.0019214932747735384,
+              "n": 3643
+            },
+            "cryptominer": {
+              "recall": 0.0,
+              "n": 8
+            },
+            "downloader": {
+              "recall": 0.024574669187145556,
+              "n": 529
+            },
+            "dropper": {
+              "recall": 0.26243093922651933,
+              "n": 362
+            },
+            "exploit": {
+              "recall": 0.0,
+              "n": 6
+            },
+            "informationstealer": {
+              "recall": 0.04310344827586207,
+              "n": 232
+            },
+            "p2p-worm": {
+              "recall": 0.8,
+              "n": 10
+            },
+            "pua": {
+              "recall": 0.0,
+              "n": 10
+            },
+            "ransomware": {
+              "recall": 0.05398457583547558,
+              "n": 389
+            },
+            "rootkit": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "trojan": {
+              "recall": 0.07622901877529357,
+              "n": 15073
+            },
+            "trojan-gamethief": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "virus": {
+              "recall": 0.012987012987012988,
+              "n": 77
+            },
+            "worm": {
+              "recall": 0.2890869669959046,
+              "n": 8302
+            }
+          }
+        },
+        "seconds": 390.0
+      },
+      "2": {
+        "test": {
+          "roc_auc": 0.7338704016829983,
+          "pr_auc_20to1": 0.20941419470883035,
+          "paper_mean_plus_3std": {
+            "false_alarms": 229,
+            "false_alarm_rate": 0.014843142338605134,
+            "caught": 4596,
+            "recall": 0.16044684936289055,
+            "precision_20to1": 0.350849436867239,
+            "f1_20to1": 0.22019595393953664,
+            "accuracy_20to1": 0.9458849525043233
+          },
+          "train_99th_percentile": {
+            "false_alarms": 185,
+            "false_alarm_rate": 0.01199118485869847,
+            "caught": 3765,
+            "recall": 0.13143655088148018,
+            "precision_20to1": 0.35402807483404325,
+            "f1_20to1": 0.19170183204518196,
+            "accuracy_20to1": 0.9472196597003577
+          },
+          "conformal_1pct": {
+            "false_alarms": 161,
+            "false_alarm_rate": 0.010435571687840291,
+            "caught": 3707,
+            "recall": 0.12941176470588237,
+            "precision_20to1": 0.38273553927759535,
+            "f1_20to1": 0.1934227952322446,
+            "accuracy_20to1": 0.9486047776642417
+          },
+          "conformal_5pct": {
+            "false_alarms": 780,
+            "false_alarm_rate": 0.050557428052890846,
+            "caught": 7421,
+            "recall": 0.25906790015709547,
+            "precision_20to1": 0.20395570996561257,
+            "f1_20to1": 0.22823189293452184,
+            "accuracy_20to1": 0.9165675875761561
+          },
+          "recall_by_family_conformal_1pct": {
+            "backdoor": {
+              "recall": 0.0019214932747735384,
+              "n": 3643
+            },
+            "cryptominer": {
+              "recall": 0.0,
+              "n": 8
+            },
+            "downloader": {
+              "recall": 0.024574669187145556,
+              "n": 529
+            },
+            "dropper": {
+              "recall": 0.26243093922651933,
+              "n": 362
+            },
+            "exploit": {
+              "recall": 0.0,
+              "n": 6
+            },
+            "informationstealer": {
+              "recall": 0.04310344827586207,
+              "n": 232
+            },
+            "p2p-worm": {
+              "recall": 0.8,
+              "n": 10
+            },
+            "pua": {
+              "recall": 0.0,
+              "n": 10
+            },
+            "ransomware": {
+              "recall": 0.05398457583547558,
+              "n": 389
+            },
+            "rootkit": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "trojan": {
+              "recall": 0.07642805015590791,
+              "n": 15073
+            },
+            "trojan-gamethief": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "virus": {
+              "recall": 0.012987012987012988,
+              "n": 77
+            },
+            "worm": {
+              "recall": 0.2890869669959046,
+              "n": 8302
+            }
+          }
+        },
+        "seconds": 405.3
+      },
+      "3": {
+        "test": {
+          "roc_auc": 0.7366458377391465,
+          "pr_auc_20to1": 0.21015273841450438,
+          "paper_mean_plus_3std": {
+            "false_alarms": 225,
+            "false_alarm_rate": 0.014583873476795437,
+            "caught": 4633,
+            "recall": 0.16173852330249608,
+            "precision_20to1": 0.35671111265839023,
+            "f1_20to1": 0.2225632910322305,
+            "accuracy_20to1": 0.9461933835126947
+          },
+          "train_99th_percentile": {
+            "false_alarms": 185,
+            "false_alarm_rate": 0.01199118485869847,
+            "caught": 3761,
+            "recall": 0.1312969104555769,
+            "precision_20to1": 0.3537850169361596,
+            "f1_20to1": 0.19151766770184978,
+            "accuracy_20to1": 0.947213010156267
+          },
+          "conformal_1pct": {
+            "false_alarms": 163,
+            "false_alarm_rate": 0.01056520611874514,
+            "caught": 3698,
+            "recall": 0.12909757374759992,
+            "precision_20to1": 0.37925067712101146,
+            "f1_20to1": 0.19262520201377212,
+            "accuracy_20to1": 0.9484663548272713
+          },
+          "conformal_5pct": {
+            "false_alarms": 766,
+            "false_alarm_rate": 0.04964998703655691,
+            "caught": 7433,
+            "recall": 0.2594868214348054,
+            "precision_20to1": 0.2071773297001055,
+            "f1_20to1": 0.23040032805815128,
+            "accuracy_20to1": 0.9174517657477937
+          },
+          "recall_by_family_conformal_1pct": {
+            "backdoor": {
+              "recall": 0.0019214932747735384,
+              "n": 3643
+            },
+            "cryptominer": {
+              "recall": 0.0,
+              "n": 8
+            },
+            "downloader": {
+              "recall": 0.024574669187145556,
+              "n": 529
+            },
+            "dropper": {
+              "recall": 0.26243093922651933,
+              "n": 362
+            },
+            "exploit": {
+              "recall": 0.0,
+              "n": 6
+            },
+            "informationstealer": {
+              "recall": 0.04310344827586207,
+              "n": 232
+            },
+            "p2p-worm": {
+              "recall": 0.8,
+              "n": 10
+            },
+            "pua": {
+              "recall": 0.0,
+              "n": 10
+            },
+            "ransomware": {
+              "recall": 0.05398457583547558,
+              "n": 389
+            },
+            "rootkit": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "trojan": {
+              "recall": 0.07583095601406488,
+              "n": 15073
+            },
+            "trojan-gamethief": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "virus": {
+              "recall": 0.012987012987012988,
+              "n": 77
+            },
+            "worm": {
+              "recall": 0.2890869669959046,
+              "n": 8302
+            }
+          }
+        },
+        "seconds": 407.1
+      },
+      "4": {
+        "test": {
+          "roc_auc": 0.7352319139377628,
+          "pr_auc_20to1": 0.20969439074160015,
+          "paper_mean_plus_3std": {
+            "false_alarms": 226,
+            "false_alarm_rate": 0.01464869069224786,
+            "caught": 4581,
+            "recall": 0.15992319776575317,
+            "precision_20to1": 0.3531116206684443,
+            "f1_20to1": 0.22014388698956597,
+            "accuracy_20to1": 0.9460452087581331
+          },
+          "train_99th_percentile": {
+            "false_alarms": 185,
+            "false_alarm_rate": 0.01199118485869847,
+            "caught": 3758,
+            "recall": 0.13119218013614942,
+            "precision_20to1": 0.3536026034446246,
+            "f1_20to1": 0.191379519825173,
+            "accuracy_20to1": 0.9472080229981991
+          },
+          "conformal_1pct": {
+            "false_alarms": 159,
+            "false_alarm_rate": 0.010305937256935443,
+            "caught": 3696,
+            "recall": 0.1290277535346483,
+            "precision_20to1": 0.3849891138513795,
+            "f1_20to1": 0.19327879549226135,
+            "accuracy_20to1": 0.948709952780759
+          },
+          "conformal_5pct": {
+            "false_alarms": 779,
+            "false_alarm_rate": 0.050492610837438424,
+            "caught": 7388,
+            "recall": 0.2579158666433933,
+            "precision_20to1": 0.20344088956182652,
+            "f1_20to1": 0.22746229522517913,
+            "accuracy_20to1": 0.9165744595187917
+          },
+          "recall_by_family_conformal_1pct": {
+            "backdoor": {
+              "recall": 0.0019214932747735384,
+              "n": 3643
+            },
+            "cryptominer": {
+              "recall": 0.0,
+              "n": 8
+            },
+            "downloader": {
+              "recall": 0.024574669187145556,
+              "n": 529
+            },
+            "dropper": {
+              "recall": 0.2569060773480663,
+              "n": 362
+            },
+            "exploit": {
+              "recall": 0.0,
+              "n": 6
+            },
+            "informationstealer": {
+              "recall": 0.04310344827586207,
+              "n": 232
+            },
+            "p2p-worm": {
+              "recall": 0.8,
+              "n": 10
+            },
+            "pua": {
+              "recall": 0.0,
+              "n": 10
+            },
+            "ransomware": {
+              "recall": 0.05398457583547558,
+              "n": 389
+            },
+            "rootkit": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "trojan": {
+              "recall": 0.07583095601406488,
+              "n": 15073
+            },
+            "trojan-gamethief": {
+              "recall": 0.0,
+              "n": 2
+            },
+            "virus": {
+              "recall": 0.012987012987012988,
+              "n": 77
+            },
+            "worm": {
+              "recall": 0.2890869669959046,
+              "n": 8302
+            }
+          }
+        },
+        "seconds": 406.4
+      }
     }
   },
   "summary": {
@@ -1786,6 +2293,343 @@
         "mean": 2.64,
         "min": 2.5,
         "max": 2.8
+      }
+    },
+    "vae": {
+      "test": {
+        "roc_auc": {
+          "mean": 0.7353,
+          "min": 0.7339,
+          "max": 0.7366
+        },
+        "pr_auc_20to1": {
+          "mean": 0.2099,
+          "min": 0.2094,
+          "max": 0.2103
+        },
+        "paper_mean_plus_3std": {
+          "false_alarms": {
+            "mean": 226.4,
+            "min": 225.0,
+            "max": 229.0
+          },
+          "false_alarm_rate": {
+            "mean": 0.0147,
+            "min": 0.0146,
+            "max": 0.0148
+          },
+          "caught": {
+            "mean": 4608.4,
+            "min": 4581.0,
+            "max": 4638.0
+          },
+          "recall": {
+            "mean": 0.1609,
+            "min": 0.1599,
+            "max": 0.1619
+          },
+          "precision_20to1": {
+            "mean": 0.3541,
+            "min": 0.3508,
+            "max": 0.3567
+          },
+          "f1_20to1": {
+            "mean": 0.2212,
+            "min": 0.2201,
+            "max": 0.2226
+          },
+          "accuracy_20to1": {
+            "mean": 0.9461,
+            "min": 0.9459,
+            "max": 0.9462
+          }
+        },
+        "train_99th_percentile": {
+          "false_alarms": {
+            "mean": 185.4,
+            "min": 185.0,
+            "max": 187.0
+          },
+          "false_alarm_rate": {
+            "mean": 0.012,
+            "min": 0.012,
+            "max": 0.0121
+          },
+          "caught": {
+            "mean": 3762.2,
+            "min": 3756.0,
+            "max": 3771.0
+          },
+          "recall": {
+            "mean": 0.1313,
+            "min": 0.1311,
+            "max": 0.1316
+          },
+          "precision_20to1": {
+            "mean": 0.3534,
+            "min": 0.351,
+            "max": 0.3544
+          },
+          "f1_20to1": {
+            "mean": 0.1915,
+            "min": 0.1909,
+            "max": 0.192
+          },
+          "accuracy_20to1": {
+            "mean": 0.9472,
+            "min": 0.9471,
+            "max": 0.9472
+          }
+        },
+        "conformal_1pct": {
+          "false_alarms": {
+            "mean": 161.2,
+            "min": 158.0,
+            "max": 165.0
+          },
+          "false_alarm_rate": {
+            "mean": 0.0104,
+            "min": 0.0102,
+            "max": 0.0107
+          },
+          "caught": {
+            "mean": 3699.0,
+            "min": 3690.0,
+            "max": 3707.0
+          },
+          "recall": {
+            "mean": 0.1291,
+            "min": 0.1288,
+            "max": 0.1294
+          },
+          "precision_20to1": {
+            "mean": 0.382,
+            "min": 0.3768,
+            "max": 0.3861
+          },
+          "f1_20to1": {
+            "mean": 0.193,
+            "min": 0.1925,
+            "max": 0.1934
+          },
+          "accuracy_20to1": {
+            "mean": 0.9486,
+            "min": 0.9484,
+            "max": 0.9488
+          }
+        },
+        "conformal_5pct": {
+          "false_alarms": {
+            "mean": 774.6,
+            "min": 766.0,
+            "max": 780.0
+          },
+          "false_alarm_rate": {
+            "mean": 0.0502,
+            "min": 0.0496,
+            "max": 0.0506
+          },
+          "caught": {
+            "mean": 7419.0,
+            "min": 7388.0,
+            "max": 7437.0
+          },
+          "recall": {
+            "mean": 0.259,
+            "min": 0.2579,
+            "max": 0.2596
+          },
+          "precision_20to1": {
+            "mean": 0.205,
+            "min": 0.2034,
+            "max": 0.2072
+          },
+          "f1_20to1": {
+            "mean": 0.2289,
+            "min": 0.2275,
+            "max": 0.2304
+          },
+          "accuracy_20to1": {
+            "mean": 0.9169,
+            "min": 0.9166,
+            "max": 0.9175
+          }
+        },
+        "recall_by_family_conformal_1pct": {
+          "backdoor": {
+            "recall": {
+              "mean": 0.0019,
+              "min": 0.0019,
+              "max": 0.0019
+            },
+            "n": {
+              "mean": 3643.0,
+              "min": 3643.0,
+              "max": 3643.0
+            }
+          },
+          "cryptominer": {
+            "recall": {
+              "mean": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "n": {
+              "mean": 8.0,
+              "min": 8.0,
+              "max": 8.0
+            }
+          },
+          "downloader": {
+            "recall": {
+              "mean": 0.0246,
+              "min": 0.0246,
+              "max": 0.0246
+            },
+            "n": {
+              "mean": 529.0,
+              "min": 529.0,
+              "max": 529.0
+            }
+          },
+          "dropper": {
+            "recall": {
+              "mean": 0.2602,
+              "min": 0.2569,
+              "max": 0.2624
+            },
+            "n": {
+              "mean": 362.0,
+              "min": 362.0,
+              "max": 362.0
+            }
+          },
+          "exploit": {
+            "recall": {
+              "mean": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "n": {
+              "mean": 6.0,
+              "min": 6.0,
+              "max": 6.0
+            }
+          },
+          "informationstealer": {
+            "recall": {
+              "mean": 0.0431,
+              "min": 0.0431,
+              "max": 0.0431
+            },
+            "n": {
+              "mean": 232.0,
+              "min": 232.0,
+              "max": 232.0
+            }
+          },
+          "p2p-worm": {
+            "recall": {
+              "mean": 0.8,
+              "min": 0.8,
+              "max": 0.8
+            },
+            "n": {
+              "mean": 10.0,
+              "min": 10.0,
+              "max": 10.0
+            }
+          },
+          "pua": {
+            "recall": {
+              "mean": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "n": {
+              "mean": 10.0,
+              "min": 10.0,
+              "max": 10.0
+            }
+          },
+          "ransomware": {
+            "recall": {
+              "mean": 0.054,
+              "min": 0.054,
+              "max": 0.054
+            },
+            "n": {
+              "mean": 389.0,
+              "min": 389.0,
+              "max": 389.0
+            }
+          },
+          "rootkit": {
+            "recall": {
+              "mean": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "n": {
+              "mean": 2.0,
+              "min": 2.0,
+              "max": 2.0
+            }
+          },
+          "trojan": {
+            "recall": {
+              "mean": 0.076,
+              "min": 0.0754,
+              "max": 0.0764
+            },
+            "n": {
+              "mean": 15073.0,
+              "min": 15073.0,
+              "max": 15073.0
+            }
+          },
+          "trojan-gamethief": {
+            "recall": {
+              "mean": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "n": {
+              "mean": 2.0,
+              "min": 2.0,
+              "max": 2.0
+            }
+          },
+          "virus": {
+            "recall": {
+              "mean": 0.013,
+              "min": 0.013,
+              "max": 0.013
+            },
+            "n": {
+              "mean": 77.0,
+              "min": 77.0,
+              "max": 77.0
+            }
+          },
+          "worm": {
+            "recall": {
+              "mean": 0.2891,
+              "min": 0.2891,
+              "max": 0.2891
+            },
+            "n": {
+              "mean": 8302.0,
+              "min": 8302.0,
+              "max": 8302.0
+            }
+          }
+        }
+      },
+      "seconds": {
+        "mean": 401.32,
+        "min": 390.0,
+        "max": 407.1
       }
     }
   }
