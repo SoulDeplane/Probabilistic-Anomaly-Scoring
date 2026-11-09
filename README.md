@@ -4,7 +4,7 @@ B.Tech major project MP2026CSE75, Dept. of CSE, Graphic Era Deemed to be Univers
 
 Examiners seize more evidence than they can read, so they have to decide what to examine first (triage). This project scores every artefact (memory dump, executable, network flow) by how unusual it is compared with **clean data only**, turns the score into a p-value with a false-alarm rate fixed in advance, and audits what the score is really picking up. The base paper is Khalid, Iqbal & Saqib (2025), *Forensic Sci. Int.: Digital Investigation* 53, 301924.
 
-Status: the base paper is replicated, and its pipeline is tested on three datasets with held-out, conformal and time-ordered evaluation. The variational autoencoder and the SHAP audit are still to come; `src/protocol.py` fixes the partitions they will use.
+Status: the base paper is replicated. Its autoencoder, a variational autoencoder (VAE) and Isolation Forest are tested on three datasets with held-out, conformal and time-ordered evaluation, against a no-model distance-from-the-mean baseline. The SHAP audit is still to come; `src/protocol.py` fixes the partitions it will use.
 
 ## Repository layout
 
@@ -25,7 +25,7 @@ python -m venv .venv && .venv/Scripts/activate      # Windows; source .venv/bin/
 pip install -r requirements.txt
 ```
 
-CIC MalMemAnalysis-2022 is included. CICIoT2023, BODMAS and Dumpware10 must be downloaded from their publishers into `Datasets/` (sources and expected layout in `Datasets/README.md`); BODMAS may not be redistributed. TensorFlow on CPU is not bit-for-bit deterministic, so reruns of the autoencoder vary slightly.
+CIC MalMemAnalysis-2022 is included. CICIoT2023, BODMAS and Dumpware10 must be downloaded from their publishers into `Datasets/` (sources and expected layout in `Datasets/README.md`); BODMAS may not be redistributed. TensorFlow on CPU is not bit-for-bit deterministic, so reruns of the autoencoder and VAE vary slightly. The VAE results were produced in WSL2 (Ubuntu 24.04, Python 3.12) with the same `requirements.txt`, because Windows Smart App Control blocked TensorFlow on the development machine.
 
 ## Scripts
 
@@ -39,7 +39,8 @@ Run from any directory, e.g. `python Probabilistic_Anomaly_Scoring/src/heldout_e
 | `scaled_on_paper_testset.py` | Scaled autoencoder on the paper's own test set | `replication/scaled_paper_testset.json` |
 | `audit_malmem.py`, `audit_ciciot23.py`, `audit_bodmas.py`, `audit_dumpware10.py` | Dataset audits: duplicates, one-feature stumps, scale, time span, near-twin images | `audit/` |
 | `protocol.py` | Shared protocol: de-duplication, 60/20/20 clean split, conformal p-values, metrics, baselines | (library) |
-| `heldout_eval.py` | Held-out evaluation with conformal thresholds, baselines, per-family recall; `--drop svcscan`, `--drop window`, `--temporal` | `heldout/` |
+| `vae.py` | VAE (64-32-8-32-64) trained on clean rows; score = negative ELBO with z = mean | (library) |
+| `heldout_eval.py` | Held-out evaluation of the autoencoder, VAE and Isolation Forest with conformal thresholds, baselines, per-family recall; `--drop svcscan`, `--drop window`, `--temporal`; `--detectors` retrains only the named detectors (none: baselines only) and keeps the rest | `heldout/` |
 | `group_split.py` | Random vs hash-grouped splits for a supervised Random Forest on MalMem | `group_split/malmem.json` |
 | `dumpware10_benign_only.py` | Can any benign-only detector separate Dumpware10 malware images? | `dumpware10/benign_only.json` |
 | `triage_report.py` | Ranked triage list with score, p-value, top reconstruction-error features, PR curve | `triage/` |
@@ -50,22 +51,35 @@ Run from any directory, e.g. `python Probabilistic_Anomaly_Scoring/src/heldout_e
 1. **Split.** Duplicate feature vectors are dropped. Clean rows are split 60/20/20 into train / calibrate / test with a fixed seed, so every model sees the same partitions. Malware is split 50/50 into rows that only the supervised stump baseline may see and test rows; on MalMem this split is grouped by the binary's SHA-256.
 2. **Scaling and training.** A StandardScaler and the detectors are fitted on the clean training rows only.
 3. **Conformal p-value.** For a score `s`, `p = (1 + #calibration scores ≥ s) / (n + 1)`. An artefact is flagged when `p ≤ 0.01`, which keeps false alarms on unseen clean data at about 1%.
-4. **Metrics.** False-alarm rate and recall at that line, ROC-AUC, and precision / F1 / PR-AUC at the base paper's 20:1 clean:malware ratio (test malware is weighted to make up 1/21 of the test set). Baselines are "always clean" and the best single-feature decision stump.
+4. **Metrics.** False-alarm rate and recall at that line, ROC-AUC, and precision / F1 / PR-AUC at the base paper's 20:1 clean:malware ratio (test malware is weighted to make up 1/21 of the test set). Baselines are "always clean", the best single-feature decision stump, and the squared distance from the clean training mean (no model, no labels), which is flagged with the same conformal line as the detectors.
 
 ## Results
 
-### Held-out test, autoencoder flagged at p ≤ 0.01 (mean of 5 seeds)
+### Held-out test, flagged at p ≤ 0.01
 
-| Dataset | False alarms on unseen clean | Recall | Precision (20:1) | F1 | ROC-AUC | PR-AUC | Best one-feature stump (F1) |
-|---|---|---|---|---|---|---|---|
-| CIC MalMem-2022 | 0.92% | 1.000 | 0.845 | 0.916 | 0.999 | 0.977 | `svcscan.nservices` ≤ 390.5 (0.961) |
-| MalMem without `svcscan.*` | 0.87% | 0.991 | 0.851 | 0.916 | 0.999 | 0.959 | `handles.nmutant` ≤ 294.5 (0.847) |
-| CICIoT2023 | 0.89% | 0.971 | 0.845 | 0.903 | 0.993 | 0.979 | `Number` > 10.5 (0.983) |
-| CICIoT2023 without window features | 0.95% | 0.757 | 0.800 | 0.777 | 0.953 | 0.819 | `HTTPS` ≤ 0.097 (0.633) |
-| BODMAS, random split | 1.07% | 0.130 | 0.380 | 0.194 | 0.732 | 0.208 | `header.32` > −0.5 (0.231) |
-| BODMAS, files first seen after Mar 2020 | 0.84% | 0.154 | 0.480 | 0.234 | 0.713 | 0.223 | same (0.280) |
+Autoencoder (AE) and VAE: mean of 5 seeds. Distance: the no-model baseline (squared distance from the clean training mean), which is deterministic. The VAE was run on the three main splits.
+
+| Dataset | Detector | False alarms on unseen clean | Recall | Precision (20:1) | F1 | ROC-AUC | PR-AUC | Best one-feature stump (F1) |
+|---|---|---|---|---|---|---|---|---|
+| CIC MalMem-2022 | AE | 0.92% | 1.000 | 0.845 | 0.916 | 0.999 | 0.977 | `svcscan.nservices` ≤ 390.5 (0.961) |
+| | VAE | 0.88% | 0.991 | 0.850 | 0.915 | 0.998 | 0.952 | |
+| | Distance | 0.84% | 0.523 | 0.757 | 0.619 | 0.990 | 0.756 | |
+| MalMem without `svcscan.*` | AE | 0.87% | 0.991 | 0.851 | 0.916 | 0.999 | 0.959 | `handles.nmutant` ≤ 294.5 (0.847) |
+| | Distance | 0.86% | 0.198 | 0.536 | 0.289 | 0.965 | 0.501 | |
+| CICIoT2023 | AE | 0.89% | 0.971 | 0.845 | 0.903 | 0.993 | 0.979 | `Number` > 10.5 (0.983) |
+| | VAE | 0.89% | 0.971 | 0.846 | 0.904 | 0.992 | 0.979 | |
+| | Distance | 0.97% | 0.971 | 0.834 | 0.897 | 0.992 | 0.978 | |
+| CICIoT2023 without window features | AE | 0.95% | 0.757 | 0.800 | 0.777 | 0.953 | 0.819 | `HTTPS` ≤ 0.097 (0.633) |
+| | Distance | 0.98% | 0.553 | 0.738 | 0.632 | 0.947 | 0.706 | |
+| BODMAS, random split | AE | 1.07% | 0.130 | 0.380 | 0.194 | 0.732 | 0.208 | `header.32` > −0.5 (0.231) |
+| | VAE | 1.04% | 0.129 | 0.382 | 0.193 | 0.735 | 0.210 | |
+| | Distance | 1.08% | 0.128 | 0.371 | 0.190 | 0.644 | 0.190 | |
+| BODMAS, files first seen after Mar 2020 | AE | 0.84% | 0.154 | 0.480 | 0.234 | 0.713 | 0.223 | same (0.280) |
+| | Distance | 0.91% | 0.154 | 0.459 | 0.230 | 0.601 | 0.206 | |
 
 - "Always clean" scores accuracy 0.952 and F1 0 at 20:1.
+- **VAE vs AE.** The VAE ties the AE at the 1% line on all three datasets. On MalMem its PR-AUC is lower (0.952 vs 0.977) and varies more between seeds (0.917–0.974).
+- **Distance from the mean.** With no model at all, this score matches both networks on CICIoT2023 and, at the flag line, on BODMAS, so there the networks add nothing beyond "far from average". On MalMem they add a lot (recall 0.99 vs 0.52), and more once the shortcut features are dropped (MalMem 0.99 vs 0.20; CICIoT2023 0.76 vs 0.55).
 - Isolation Forest is far weaker at the same line: recall 0.13 on MalMem, 0.37 on CICIoT2023, 0.00 on BODMAS.
 - **MalMem families.** The autoencoder catches all 15 malware families (recall 1.00 each); without `svcscan.*`, 0.98–1.00 each. The base paper's own test malware covers only 2 families (Conti 1,155 rows, Ako 310).
 - **CICIoT2023 attack classes.** Recall comes from floods. DNS spoofing, ARP spoofing, vulnerability scans and web attacks are caught at 0–9%. Dropping the five window-sensitive features costs 0.21 recall.

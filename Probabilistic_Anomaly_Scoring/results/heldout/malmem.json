@@ -121,6 +121,160 @@
           }
         }
       }
+    },
+    "distance_from_mean": {
+      "test": {
+        "roc_auc": 0.9900954419362379,
+        "pr_auc_20to1": 0.7558676913919709,
+        "paper_mean_plus_3std": {
+          "false_alarms": 39,
+          "false_alarm_rate": 0.006670087224217547,
+          "caught": 3961,
+          "recall": 0.2757012598315584,
+          "precision_20to1": 0.6739164878355718,
+          "f1_20to1": 0.391314558250347,
+          "accuracy_20to1": 0.9591571197784384
+        },
+        "train_99th_percentile": {
+          "false_alarms": 55,
+          "false_alarm_rate": 0.009406533264922183,
+          "caught": 8354,
+          "recall": 0.5814714275770864,
+          "precision_20to1": 0.7555481370957361,
+          "f1_20to1": 0.6571775993237208,
+          "accuracy_20to1": 0.9711114648704114
+        },
+        "conformal_1pct": {
+          "false_alarms": 49,
+          "false_alarm_rate": 0.008380365999657944,
+          "caught": 7515,
+          "recall": 0.5230737105867613,
+          "precision_20to1": 0.757330355732472,
+          "f1_20to1": 0.6187727917043487,
+          "accuracy_20to1": 0.9693079233616001
+        },
+        "conformal_5pct": {
+          "false_alarms": 302,
+          "false_alarm_rate": 0.05165041901829998,
+          "caught": 14348,
+          "recall": 0.9986775248834133,
+          "precision_20to1": 0.49155114100218855,
+          "f1_20to1": 0.6588265117795924,
+          "accuracy_20to1": 0.9507461497389244
+        },
+        "recall_by_family_conformal_1pct": {
+          "Ransomware-Ako": {
+            "recall": 0.6645041705282669,
+            "n": 1079
+          },
+          "Ransomware-Conti": {
+            "recall": 0.49041372351160445,
+            "n": 991
+          },
+          "Ransomware-Maze": {
+            "recall": 0.5480549199084668,
+            "n": 874
+          },
+          "Ransomware-Pysa": {
+            "recall": 0.6237980769230769,
+            "n": 832
+          },
+          "Ransomware-Shade": {
+            "recall": 0.4301994301994302,
+            "n": 1053
+          },
+          "Spyware-180solutions": {
+            "recall": 0.5097037793667007,
+            "n": 979
+          },
+          "Spyware-CWS": {
+            "recall": 0.6126042632066728,
+            "n": 1079
+          },
+          "Spyware-Gator": {
+            "recall": 0.371900826446281,
+            "n": 968
+          },
+          "Spyware-TIBS": {
+            "recall": 0.7484076433121019,
+            "n": 628
+          },
+          "Spyware-Transponder": {
+            "recall": 0.6394052044609665,
+            "n": 1076
+          },
+          "Trojan-Emotet": {
+            "recall": 0.4369230769230769,
+            "n": 975
+          },
+          "Trojan-Reconyc": {
+            "recall": 0.40657894736842104,
+            "n": 760
+          },
+          "Trojan-Refroso": {
+            "recall": 0.4939759036144578,
+            "n": 1079
+          },
+          "Trojan-Scar": {
+            "recall": 0.39565627950897075,
+            "n": 1059
+          },
+          "Trojan-Zeus": {
+            "recall": 0.5304812834224599,
+            "n": 935
+          }
+        }
+      },
+      "paper_malware": {
+        "roc_auc": 0.9902509436907069,
+        "pr_auc_20to1": 0.7479574114422636,
+        "paper_mean_plus_3std": {
+          "false_alarms": 39,
+          "false_alarm_rate": 0.006670087224217547,
+          "caught": 349,
+          "recall": 0.2383879781420765,
+          "precision_20to1": 0.6411903386087077,
+          "f1_20to1": 0.34755760917301387,
+          "accuracy_20to1": 0.957380296840844
+        },
+        "train_99th_percentile": {
+          "false_alarms": 55,
+          "false_alarm_rate": 0.009406533264922183,
+          "caught": 858,
+          "recall": 0.5860655737704918,
+          "precision_20to1": 0.7569987351983348,
+          "f1_20to1": 0.660654735778324,
+          "accuracy_20to1": 0.9713302337367642
+        },
+        "conformal_1pct": {
+          "false_alarms": 49,
+          "false_alarm_rate": 0.008380365999657944,
+          "caught": 770,
+          "recall": 0.5259562841530054,
+          "precision_20to1": 0.7583389338898519,
+          "f1_20to1": 0.6211237450608468,
+          "accuracy_20to1": 0.9694451887695164
+        },
+        "conformal_5pct": {
+          "false_alarms": 302,
+          "false_alarm_rate": 0.05165041901829998,
+          "caught": 1464,
+          "recall": 1.0,
+          "precision_20to1": 0.49188188777656267,
+          "f1_20to1": 0.6594113003270554,
+          "accuracy_20to1": 0.9508091247444762
+        },
+        "recall_by_family_conformal_1pct": {
+          "Ransomware-Ako": {
+            "recall": 0.6225806451612903,
+            "n": 310
+          },
+          "Ransomware-Conti": {
+            "recall": 0.5,
+            "n": 1154
+          }
+        }
+      }
     }
   },
   "runs": {

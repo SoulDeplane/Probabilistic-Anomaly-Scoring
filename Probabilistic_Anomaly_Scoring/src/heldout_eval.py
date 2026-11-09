@@ -11,14 +11,16 @@ Flag lines, all tested on the same unseen rows:
   paper_mean_plus_3std   mean + 3 std of training error (the base paper)
   train_99th_percentile  99th percentile of training error (the old '1% budget', set on training rows)
   conformal_1pct / 5pct  p <= 0.01 / 0.05, with p computed from the held-out calibration rows
-Baselines: always clean, and the best single-feature stump (supervised: it also sees the malware 'fit' rows).
+Baselines: always clean; the best single-feature stump (supervised: it also sees the malware 'fit' rows); and
+distance from the clean mean (protocol.distance_score; no model), with the same flag lines as the detectors.
 Recall per family (MalMem), attack class (CICIoT2023) or category (BODMAS) is given at conformal_1pct; on
 MalMem also for the base paper's own 1,465 test malware (Conti and Ako only), as test set 'paper_malware'.
 
 Options:
   --drop svcscan  retrain without MalMem's svcscan.* features (the one-feature shortcut)
   --drop window   retrain without CICIoT2023's Number, Tot sum, IAT, Variance and Rate (window-sensitive)
-  --detectors ... train only these; their results are merged into the existing JSON, the others kept
+  --detectors ... train only these (none: baselines only); their results are merged into the existing JSON,
+                  the other detectors' results kept
   --temporal      BODMAS: train and calibrate on files first seen before March 2020; test on held-out older
                   files (test_old) and on everything first seen later (test_new)
 
@@ -87,7 +89,7 @@ def main():
     ap.add_argument('dataset', choices=sorted(P.LOADERS))
     ap.add_argument('--drop', choices=sorted(P.DROP_GROUPS))
     ap.add_argument('--temporal', action='store_true')
-    ap.add_argument('--detectors', nargs='+', choices=DETECTORS, default=list(DETECTORS))
+    ap.add_argument('--detectors', nargs='*', choices=DETECTORS, default=list(DETECTORS))
     ap.add_argument('--seeds', type=int, nargs='+', default=[42, 1, 2, 3, 4])
     args = ap.parse_args()
     if args.temporal and args.dataset != 'bodmas':
@@ -109,6 +111,10 @@ def main():
         r = stump[name]
         print(f'stump {name:14s} ROC-AUC {r["roc_auc"]:.3f}  PR-AUC {r["pr_auc_20to1"]:.3f} | false alarms '
               f'{r["false_alarm_rate"]:.2%}  recall {r["recall"]:.3f}  F1 {r["f1_20to1"]:.3f}', flush=True)
+    dist = P.distance_score
+    results['baselines']['distance_from_mean'] = evaluate(dist, Xs, ds, sets, dist(Xs[train]), dist(Xs[cal]))
+    for name in sets:
+        print('distance ' + line(name, results['baselines']['distance_from_mean'][name]), flush=True)
 
     for det in args.detectors:
         runs = {}

@@ -10,8 +10,9 @@
   metrics    false-alarm rate and recall at the flag line, ROC-AUC, and precision, F1, accuracy and PR-AUC at
              the base paper's 20:1 clean:malware ratio: each test malware row is weighted so malware carries
              1/21 of the test weight (recall, false-alarm rate and ROC-AUC do not depend on the ratio)
-  baselines  majority class ('always clean') and the best single-feature decision stump, fitted on the clean
-             training rows plus the malware 'fit' rows
+  baselines  majority class ('always clean'); the best single-feature decision stump, fitted on the clean
+             training rows plus the malware 'fit' rows; and distance from the clean mean (no model, no labels),
+             scored and thresholded exactly like the detectors
 """
 import glob
 import os
@@ -246,6 +247,13 @@ def flags(name, line, s, cal_scores):
 
 
 # ----- baselines -----
+
+def distance_score(X):
+    """Squared distance from the clean training mean in standardised units, sum_j z_j^2. Needs no model and
+    no labels; it is what an autoencoder that always outputs the mean would score, so a learned detector
+    has to beat it to show that it learned anything beyond 'far from average'."""
+    return finite(np.square(np.asarray(X, np.float64)).sum(axis=1))
+
 
 def majority_baseline():
     return {**at_flags(np.zeros(RATIO, bool), np.zeros(1, bool)), 'roc_auc': 0.5, 'pr_auc_20to1': 1 / (RATIO + 1)}
