@@ -51,7 +51,7 @@
 
 ## 3. Done so far
 
-Commits on GitHub: `0ac8933`, `3f63fb9`, `4a8bb80`, `b5b3036`, `50df781`, `5546de5`, `714ccba`, `49f6a04`.
+Commits on GitHub: `0ac8933`, `3f63fb9`, `4a8bb80`, `b5b3036`, `50df781`, `5546de5`, `714ccba`, `49f6a04`, `7f9aa9a`, `55e7deb`, `d7c5d73`.
 
 1. **Audit and repair.**
    - MalMem: the partial local copy was replaced with the official file.
@@ -116,8 +116,7 @@ Commits on GitHub: `0ac8933`, `3f63fb9`, `4a8bb80`, `b5b3036`, `50df781`, `5546d
 1. ✔ **Built:** the VAE (Step 4), the SHAP audit (Step 5), SHAP reasons in the triage report (Step 7) and the clustering replication.
 2. ✔ **Dataset switch:** Dr. Rehan's approval for the revised synopsis and slides.
 3. ✔ **Check the redrawn figures:** synopsis Fig. 4.1 and the slide-11 pipeline image.
-4. ✔ **Prawiranata & Hadiprakoso:** downloaded through college IEEE access.
-5. **Corrected facts; use these from now on:**
+4. ✔ **Corrected facts; use these from now on:**
    - CICIoT's 97.96% one-feature rule is barely above "always attack" (97.67%). The real shortcut is `Number` (the packet-window size), at 98.7% balanced accuracy.
    - CICIoT duplicates are 53.5% of rows, not 5%.
    - MalMem has 534 duplicate records but 569 duplicate feature vectors; 569 are dropped.
@@ -169,11 +168,6 @@ flag = p <= 0.01                                     # at most 1% false alarms
 - **Headline:** "92.79% accuracy", but accuracy is counted over image–prototype pairs. Always answering "no" already scores 90.91% at 11 classes, and their accuracy recomputed from their own precision and recall matches every row of their table. **Real result: recall 0.30, F1 0.43.**
 - **Other flaws:** near-twin leakage; training collapse; no threshold, settings or code reported; 38% of images unaccounted for.
 - **Useful:** independent evidence of Dumpware10 duplicates, and a ready accuracy-trap example.
-
-**Prawiranata & Hadiprakoso, IEEE ICoCICs 2023, transfer learning on Dumpware10.**
-- **Method:** ImageNet-pretrained EfficientNetV2, InceptionV4 and Xception, with and without augmentation (flips and rotations, which make no sense for byte images).
-- **Results:** not verified (paywalled). Download through college IEEE access before citing numbers.
-- **Limits:** supervised and closed-set; read any ~97% against the 81% no-learning rule.
 
 ## 8. Results side by side
 
