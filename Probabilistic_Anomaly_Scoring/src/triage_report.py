@@ -6,9 +6,12 @@ a 'seized batch': the held-out clean test rows plus test malware at the base pap
   p_value            conformal p-value from the held-out calibration rows: the share of clean data that looks at
                      least this unusual, i.e. the false-alarm rate of flagging everything down to this row
   flagged            p <= 0.01
-  top_features       the three features with the largest share of the reconstruction error, with the artefact's
-                     value and the clean training median. This is the autoencoder's own exact split of its score,
-                     not a SHAP attribution, and says which features are unusual, not why
+  shap_reasons       flagged artefacts only: the three largest positive SHAP contributions to the score (feature,
+                     the artefact's value, the clean training median, share of the positive contributions),
+                     measured against 100 clean calibration rows as in src/shap_audit.py; per feature on MalMem and
+                     CICIoT2023, per EMBER feature group (exact Shapley values) on BODMAS
+  error_reasons      the three features with the largest share of the reconstruction error (the earlier
+                     'top_features'), kept for comparison: an exact split of the score, but not a SHAP attribution
   label, family      ground truth, for evaluation only (an examiner would not have it)
   precision_so_far,  what flagging everything down to this rank achieves (evaluation only)
   recall_so_far
@@ -28,6 +31,7 @@ from sklearn.preprocessing import StandardScaler
 
 import protocol as P
 from replicate_khalid import ROOT
+from shap_audit import MAX_PER_FEATURE, N_BACKGROUND, fast_score, feature_groups, feature_shap, group_shapley
 
 OUT = os.path.join(ROOT, 'results', 'triage')
 ALPHA = 0.01
@@ -38,9 +42,12 @@ LIMITATIONS = {
         'The p-value holds only while new clean data resembles the calibration data. On BODMAS, clean files first '
         'seen up to seven months after the training period kept the false-alarm rate at about 1% '
         '(results/heldout/bodmas_temporal.json), but no longer horizon has been tested.',
-        'top_features names the features the autoencoder could not reconstruct. It is not a causal explanation: '
-        'a feature can be unusual because of how the evidence was captured rather than because of malware, and a '
-        'feature whose value is ordinary can still appear when one extreme feature throws off the whole '
+        'shap_reasons say which features made the score high, not why the artefact is malicious. The SHAP audit '
+        '(results/shap/) found that where the dataset has a capture shortcut, the reasons name it: svcscan '
+        'features on MalMem, the packet-window size Number on CICIoT2023. Such a reason describes how the evidence '
+        'was recorded, not malware behaviour.',
+        'error_reasons (the largest per-feature reconstruction errors) often disagree with shap_reasons: a feature '
+        'whose value is ordinary can still show a large error when one extreme feature throws off the whole '
         'reconstruction.',
         'Ground truth columns are included only to evaluate the ranking; they are not available at seizure.',
     ],
@@ -81,6 +88,31 @@ def reasons(err, X_raw, median, features, k=3):
                       for j in top[i]) for i in range(len(top))]
 
 
+def shap_reasons(phi, X_raw, median, features, groups=None, k=3):
+    """Largest positive contributions; phi is per feature, or per group when groups is given."""
+    pos = np.clip(phi, 0, None)
+    share = pos / np.maximum(pos.sum(axis=1, keepdims=True), 1e-300)
+    top = np.argsort(-pos, axis=1)[:, :k]
+    if groups is not None:
+        names = list(groups)
+        return ['; '.join(f'{names[g]} group ({share[i, g]:.0%})' for g in top[i] if pos[i, g] > 0)
+                for i in range(len(top))]
+    return ['; '.join(f'{features[j]} {X_raw[i, j]:g} vs clean median {median[j]:g} ({share[i, j]:.0%})'
+                      for j in top[i] if pos[i, j] > 0) for i in range(len(top))]
+
+
+def explain(score, model, Xs, cal, X_flagged, X_raw, median, features, seed):
+    """SHAP reasons for the flagged artefacts, with the same reference rows and methods as src/shap_audit.py."""
+    background = Xs[cal][np.random.default_rng(0).choice(int(cal.sum()), N_BACKGROUND, replace=False)]
+    f = fast_score('autoencoder', score, model, Xs[cal])
+    if len(features) <= MAX_PER_FEATURE:
+        phi, _ = feature_shap(f, X_flagged, background, seed)
+        return shap_reasons(phi, X_raw, median, features), np.argmax(phi, axis=1), None
+    groups = feature_groups(features)
+    phi = group_shapley(f, X_flagged, background, groups)
+    return shap_reasons(phi, X_raw, median, features, groups), np.argmax(phi, axis=1), groups
+
+
 def pr_chart(y, score, flags, path, title):
     import matplotlib
     matplotlib.use('Agg')
@@ -113,14 +145,15 @@ def pr_chart(y, score, flags, path, title):
 
 
 def markdown(name, table, summary, path):
-    cols = ['rank', 'artefact', 'score', 'p_value', 'flagged', 'top_features', 'label', 'family']
+    cols = ['rank', 'artefact', 'score', 'p_value', 'flagged', 'shap_reasons', 'label', 'family']
     top = table.head(25)[cols].copy()
     top['score'] = top['score'].map(lambda v: f'{v:.3g}')
     top['p_value'] = top['p_value'].map(lambda v: f'{v:.4f}')
     rows = ['| ' + ' | '.join(cols) + ' |', '|' + '---|' * len(cols)]
     rows += ['| ' + ' | '.join(str(v).replace('|', '/') for v in r) + ' |' for r in top.itertuples(index=False)]
     lines = [f'# Triage report: {name}', '', f'Generated by `src/triage_report.py {name}`. Full ranked list: '
-             f'`{name}_ranked.csv`; precision-recall curve: `{name}_pr_curve.png`.', '', '## Summary', '']
+             f'`{name}_ranked.csv` (it also has `error_reasons`, the largest reconstruction errors); '
+             f'precision-recall curve: `{name}_pr_curve.png`.', '', '## Summary', '']
     lines += [f'- {k}: {v}' for k, v in summary.items()]
     lines += ['', f'![Precision-recall curve]({name}_pr_curve.png)', '', '## The 25 most unusual artefacts', '',
               '`label` and `family` are ground truth, shown for evaluation only.', ''] + rows
@@ -148,8 +181,16 @@ def main():
     s = P.finite(err.mean(axis=1))
     p = P.conformal_p(cal_scores, s)
     y = ds.y[batch]
+    median = np.median(ds.X[train], axis=0)
+    flag = (p <= ALPHA) & (s < 1e300)
+    why = np.full(len(batch), '', dtype=object)
+    why[flag], shap_top, groups = explain(score, model, Xs, cal, Xb[flag], ds.X[batch][flag], median, ds.features,
+                                          args.seed)
+    err_top = np.argmax(err[flag] if groups is None
+                        else np.stack([err[flag][:, c].sum(1) for c in groups.values()], 1), axis=1)
     table = pd.DataFrame({'artefact': ds.row_id[batch], 'score': s, 'p_value': p, 'flagged': p <= ALPHA,
-                          'top_features': reasons(err, ds.X[batch], np.median(ds.X[train], axis=0), ds.features),
+                          'shap_reasons': why,
+                          'error_reasons': reasons(err, ds.X[batch], median, ds.features),
                           'label': np.where(y == 1, 'malware', 'clean'), 'family': ds.family[batch]})
     table = table.sort_values('score', ascending=False, kind='stable').reset_index(drop=True)
     table.insert(0, 'rank', np.arange(1, len(table) + 1))
@@ -172,6 +213,9 @@ def main():
                                 f'precision {(flagged & hits).sum() / max(flagged.sum(), 1):.3f})',
         'Flagged at p <= 0.05': f'{int(f5.sum()):,}: {int((f5 & hits).sum()):,} malware, {int((f5 & ~hits).sum()):,} clean',
         'PR-AUC': f'{average_precision_score(hits, table["score"]):.3f} (always clean: {hits.mean():.3f})',
+        'Explanations': f'SHAP reasons for the {int(flag.sum()):,} flagged artefacts '
+                        f'({"per feature" if groups is None else "per feature group"}); the largest SHAP reason is '
+                        f'also the largest reconstruction error for {np.mean(shap_top == err_top):.0%} of them',
     }
     os.makedirs(OUT, exist_ok=True)
     table.to_csv(os.path.join(OUT, f'{args.dataset}_ranked.csv'), index=False)

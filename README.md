@@ -44,7 +44,7 @@ Run from any directory, e.g. `python Probabilistic_Anomaly_Scoring/src/heldout_e
 | `shap_audit.py` | SHAP of the autoencoder and VAE scores on flagged test malware: per feature (permutation SHAP) and per Volatility plugin / EMBER group (exact Shapley); shortcut share, agreement with the stump ranking, stability, agreement with the reconstruction-error reasons; `--drop svcscan`, `--drop window` | `shap/` |
 | `group_split.py` | Random vs hash-grouped splits for a supervised Random Forest on MalMem | `group_split/malmem.json` |
 | `dumpware10_benign_only.py` | Can any benign-only detector separate Dumpware10 malware images? | `dumpware10/benign_only.json` |
-| `triage_report.py` | Ranked triage list with score, p-value, top reconstruction-error features, PR curve | `triage/` |
+| `triage_report.py` | Ranked triage list with score, p-value, SHAP reasons for flagged artefacts (reconstruction-error reasons kept for comparison), PR curve | `triage/` |
 | `build_dataset_inventory.py` | Rebuilds `Datasets/inventory` and `Datasets/samples` | `Datasets/` |
 
 ## Evaluation protocol (`protocol.py`)
@@ -105,7 +105,7 @@ SHAP splits each flagged artefact's score into per-feature contributions, measur
 - **Where a lab shortcut exists, SHAP reports it as the main reason.** That's MalMem's running-services count and CICIoT2023's packet-window size, so an examiner reading these explanations would be reading a quirk of how the dataset was recorded. Without the shortcut, MalMem's explanations move to the plugin of the next-best stump, while CICIoT2023's move to plausible attack signals rather than the next stump. On BODMAS, which has no shortcut, they point to byte entropy (packed or encrypted content).
 - **Pooled averages mislead.** Averaging |SHAP| over all artefacts gives 98% to `malfind.commitCharge` on MalMem and 100% to `data_directories` on BODMAS, driven by a few extreme values.
 - **Stability.** Rankings agree between seeds and between AE and VAE at ρ 0.74–0.95 per feature (per MalMem plugin, down to 0.65). On BODMAS they are identical (ρ 1.00), consistent with both networks measuring distance from the mean there.
-- **The triage report's current reasons** (largest per-feature reconstruction errors) share only 0–43% of SHAP's top 3 on MalMem and CICIoT2023, but 84–88% on BODMAS.
+- **Reconstruction-error reasons vs SHAP.** The largest per-feature reconstruction errors share only 0–43% of SHAP's top 3 on MalMem and CICIoT2023, but 84–88% on BODMAS. The triage report therefore gives SHAP reasons for flagged artefacts and keeps the error reasons alongside for comparison.
 - **Checks.** On the distance baseline, whose exact SHAP values are known, both methods are exact (error ≤ 10⁻¹³). Contributions add up to each score (relative error ≤ 4 × 10⁻⁷).
 
 ### Audits and splits
@@ -123,4 +123,4 @@ SHAP splits each flagged artefact's score into per-feature contributions, measur
 | Dumpware10 benign-only detectors, malware caught at 1% false alarms | ≤ 5.2% (supervised ROC-AUC 0.982) | `dumpware10/benign_only.json` |
 | MalMem Random Forest, random vs hash-grouped 5-fold | macro-F1 −4.0 points at 4 classes, −8.7 at 16 classes; binary unchanged | `group_split/malmem.json` |
 
-The triage report for MalMem is `Probabilistic_Anomaly_Scoring/results/triage/malmem_report.md`.
+The triage reports for MalMem and CICIoT2023 are in `Probabilistic_Anomaly_Scoring/results/triage/` (`<dataset>_report.md`); BODMAS's are git-ignored because they list per-file values.

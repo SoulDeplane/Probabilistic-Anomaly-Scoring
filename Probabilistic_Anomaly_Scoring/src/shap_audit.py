@@ -23,7 +23,7 @@ Audit, on up to --n test malware rows flagged at p <= 0.01, per detector and see
   stump_spearman        Spearman correlation between feature (or group) importance and the best stump balanced
                         accuracy, stumps fitted on the clean training rows plus the malware 'fit' rows
   error_split           overlap of SHAP's top 3 with the top 3 of the per-feature squared reconstruction error,
-                        which is what the triage report's 'top_features' uses now
+                        the triage report's 'error_reasons'
   stability             Spearman correlation and top-5 overlap between seeds and between autoencoder and VAE
 
 Outputs: results/shap/<dataset>[_no-<group>].json and .png. Only aggregates are saved (no per-file values),
@@ -115,7 +115,7 @@ def fast_score(det, score, model, X_check):
 
 
 def error_split(det, model, X):
-    """Per-feature squared reconstruction error (the triage report's 'top_features')."""
+    """Per-feature squared reconstruction error (the triage report's 'error_reasons')."""
     if det == 'autoencoder':
         return np.square(X - model.predict(X, verbose=0))
     encoder, decoder = model
