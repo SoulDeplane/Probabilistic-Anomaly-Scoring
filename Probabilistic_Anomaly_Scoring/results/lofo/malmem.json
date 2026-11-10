@@ -1,0 +1,505 @@
+{
+  "all_features": {
+    "folds": [
+      {
+        "family": "Ransomware-Ako",
+        "n_test_malware": 1999,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Ransomware-Conti",
+        "n_test_malware": 1987,
+        "stump": {
+          "recall": 0.997,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Ransomware-Maze",
+        "n_test_malware": 1754,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Ransomware-Pysa",
+        "n_test_malware": 1658,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Ransomware-Shade",
+        "n_test_malware": 2125,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Spyware-180solutions",
+        "n_test_malware": 1999,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0003
+        }
+      },
+      {
+        "family": "Spyware-CWS",
+        "n_test_malware": 1999,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Spyware-Gator",
+        "n_test_malware": 1990,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Spyware-TIBS",
+        "n_test_malware": 1406,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Spyware-Transponder",
+        "n_test_malware": 2403,
+        "stump": {
+          "recall": 0.975,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 0.975,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Trojan-Emotet",
+        "n_test_malware": 1967,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0003
+        }
+      },
+      {
+        "family": "Trojan-Reconyc",
+        "n_test_malware": 1568,
+        "stump": {
+          "recall": 0.9943,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 0.9962,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Trojan-Refroso",
+        "n_test_malware": 1996,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Trojan-Scar",
+        "n_test_malware": 1999,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Trojan-Zeus",
+        "n_test_malware": 1946,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0039,
+          "feature": "svcscan.nservices",
+          "rule": "malware if svcscan.nservices <= 390.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      }
+    ],
+    "summary": {
+      "stump": {
+        "recall_mean": 0.9978,
+        "recall_min": 0.975,
+        "false_alarm_rate_max": 0.0039,
+        "features_chosen": {
+          "svcscan.nservices": 15
+        }
+      },
+      "random_forest": {
+        "recall_mean": 0.9981,
+        "recall_min": 0.975,
+        "false_alarm_rate_max": 0.0003
+      }
+    },
+    "autoencoder_clean_only_recall_by_family": {
+      "Ransomware-Ako": 1.0,
+      "Ransomware-Conti": 1.0,
+      "Ransomware-Maze": 1.0,
+      "Ransomware-Pysa": 1.0,
+      "Ransomware-Shade": 1.0,
+      "Spyware-180solutions": 1.0,
+      "Spyware-CWS": 1.0,
+      "Spyware-Gator": 1.0,
+      "Spyware-TIBS": 1.0,
+      "Spyware-Transponder": 1.0,
+      "Trojan-Emotet": 1.0,
+      "Trojan-Reconyc": 1.0,
+      "Trojan-Refroso": 1.0,
+      "Trojan-Scar": 1.0,
+      "Trojan-Zeus": 1.0
+    },
+    "dropped_features": []
+  },
+  "no_svcscan": {
+    "folds": [
+      {
+        "family": "Ransomware-Ako",
+        "n_test_malware": 1999,
+        "stump": {
+          "recall": 0.995,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Ransomware-Conti",
+        "n_test_malware": 1987,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 0.9995,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Ransomware-Maze",
+        "n_test_malware": 1754,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 0.9994,
+          "false_alarm_rate": 0.0003
+        }
+      },
+      {
+        "family": "Ransomware-Pysa",
+        "n_test_malware": 1658,
+        "stump": {
+          "recall": 0.9795,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 0.9994,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Ransomware-Shade",
+        "n_test_malware": 2125,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0003
+        }
+      },
+      {
+        "family": "Spyware-180solutions",
+        "n_test_malware": 1999,
+        "stump": {
+          "recall": 0.998,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Spyware-CWS",
+        "n_test_malware": 1999,
+        "stump": {
+          "recall": 0.9685,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Spyware-Gator",
+        "n_test_malware": 1990,
+        "stump": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 0.9995,
+          "false_alarm_rate": 0.0003
+        }
+      },
+      {
+        "family": "Spyware-TIBS",
+        "n_test_malware": 1406,
+        "stump": {
+          "recall": 0.6437,
+          "false_alarm_rate": 0.0015,
+          "feature": "dlllist.avg_dlls_per_proc",
+          "rule": "malware if dlllist.avg_dlls_per_proc <= 40.7876"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0003
+        }
+      },
+      {
+        "family": "Spyware-Transponder",
+        "n_test_malware": 2403,
+        "stump": {
+          "recall": 0.9742,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 0.9759,
+          "false_alarm_rate": 0.0003
+        }
+      },
+      {
+        "family": "Trojan-Emotet",
+        "n_test_malware": 1967,
+        "stump": {
+          "recall": 0.9903,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Trojan-Reconyc",
+        "n_test_malware": 1568,
+        "stump": {
+          "recall": 0.9949,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 0.9981,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Trojan-Refroso",
+        "n_test_malware": 1996,
+        "stump": {
+          "recall": 0.999,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0002
+        }
+      },
+      {
+        "family": "Trojan-Scar",
+        "n_test_malware": 1999,
+        "stump": {
+          "recall": 0.9945,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0003
+        }
+      },
+      {
+        "family": "Trojan-Zeus",
+        "n_test_malware": 1946,
+        "stump": {
+          "recall": 0.9938,
+          "false_alarm_rate": 0.0181,
+          "feature": "handles.nmutant",
+          "rule": "malware if handles.nmutant <= 295.5"
+        },
+        "random_forest": {
+          "recall": 1.0,
+          "false_alarm_rate": 0.0003
+        }
+      }
+    ],
+    "summary": {
+      "stump": {
+        "recall_mean": 0.9688,
+        "recall_min": 0.6437,
+        "false_alarm_rate_max": 0.0181,
+        "features_chosen": {
+          "dlllist.avg_dlls_per_proc": 1,
+          "handles.nmutant": 14
+        }
+      },
+      "random_forest": {
+        "recall_mean": 0.9981,
+        "recall_min": 0.9759,
+        "false_alarm_rate_max": 0.0003
+      }
+    },
+    "autoencoder_clean_only_recall_by_family": {
+      "Ransomware-Ako": 0.9915,
+      "Ransomware-Conti": 0.9899,
+      "Ransomware-Maze": 0.9936,
+      "Ransomware-Pysa": 0.9942,
+      "Ransomware-Shade": 0.9922,
+      "Spyware-180solutions": 0.9935,
+      "Spyware-CWS": 0.9937,
+      "Spyware-Gator": 0.9793,
+      "Spyware-TIBS": 0.9924,
+      "Spyware-Transponder": 0.9909,
+      "Trojan-Emotet": 0.9953,
+      "Trojan-Reconyc": 0.9892,
+      "Trojan-Refroso": 0.9933,
+      "Trojan-Scar": 0.9815,
+      "Trojan-Zeus": 0.9917
+    },
+    "dropped_features": [
+      "svcscan.nservices",
+      "svcscan.kernel_drivers",
+      "svcscan.fs_drivers",
+      "svcscan.process_services",
+      "svcscan.shared_process_services",
+      "svcscan.interactive_process_services",
+      "svcscan.nactive"
+    ]
+  }
+}

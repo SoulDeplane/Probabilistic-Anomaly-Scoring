@@ -43,6 +43,8 @@ Run from any directory, e.g. `python Probabilistic_Anomaly_Scoring/src/heldout_e
 | `vae.py` | VAE (64-32-8-32-64) trained on clean rows; score = negative ELBO with z = mean | (library) |
 | `heldout_eval.py` | Held-out evaluation of the autoencoder, VAE and Isolation Forest with conformal thresholds, baselines, per-family recall; `--drop svcscan`, `--drop window`, `--temporal`; `--detectors` retrains only the named detectors (none: baselines only) and keeps the rest | `heldout/` |
 | `shap_audit.py` | SHAP of the autoencoder and VAE scores on flagged test malware: per feature (permutation SHAP) and per Volatility plugin / EMBER group (exact Shapley); shortcut share, agreement with the stump ranking, stability, agreement with the reconstruction-error reasons; `--drop svcscan`, `--drop window` | `shap/` |
+| `shap_plots.py` | Standard SHAP plots of the autoencoder score: waterfall and force plots for a typical flagged artefact, beeswarm summary and bar plots over 200 flagged test malware | `shap/plots/` |
+| `leave_one_family_out.py` | MalMem: supervised stump and Random Forest trained without one malware family, tested on it; with and without `svcscan.*` | `lofo/malmem.json` |
 | `group_split.py` | Random vs hash-grouped splits for a supervised Random Forest on MalMem | `group_split/malmem.json` |
 | `dumpware10_benign_only.py` | Can any benign-only detector separate Dumpware10 malware images? | `dumpware10/benign_only.json` |
 | `triage_report.py` | Ranked triage list with score, p-value, SHAP reasons for flagged artefacts (reconstruction-error reasons kept for comparison), PR curve | `triage/` |
@@ -108,6 +110,8 @@ SHAP splits each flagged artefact's score into per-feature contributions, measur
 - **Stability.** Rankings agree between seeds and between AE and VAE at ρ 0.74–0.95 per feature (per MalMem plugin, down to 0.65). On BODMAS they are identical (ρ 1.00), consistent with both networks measuring distance from the mean there.
 - **Reconstruction-error reasons vs SHAP.** The largest per-feature reconstruction errors share only 0–43% of SHAP's top 3 on MalMem and CICIoT2023, but 84–88% on BODMAS. The triage report therefore gives SHAP reasons for flagged artefacts and keeps the error reasons alongside for comparison.
 - **Checks.** On the distance baseline, whose exact SHAP values are known, both methods are exact (error ≤ 10⁻¹³). Contributions add up to each score (relative error ≤ 4 × 10⁻⁷).
+- **Plots.** `results/shap/plots/` has the standard SHAP views of the autoencoder score for each dataset: waterfall and force plots for the median-scoring flagged artefact, and beeswarm and bar plots over 200 flagged test malware. The global plots scale each artefact's values by its total |SHAP|, for the reason above. For a typical flagged MalMem dump the largest contribution is `svcscan.shared_process_services`.
+- **Leave one family out (MalMem).** A supervised stump and a Random Forest, each trained without one of the 15 families, still catch that family (recall 0.975–1.00, false alarms ≤ 0.4%). The stump picks `svcscan.nservices` in all 15 folds, so the shortcut is not tied to any family: it comes from how the lab captured the dumps. Without `svcscan.*`, the stump picks `handles.nmutant` in 14 of 15 folds (recall 0.64 on TIBS, 0.97–1.00 on the rest) and the Random Forest still catches every family (≥ 0.976). The clean-only autoencoder never sees malware, so every family is already unseen for it: recall 1.00 per family, and 0.98–1.00 without `svcscan.*`.
 
 ### Clustering: the base paper's second experiment
 

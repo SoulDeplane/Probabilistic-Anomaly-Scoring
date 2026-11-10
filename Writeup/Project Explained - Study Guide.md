@@ -51,7 +51,7 @@
 
 ## 3. Done so far
 
-Commits on GitHub: `0ac8933`, `3f63fb9`, `4a8bb80`, `b5b3036`, `50df781`, `5546de5`, `714ccba`, `49f6a04`, `7f9aa9a`, `55e7deb`, `d7c5d73`.
+Commits on GitHub: `0ac8933`, `3f63fb9`, `4a8bb80`, `b5b3036`, `50df781`, `5546de5`, `714ccba`, `49f6a04`, `7f9aa9a`, `55e7deb`, `d7c5d73`, `6bb4fd1`.
 
 1. **Audit and repair.**
    - MalMem: the partial local copy was replaced with the official file.
@@ -106,7 +106,9 @@ Commits on GitHub: `0ac8933`, `3f63fb9`, `4a8bb80`, `b5b3036`, `50df781`, `5546d
     - K-means on `svcscan.nservices` alone, with no labels, scores **0.985**, above every model.
     - GMM-2's 0.96 holds for 3 of 5 seeds; the others give 0.51 and 0.00.
     - DBSCAN's settings were tuned against the labels: only 3 of 20 nearby settings pass 0.5, and without `svcscan.*` it falls to 0.09.
-20. **Writeups and repository.**
+20. **Leave one family out** (`src/leave_one_family_out.py`, MalMem). Trained without a family, a supervised stump and a Random Forest still catch it (recall 0.975–1.00). The stump picks `svcscan.nservices` in all 15 folds, so the shortcut belongs to the lab setup, not to any family. Without `svcscan.*` it picks `handles.nmutant` in 14 of 15.
+21. **Standard SHAP plots** (`src/shap_plots.py`): waterfall, force, beeswarm and bar plots of the autoencoder score for all three datasets (`results/shap/plots/`).
+22. **Writeups and repository.**
     - Synopsis (renamed from "Synposis") and slides switched to BODMAS; Fig. 4.1 and the slide-11 image redrawn.
     - 10 references fixed or added; 15 s interval and SMOTE claim sourced (Carrier et al., p. 184); typos fixed.
     - `requirements.txt`, a real README, `X_scaled` renamed.
@@ -130,7 +132,7 @@ Commits on GitHub: `0ac8933`, `3f63fb9`, `4a8bb80`, `b5b3036`, `50df781`, `5546d
 | 2 ✔ | Full metrics | Add PR-AUC (`average_precision_score`) plus majority and stump baselines; 5 seeds |
 | 3 ✔ | Conformal threshold | p = (1 + calibration scores ≥ s) / (n + 1); flag if p ≤ 0.01 |
 | 4 ✔ | VAE | 55 → 64 → 32 → 8-d mean and log-variance → 32 → 64 → 55; score = reconstruction + KL; compare with the AE on PR-AUC and recall at 1% (`src/vae.py`). Result: ties the AE (recall 0.99 / 0.97 / 0.13, PR-AUC 0.95 / 0.98 / 0.21 on MalMem / CICIoT / BODMAS), also without `svcscan.*` (0.99) and on later BODMAS files (0.16). Behind it only on CICIoT without window features (0.62 vs 0.76). A no-model distance-from-the-mean score matches both on CICIoT and BODMAS |
-| 5 ✔ | SHAP audit | Explain the deterministic score; compare with the stump ranking (`src/shap_audit.py`). Drop `svcscan.*` and retrain ✔, per-family recall ✔, BODMAS per feature group (exact Shapley) ✔. Result: SHAP names the shortcut as the main reason (`svcscan` for 86% of flagged MalMem dumps, `Number` for 99% of CICIoT flows; ρ 0.85–0.88 with the stump ranking on MalMem). Without it, explanations move to the next-best stump's plugin (MalMem `handles`) or to flood signals (CICIoT). BODMAS: byte entropy, no shortcut |
+| 5 ✔ | SHAP audit | Explain the deterministic score; compare with the stump ranking (`src/shap_audit.py`). Drop `svcscan.*` and retrain ✔, per-family recall ✔, leave one family out ✔, BODMAS per feature group (exact Shapley) ✔, waterfall / force / beeswarm / bar plots ✔. Result: SHAP names the shortcut as the main reason (`svcscan` for 86% of flagged MalMem dumps, `Number` for 99% of CICIoT flows; ρ 0.85–0.88 with the stump ranking on MalMem). Without it, explanations move to the next-best stump's plugin (MalMem `handles`) or to flood signals (CICIoT). BODMAS: byte entropy, no shortcut |
 | 6 ✔ | Other datasets | CICIoT: retrain without `Number`, `Tot sum`, `IAT`, `Variance`, `Rate`, and measure duplicates. BODMAS: train on files before Mar 2020, test on later ones. Dumpware10: write-up only |
 | 7 ✔ | Triage report | Ranked list with score, p-value, top reasons (SHAP for flagged artefacts; reconstruction-error reasons kept for comparison), and a precision–recall curve |
 

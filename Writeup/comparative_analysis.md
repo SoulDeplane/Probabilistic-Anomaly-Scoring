@@ -34,7 +34,7 @@ The base paper applies Isolation Forest and an autoencoder to CIC MalMem-2022 an
 | Threshold | Mean + 3σ of training error | Conformal p-value at a 1% false-alarm rate |
 | Metrics | Accuracy only | False-alarm rate, recall, precision, F1, ROC-AUC, PR-AUC |
 | Baselines and runs | None; one run | All-clean and single-feature baselines; five seeds |
-| Explainability | SHAP, not validated | SHAP, checked against a case with known answers and audited against single-feature rules |
+| Explainability | SHAP plots, not validated | SHAP plots, checked against a case with known answers and audited against single-feature rules and leave-one-family-out results |
 
 ---
 
@@ -92,6 +92,8 @@ The VAE also matches the autoencoder without the `svcscan` features and on newer
 | CICIoT2023 | `Number` (packet-window size), for 99% of items | – |
 | CICIoT2023 without window features | SYN, ACK and RST counts (attack traffic) | – |
 | BODMAS | Byte entropy (packed or encrypted files) | No shortcut exists |
+
+A leave-one-family-out test on MalMem supports this reading. A single-feature rule trained without one of the 15 families still detects that family (recall 0.975–1.00), and the rule chosen is `svcscan.nservices` in all 15 cases. The shortcut is therefore a property of the capture environment, not of any malware family. Standard SHAP waterfall, force, beeswarm and bar plots for each dataset accompany the audit.
 
 ### 3.6 Clustering (MalMem-2022, all 58,596 rows)
 
