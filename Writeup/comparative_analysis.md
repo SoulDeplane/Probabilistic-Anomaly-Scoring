@@ -2,9 +2,9 @@
 
 | | |
 |---|---|
-| **Project** | Probabilistic Anomaly Scoring for Explainable Digital Forensic Triage (MP2026CSE75, Dept. of CSE, Graphic Era Deemed to be University) |
+| **Project** | Probabilistic Anomaly Scoring for Explainable Digital Forensic Triage |
 | **Base paper** | Z. Khalid, F. Iqbal and M. Saqib, "Bridging knowledge gaps in digital forensics using unsupervised explainable AI," *Forensic Sci. Int.: Digital Investigation*, vol. 53, 301924, 2025 |
-| **Date** | 31 October 2026 |
+
 
 ---
 
@@ -17,6 +17,8 @@ The base paper applies Isolation Forest and an autoencoder to CIC MalMem-2022 an
 3. **Two corrections.** Feature scaling and a 1% false-alarm threshold cut false alarms by 59% and raise F1 from 0.796 to 0.91.
 4. **Generalisation.** On unseen data, false alarms stay at 0.92% and all 15 malware families are detected. The paper tested 2 families.
 5. **Other evidence types.** With our corrections, F1 is 0.90 on network traffic (CICIoT2023) but 0.19 on Windows executables (BODMAS).
+6. **Variational autoencoder.** A VAE matches the autoencoder on all three datasets. A model-free distance-from-the-mean score matches both on CICIoT2023 and BODMAS.
+7. **Explanations.** A SHAP audit shows that the explanations name each dataset's laboratory shortcut as the main reason for flagging an item.
 
 ---
 
@@ -25,12 +27,13 @@ The base paper applies Isolation Forest and an autoencoder to CIC MalMem-2022 an
 | | Base paper | Present work |
 |---|---|---|
 | Datasets | CIC MalMem-2022 | MalMem-2022, CICIoT2023, BODMAS |
+| Models | Isolation Forest, autoencoder | Isolation Forest, autoencoder, variational autoencoder, model-free distance baseline |
 | Test data | Training rows reused; 2 of 15 malware families | Unseen rows; all malware families |
 | Preprocessing | No scaling for anomaly detection; duplicates retained | Scaling; duplicates removed |
 | Threshold | Mean + 3σ of training error | Conformal p-value at a 1% false-alarm rate |
 | Metrics | Accuracy only | False-alarm rate, recall, precision, F1, ROC-AUC, PR-AUC |
 | Baselines and runs | None; one run | All-clean and single-feature baselines; five seeds |
-| Explainability | SHAP | Per-feature reconstruction error; SHAP audit in progress |
+| Explainability | SHAP, not validated | SHAP, checked against a case with known answers and audited against single-feature rules |
 
 ---
 
@@ -69,6 +72,26 @@ Precision and F1 are computed at the paper's ratio of 20 clean items per malware
 | Single-feature shortcut | One feature (`svcscan.nservices`) separates MalMem at 99.66%; removing all `svcscan` features leaves our F1 unchanged at 0.916 |
 | Over time (BODMAS) | False alarms stay at 0.84% on files newer than the training data |
 
+### 3.4 Variational autoencoder and distance baseline (unseen data, 1% false-alarm threshold)
+
+| Dataset | Autoencoder F1 | VAE F1 | Distance-from-mean F1 |
+|---|---|---|---|
+| MalMem-2022 | 0.916 | 0.915 | 0.619 |
+| CICIoT2023 | 0.903 | 0.904 | 0.897 |
+| BODMAS | 0.194 | 0.193 | 0.190 |
+
+The VAE also matches the autoencoder without the `svcscan` features and on newer BODMAS files. It trails only on CICIoT2023 without its packet-window features (recall 0.62 vs 0.76).
+
+### 3.5 SHAP audit
+
+| Dataset | Main reason given for flagged items | Agreement with single-feature rules |
+|---|---|---|
+| MalMem-2022 | `svcscan` (laboratory artefact), for 86% of items | Spearman ρ 0.85–0.88 |
+| MalMem-2022 without `svcscan` | `handles`, the next-best single-feature rule | ρ 0.81–0.84 |
+| CICIoT2023 | `Number` (packet-window size), for 99% of items | – |
+| CICIoT2023 without window features | SYN, ACK and RST counts (attack traffic) | – |
+| BODMAS | Byte entropy (packed or encrypted files) | No shortcut exists |
+
 ---
 
 ## 4. Qualitative Assessment
@@ -90,11 +113,11 @@ Precision and F1 are computed at the paper's ratio of 20 clean items per malware
 | No feature scaling | Scaling fitted on clean training data |
 | Unstable threshold | Fixed 1% false-alarm rate |
 | One dataset, one run | Three datasets, five seeds |
-| SHAP output not validated | Shortcut tests; SHAP audit in progress |
+| SHAP output not validated | SHAP audit: explanations compared with single-feature rules and with models retrained without the shortcut features |
 
 ### 4.3 Explainability
 
-The paper's SHAP analysis highlights `svcscan` features, which our audit shows separate the classes almost perfectly because of the laboratory setup rather than malicious behaviour. The paper's explanations may therefore partly describe the capture environment.
+The paper's SHAP analysis highlights `svcscan` features. Our dataset audit shows that these separate the classes almost perfectly because of the laboratory setup rather than malicious behaviour. Our SHAP audit confirms the effect: SHAP names `svcscan` as the main reason for 86% of flagged MalMem items, and the packet-window size for 99% of flagged CICIoT2023 items. When those features are removed, the explanations move to the next-best shortcut on MalMem and to genuine attack traffic on CICIoT2023. The paper's explanations therefore largely describe the capture environment.
 
 ---
 
@@ -103,8 +126,9 @@ The paper's SHAP analysis highlights `svcscan` features, which our audit shows s
 **Limitations**
 - A single-feature rule still outperforms our autoencoder on MalMem and CICIoT2023.
 - BODMAS remains largely unsolved (F1 0.19).
+- The VAE brings no detection gain over the autoencoder, and on CICIoT2023 and BODMAS neither network beats a model-free distance score.
+- Where a dataset contains a laboratory shortcut, explanations report that shortcut rather than malware behaviour.
 - The paper's clustering experiments were not replicated.
 
 **Remaining work**
-- A variational autoencoder for a probabilistic anomaly score.
-- A SHAP audit to test whether explanations reflect malware behaviour or dataset artefacts.
+- Replication of the paper's clustering experiments.
