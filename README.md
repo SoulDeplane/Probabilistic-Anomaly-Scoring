@@ -57,7 +57,7 @@ Run from any directory, e.g. `python Probabilistic_Anomaly_Scoring/src/heldout_e
 
 ### Held-out test, flagged at p ≤ 0.01
 
-Autoencoder (AE) and VAE: mean of 5 seeds. Distance: the no-model baseline (squared distance from the clean training mean), which is deterministic. The VAE was run on the three main splits.
+Autoencoder (AE) and VAE: mean of 5 seeds. Distance: the no-model baseline (squared distance from the clean training mean), which is deterministic.
 
 | Dataset | Detector | False alarms on unseen clean | Recall | Precision (20:1) | F1 | ROC-AUC | PR-AUC | Best one-feature stump (F1) |
 |---|---|---|---|---|---|---|---|---|
@@ -65,20 +65,23 @@ Autoencoder (AE) and VAE: mean of 5 seeds. Distance: the no-model baseline (squa
 | | VAE | 0.88% | 0.991 | 0.850 | 0.915 | 0.998 | 0.952 | |
 | | Distance | 0.84% | 0.523 | 0.757 | 0.619 | 0.990 | 0.756 | |
 | MalMem without `svcscan.*` | AE | 0.87% | 0.991 | 0.851 | 0.916 | 0.999 | 0.959 | `handles.nmutant` ≤ 294.5 (0.847) |
+| | VAE | 0.79% | 0.992 | 0.862 | 0.923 | 0.999 | 0.967 | |
 | | Distance | 0.86% | 0.198 | 0.536 | 0.289 | 0.965 | 0.501 | |
 | CICIoT2023 | AE | 0.89% | 0.971 | 0.845 | 0.903 | 0.993 | 0.979 | `Number` > 10.5 (0.983) |
 | | VAE | 0.89% | 0.971 | 0.846 | 0.904 | 0.992 | 0.979 | |
 | | Distance | 0.97% | 0.971 | 0.834 | 0.897 | 0.992 | 0.978 | |
 | CICIoT2023 without window features | AE | 0.95% | 0.757 | 0.800 | 0.777 | 0.953 | 0.819 | `HTTPS` ≤ 0.097 (0.633) |
+| | VAE | 0.91% | 0.624 | 0.774 | 0.691 | 0.950 | 0.765 | |
 | | Distance | 0.98% | 0.553 | 0.738 | 0.632 | 0.947 | 0.706 | |
 | BODMAS, random split | AE | 1.07% | 0.130 | 0.380 | 0.194 | 0.732 | 0.208 | `header.32` > −0.5 (0.231) |
 | | VAE | 1.04% | 0.129 | 0.382 | 0.193 | 0.735 | 0.210 | |
 | | Distance | 1.08% | 0.128 | 0.371 | 0.190 | 0.644 | 0.190 | |
 | BODMAS, files first seen after Mar 2020 | AE | 0.84% | 0.154 | 0.480 | 0.234 | 0.713 | 0.223 | same (0.280) |
+| | VAE | 0.84% | 0.156 | 0.482 | 0.235 | 0.716 | 0.224 | |
 | | Distance | 0.91% | 0.154 | 0.459 | 0.230 | 0.601 | 0.206 | |
 
 - "Always clean" scores accuracy 0.952 and F1 0 at 20:1.
-- **VAE vs AE.** The VAE ties the AE at the 1% line on all three datasets. On MalMem its PR-AUC is lower (0.952 vs 0.977) and varies more between seeds (0.917–0.974).
+- **VAE vs AE.** The VAE ties the AE at the 1% line on all three datasets, without MalMem's `svcscan.*` (recall 0.99) and on later BODMAS files (recall 0.16, false alarms 0.84%). On MalMem its PR-AUC is lower (0.952 vs 0.977) and varies more between seeds (0.917–0.974). The one clear gap is CICIoT2023 without window features, where the VAE catches less (recall 0.62 vs 0.76), close to the distance baseline (0.55).
 - **Distance from the mean.** With no model at all, this score matches both networks on CICIoT2023 and, at the flag line, on BODMAS, so there the networks add nothing beyond "far from average". On MalMem they add a lot (recall 0.99 vs 0.52), and more once the shortcut features are dropped (MalMem 0.99 vs 0.20; CICIoT2023 0.76 vs 0.55).
 - Isolation Forest is far weaker at the same line: recall 0.13 on MalMem, 0.37 on CICIoT2023, 0.00 on BODMAS.
 - **MalMem families.** The autoencoder catches all 15 malware families (recall 1.00 each); without `svcscan.*`, 0.98–1.00 each. The base paper's own test malware covers only 2 families (Conti 1,155 rows, Ako 310).
