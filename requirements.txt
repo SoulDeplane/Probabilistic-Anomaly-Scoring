@@ -7,3 +7,4 @@ tensorflow==2.21.0  # includes Keras 3, used for the autoencoder and the Efficie
 matplotlib==3.11.2
 seaborn==0.13.2
 pillow==12.3.0
+shap==0.54.1  # SHAP audit (src/shap_audit.py)

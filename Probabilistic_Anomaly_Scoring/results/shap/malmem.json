@@ -1,0 +1,968 @@
+{
+  "data": {
+    "duplicates_dropped": 569,
+    "malware_binaries": 2887,
+    "features": 55,
+    "clean_rows": 29231,
+    "malware_rows": 28796,
+    "clean_cal": 5846,
+    "clean_test": 5847,
+    "clean_train": 17538,
+    "malware_fit": 14429,
+    "malware_test": 14367
+  },
+  "settings": {
+    "seeds": [
+      42,
+      1
+    ],
+    "n_max": 300,
+    "n_background": 100,
+    "alpha": 0.01,
+    "per_feature": true,
+    "groups": {
+      "pslist": 5,
+      "dlllist": 2,
+      "handles": 13,
+      "ldrmodules": 6,
+      "malfind": 4,
+      "psxview": 14,
+      "modules": 1,
+      "svcscan": 7,
+      "callbacks": 3
+    }
+  },
+  "distance_check_max_relative_error": {
+    "per_feature": 2.6663553395324964e-15,
+    "per_group": 4.060713235265866e-16
+  },
+  "runs": {
+    "autoencoder": {
+      "42": {
+        "test_malware": 14367,
+        "flagged": 14367,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "feature": {
+          "row_share": {
+            "svcscan.shared_process_services": 0.2636,
+            "malfind.commitCharge": 0.1024,
+            "callbacks.ncallbacks": 0.0584,
+            "svcscan.kernel_drivers": 0.0414,
+            "handles.nfile": 0.0349,
+            "svcscan.nservices": 0.0337,
+            "handles.avg_handles_per_proc": 0.0303,
+            "handles.nevent": 0.0299,
+            "handles.nhandles": 0.0246,
+            "handles.ntimer": 0.0231,
+            "dlllist.avg_dlls_per_proc": 0.0218,
+            "ldrmodules.not_in_mem": 0.0214,
+            "pslist.avg_threads": 0.0212,
+            "handles.nsection": 0.0203,
+            "handles.nmutant": 0.0194,
+            "handles.nsemaphore": 0.0182,
+            "ldrmodules.not_in_load": 0.0181,
+            "svcscan.nactive": 0.0177,
+            "pslist.avg_handlers": 0.017,
+            "handles.nthread": 0.0142,
+            "malfind.uniqueInjections": 0.0141,
+            "svcscan.process_services": 0.0127,
+            "dlllist.ndlls": 0.0125,
+            "handles.nkey": 0.0117,
+            "modules.nmodules": 0.0095,
+            "ldrmodules.not_in_mem_avg": 0.0081,
+            "pslist.nppid": 0.0078,
+            "psxview.not_in_ethread_pool_false_avg": 0.0073,
+            "ldrmodules.not_in_load_avg": 0.0072,
+            "ldrmodules.not_in_init": 0.0057,
+            "malfind.protection": 0.0055,
+            "handles.ndesktop": 0.0055,
+            "malfind.ninjections": 0.0052,
+            "psxview.not_in_pspcid_list": 0.0051,
+            "psxview.not_in_ethread_pool": 0.005,
+            "psxview.not_in_eprocess_pool": 0.0049,
+            "handles.ndirectory": 0.0044,
+            "psxview.not_in_pspcid_list_false_avg": 0.0039,
+            "psxview.not_in_pslist": 0.0037,
+            "psxview.not_in_session_false_avg": 0.0036,
+            "pslist.nproc": 0.0033,
+            "psxview.not_in_session": 0.0031,
+            "psxview.not_in_pslist_false_avg": 0.0031,
+            "psxview.not_in_csrss_handles_false_avg": 0.003,
+            "psxview.not_in_deskthrd": 0.0029,
+            "psxview.not_in_deskthrd_false_avg": 0.0028,
+            "psxview.not_in_csrss_handles": 0.0025,
+            "psxview.not_in_eprocess_pool_false_avg": 0.0023,
+            "ldrmodules.not_in_init_avg": 0.0021,
+            "callbacks.nanonymous": 0.0003,
+            "pslist.nprocs64bit": 0.0,
+            "handles.nport": 0.0,
+            "svcscan.fs_drivers": 0.0,
+            "svcscan.interactive_process_services": 0.0,
+            "callbacks.ngeneric": 0.0
+          },
+          "share": {
+            "malfind.commitCharge": 0.9821,
+            "malfind.uniqueInjections": 0.0071,
+            "malfind.ninjections": 0.0027,
+            "malfind.protection": 0.0022,
+            "svcscan.shared_process_services": 0.0009,
+            "callbacks.ncallbacks": 0.0008,
+            "svcscan.nservices": 0.0006,
+            "svcscan.kernel_drivers": 0.0004,
+            "svcscan.process_services": 0.0003,
+            "handles.avg_handles_per_proc": 0.0003,
+            "handles.nkey": 0.0002,
+            "handles.nevent": 0.0002,
+            "handles.nthread": 0.0002,
+            "dlllist.ndlls": 0.0002,
+            "pslist.nppid": 0.0002,
+            "dlllist.avg_dlls_per_proc": 0.0001,
+            "ldrmodules.not_in_init_avg": 0.0001,
+            "ldrmodules.not_in_load": 0.0001,
+            "svcscan.nactive": 0.0001,
+            "handles.nsemaphore": 0.0001,
+            "pslist.avg_handlers": 0.0001,
+            "handles.nmutant": 0.0001,
+            "psxview.not_in_csrss_handles": 0.0001,
+            "handles.nhandles": 0.0001,
+            "psxview.not_in_deskthrd_false_avg": 0.0001,
+            "psxview.not_in_ethread_pool_false_avg": 0.0001,
+            "handles.nfile": 0.0001,
+            "ldrmodules.not_in_mem_avg": 0.0001,
+            "psxview.not_in_pslist_false_avg": 0.0001,
+            "psxview.not_in_ethread_pool": 0.0,
+            "handles.nsection": 0.0,
+            "psxview.not_in_session": 0.0,
+            "psxview.not_in_pspcid_list": 0.0,
+            "psxview.not_in_pslist": 0.0,
+            "ldrmodules.not_in_mem": 0.0,
+            "handles.ndesktop": 0.0,
+            "handles.ndirectory": 0.0,
+            "handles.ntimer": 0.0,
+            "pslist.avg_threads": 0.0,
+            "psxview.not_in_eprocess_pool": 0.0,
+            "pslist.nproc": 0.0,
+            "ldrmodules.not_in_load_avg": 0.0,
+            "psxview.not_in_csrss_handles_false_avg": 0.0,
+            "modules.nmodules": 0.0,
+            "psxview.not_in_session_false_avg": 0.0,
+            "ldrmodules.not_in_init": 0.0,
+            "psxview.not_in_eprocess_pool_false_avg": 0.0,
+            "psxview.not_in_deskthrd": 0.0,
+            "psxview.not_in_pspcid_list_false_avg": 0.0,
+            "callbacks.nanonymous": 0.0,
+            "pslist.nprocs64bit": 0.0,
+            "handles.nport": 0.0,
+            "svcscan.fs_drivers": 0.0,
+            "svcscan.interactive_process_services": 0.0,
+            "callbacks.ngeneric": 0.0
+          },
+          "top": [
+            "svcscan.shared_process_services",
+            "malfind.commitCharge",
+            "callbacks.ncallbacks",
+            "svcscan.kernel_drivers",
+            "handles.nfile",
+            "svcscan.nservices",
+            "handles.avg_handles_per_proc",
+            "handles.nevent",
+            "handles.nhandles",
+            "handles.ntimer"
+          ],
+          "top_reason_frequency": {
+            "svcscan.shared_process_services": 0.85,
+            "malfind.commitCharge": 0.1,
+            "callbacks.ncallbacks": 0.017,
+            "malfind.uniqueInjections": 0.01,
+            "psxview.not_in_eprocess_pool": 0.01,
+            "svcscan.kernel_drivers": 0.007,
+            "handles.ntimer": 0.003,
+            "handles.nkey": 0.003
+          },
+          "best_stump_feature": {
+            "name": "svcscan.nservices",
+            "stump_balanced_accuracy": 0.9959,
+            "shap_rank": 6,
+            "row_share": 0.0337,
+            "top_reason_frequency": 0.0
+          },
+          "stump_spearman": {
+            "row_share": 0.853,
+            "share": 0.671
+          },
+          "error_split": {
+            "top3_overlap": 0.281,
+            "top1_match": 0.15
+          },
+          "efficiency_max_relative_error": 1.6152992878210053e-08,
+          "shortcut_share": {
+            "row_share": 0.3691,
+            "share": 0.0024
+          }
+        },
+        "group": {
+          "row_share": {
+            "svcscan": 0.4754,
+            "handles": 0.1318,
+            "malfind": 0.1165,
+            "callbacks": 0.0926,
+            "dlllist": 0.0528,
+            "pslist": 0.0442,
+            "ldrmodules": 0.0397,
+            "psxview": 0.0304,
+            "modules": 0.0167
+          },
+          "share": {
+            "malfind": 0.9982,
+            "callbacks": 0.0009,
+            "dlllist": 0.0003,
+            "svcscan": 0.0003,
+            "ldrmodules": 0.0001,
+            "pslist": 0.0001,
+            "handles": 0.0001,
+            "psxview": 0.0,
+            "modules": 0.0
+          },
+          "top": [
+            "svcscan",
+            "handles",
+            "malfind",
+            "callbacks",
+            "dlllist"
+          ],
+          "top_reason_frequency": {
+            "svcscan": 0.863,
+            "malfind": 0.107,
+            "callbacks": 0.017,
+            "psxview": 0.01,
+            "handles": 0.003
+          },
+          "best_stump_feature": {
+            "name": "svcscan",
+            "stump_balanced_accuracy": 0.9959,
+            "shap_rank": 1,
+            "row_share": 0.4754,
+            "top_reason_frequency": 0.863
+          },
+          "stump_spearman": {
+            "row_share": 0.75,
+            "share": 0.267
+          },
+          "error_split": {
+            "top3_overlap": 0.568,
+            "top1_match": 0.183
+          },
+          "efficiency_max_relative_error": 1.6152992863166404e-08
+        },
+        "seconds": 119.9
+      },
+      "1": {
+        "test_malware": 14367,
+        "flagged": 14367,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "feature": {
+          "row_share": {
+            "svcscan.shared_process_services": 0.3111,
+            "malfind.commitCharge": 0.0882,
+            "callbacks.ncallbacks": 0.0592,
+            "handles.nfile": 0.058,
+            "pslist.avg_handlers": 0.0415,
+            "handles.nsection": 0.0352,
+            "svcscan.kernel_drivers": 0.0293,
+            "ldrmodules.not_in_mem": 0.0245,
+            "handles.nevent": 0.0245,
+            "pslist.avg_threads": 0.0217,
+            "svcscan.nservices": 0.0195,
+            "handles.nkey": 0.0187,
+            "malfind.uniqueInjections": 0.018,
+            "handles.ntimer": 0.0152,
+            "dlllist.avg_dlls_per_proc": 0.0149,
+            "handles.nsemaphore": 0.0147,
+            "handles.avg_handles_per_proc": 0.0137,
+            "handles.nhandles": 0.0136,
+            "svcscan.process_services": 0.0135,
+            "handles.nmutant": 0.0134,
+            "handles.nthread": 0.0131,
+            "dlllist.ndlls": 0.0112,
+            "svcscan.nactive": 0.0094,
+            "ldrmodules.not_in_load": 0.0091,
+            "malfind.ninjections": 0.0087,
+            "ldrmodules.not_in_mem_avg": 0.0081,
+            "ldrmodules.not_in_load_avg": 0.0075,
+            "handles.ndirectory": 0.0072,
+            "malfind.protection": 0.0065,
+            "ldrmodules.not_in_init": 0.0065,
+            "pslist.nppid": 0.0064,
+            "psxview.not_in_csrss_handles_false_avg": 0.0048,
+            "handles.ndesktop": 0.0046,
+            "psxview.not_in_eprocess_pool": 0.0045,
+            "psxview.not_in_ethread_pool_false_avg": 0.0044,
+            "ldrmodules.not_in_init_avg": 0.0041,
+            "modules.nmodules": 0.0037,
+            "psxview.not_in_deskthrd_false_avg": 0.0036,
+            "psxview.not_in_session_false_avg": 0.0035,
+            "psxview.not_in_pspcid_list": 0.0034,
+            "psxview.not_in_deskthrd": 0.003,
+            "psxview.not_in_session": 0.0029,
+            "pslist.nproc": 0.0027,
+            "psxview.not_in_pslist_false_avg": 0.0027,
+            "psxview.not_in_pspcid_list_false_avg": 0.0023,
+            "psxview.not_in_eprocess_pool_false_avg": 0.0022,
+            "psxview.not_in_csrss_handles": 0.0018,
+            "psxview.not_in_ethread_pool": 0.0016,
+            "psxview.not_in_pslist": 0.0016,
+            "callbacks.nanonymous": 0.0002,
+            "pslist.nprocs64bit": 0.0,
+            "handles.nport": 0.0,
+            "svcscan.fs_drivers": 0.0,
+            "svcscan.interactive_process_services": 0.0,
+            "callbacks.ngeneric": 0.0
+          },
+          "share": {
+            "malfind.commitCharge": 0.9765,
+            "malfind.uniqueInjections": 0.0068,
+            "malfind.ninjections": 0.0037,
+            "malfind.protection": 0.003,
+            "svcscan.shared_process_services": 0.0022,
+            "svcscan.kernel_drivers": 0.0011,
+            "callbacks.ncallbacks": 0.0011,
+            "dlllist.avg_dlls_per_proc": 0.0007,
+            "handles.nmutant": 0.0006,
+            "pslist.avg_handlers": 0.0005,
+            "handles.nsection": 0.0005,
+            "svcscan.nservices": 0.0003,
+            "psxview.not_in_ethread_pool": 0.0002,
+            "handles.nhandles": 0.0002,
+            "psxview.not_in_csrss_handles": 0.0002,
+            "psxview.not_in_deskthrd": 0.0002,
+            "svcscan.nactive": 0.0002,
+            "handles.nkey": 0.0002,
+            "ldrmodules.not_in_load": 0.0001,
+            "handles.avg_handles_per_proc": 0.0001,
+            "svcscan.process_services": 0.0001,
+            "handles.nfile": 0.0001,
+            "handles.nthread": 0.0001,
+            "psxview.not_in_csrss_handles_false_avg": 0.0001,
+            "handles.nevent": 0.0001,
+            "pslist.nproc": 0.0001,
+            "ldrmodules.not_in_init_avg": 0.0001,
+            "pslist.nppid": 0.0001,
+            "psxview.not_in_pslist": 0.0001,
+            "psxview.not_in_session": 0.0001,
+            "psxview.not_in_session_false_avg": 0.0001,
+            "pslist.avg_threads": 0.0001,
+            "ldrmodules.not_in_mem_avg": 0.0001,
+            "psxview.not_in_pspcid_list": 0.0001,
+            "psxview.not_in_deskthrd_false_avg": 0.0,
+            "psxview.not_in_ethread_pool_false_avg": 0.0,
+            "ldrmodules.not_in_load_avg": 0.0,
+            "psxview.not_in_pspcid_list_false_avg": 0.0,
+            "handles.ndirectory": 0.0,
+            "dlllist.ndlls": 0.0,
+            "ldrmodules.not_in_mem": 0.0,
+            "handles.nsemaphore": 0.0,
+            "ldrmodules.not_in_init": 0.0,
+            "handles.ntimer": 0.0,
+            "psxview.not_in_pslist_false_avg": 0.0,
+            "modules.nmodules": 0.0,
+            "psxview.not_in_eprocess_pool": 0.0,
+            "handles.ndesktop": 0.0,
+            "psxview.not_in_eprocess_pool_false_avg": 0.0,
+            "callbacks.nanonymous": 0.0,
+            "pslist.nprocs64bit": 0.0,
+            "handles.nport": 0.0,
+            "svcscan.fs_drivers": 0.0,
+            "svcscan.interactive_process_services": 0.0,
+            "callbacks.ngeneric": 0.0
+          },
+          "top": [
+            "svcscan.shared_process_services",
+            "malfind.commitCharge",
+            "callbacks.ncallbacks",
+            "handles.nfile",
+            "pslist.avg_handlers",
+            "handles.nsection",
+            "svcscan.kernel_drivers",
+            "ldrmodules.not_in_mem",
+            "handles.nevent",
+            "pslist.avg_threads"
+          ],
+          "top_reason_frequency": {
+            "svcscan.shared_process_services": 0.863,
+            "malfind.commitCharge": 0.093,
+            "callbacks.ncallbacks": 0.017,
+            "malfind.uniqueInjections": 0.01,
+            "psxview.not_in_eprocess_pool": 0.01,
+            "pslist.nppid": 0.003,
+            "handles.nkey": 0.003
+          },
+          "best_stump_feature": {
+            "name": "svcscan.nservices",
+            "stump_balanced_accuracy": 0.9959,
+            "shap_rank": 11,
+            "row_share": 0.0195,
+            "top_reason_frequency": 0.0
+          },
+          "stump_spearman": {
+            "row_share": 0.877,
+            "share": 0.611
+          },
+          "error_split": {
+            "top3_overlap": 0.216,
+            "top1_match": 0.15
+          },
+          "efficiency_max_relative_error": 6.3128437397867355e-09,
+          "shortcut_share": {
+            "row_share": 0.383,
+            "share": 0.0038
+          }
+        },
+        "group": {
+          "row_share": {
+            "svcscan": 0.4777,
+            "handles": 0.134,
+            "malfind": 0.118,
+            "callbacks": 0.0909,
+            "ldrmodules": 0.0877,
+            "pslist": 0.0368,
+            "dlllist": 0.025,
+            "psxview": 0.0243,
+            "modules": 0.0056
+          },
+          "share": {
+            "malfind": 0.9931,
+            "svcscan": 0.0035,
+            "callbacks": 0.0011,
+            "dlllist": 0.0008,
+            "pslist": 0.0007,
+            "handles": 0.0003,
+            "psxview": 0.0003,
+            "ldrmodules": 0.0002,
+            "modules": 0.0
+          },
+          "top": [
+            "svcscan",
+            "handles",
+            "malfind",
+            "callbacks",
+            "ldrmodules"
+          ],
+          "top_reason_frequency": {
+            "svcscan": 0.863,
+            "malfind": 0.107,
+            "callbacks": 0.017,
+            "psxview": 0.01,
+            "handles": 0.003
+          },
+          "best_stump_feature": {
+            "name": "svcscan",
+            "stump_balanced_accuracy": 0.9959,
+            "shap_rank": 1,
+            "row_share": 0.4777,
+            "top_reason_frequency": 0.863
+          },
+          "stump_spearman": {
+            "row_share": 0.683,
+            "share": 0.417
+          },
+          "error_split": {
+            "top3_overlap": 0.57,
+            "top1_match": 0.197
+          },
+          "efficiency_max_relative_error": 6.312843728028147e-09
+        },
+        "seconds": 114.5
+      }
+    },
+    "vae": {
+      "42": {
+        "test_malware": 14367,
+        "flagged": 14362,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "feature": {
+          "row_share": {
+            "svcscan.shared_process_services": 0.109,
+            "malfind.commitCharge": 0.0955,
+            "svcscan.nservices": 0.0832,
+            "callbacks.ncallbacks": 0.0785,
+            "svcscan.kernel_drivers": 0.0686,
+            "dlllist.avg_dlls_per_proc": 0.0633,
+            "svcscan.process_services": 0.0475,
+            "pslist.avg_handlers": 0.0382,
+            "handles.nthread": 0.0267,
+            "handles.avg_handles_per_proc": 0.025,
+            "handles.ntimer": 0.0232,
+            "handles.nsection": 0.0225,
+            "handles.nevent": 0.0206,
+            "handles.nhandles": 0.0179,
+            "handles.nsemaphore": 0.0178,
+            "pslist.avg_threads": 0.0175,
+            "malfind.uniqueInjections": 0.0166,
+            "handles.nmutant": 0.0163,
+            "ldrmodules.not_in_mem": 0.0159,
+            "handles.nfile": 0.015,
+            "dlllist.ndlls": 0.0145,
+            "svcscan.nactive": 0.0122,
+            "handles.nkey": 0.0118,
+            "malfind.protection": 0.0109,
+            "ldrmodules.not_in_init": 0.0099,
+            "malfind.ninjections": 0.0091,
+            "ldrmodules.not_in_load": 0.0086,
+            "ldrmodules.not_in_mem_avg": 0.0086,
+            "pslist.nppid": 0.0081,
+            "ldrmodules.not_in_load_avg": 0.0072,
+            "psxview.not_in_deskthrd": 0.0063,
+            "modules.nmodules": 0.006,
+            "handles.ndirectory": 0.0058,
+            "psxview.not_in_session": 0.0054,
+            "psxview.not_in_deskthrd_false_avg": 0.0053,
+            "psxview.not_in_ethread_pool_false_avg": 0.0049,
+            "handles.ndesktop": 0.0045,
+            "psxview.not_in_session_false_avg": 0.0045,
+            "psxview.not_in_eprocess_pool": 0.0042,
+            "ldrmodules.not_in_init_avg": 0.0042,
+            "pslist.nproc": 0.0042,
+            "psxview.not_in_pspcid_list": 0.0037,
+            "psxview.not_in_pslist_false_avg": 0.0037,
+            "psxview.not_in_pspcid_list_false_avg": 0.0037,
+            "psxview.not_in_csrss_handles": 0.0035,
+            "psxview.not_in_pslist": 0.0034,
+            "psxview.not_in_csrss_handles_false_avg": 0.0033,
+            "psxview.not_in_ethread_pool": 0.0028,
+            "psxview.not_in_eprocess_pool_false_avg": 0.0009,
+            "callbacks.nanonymous": 0.0,
+            "pslist.nprocs64bit": 0.0,
+            "handles.nport": 0.0,
+            "svcscan.fs_drivers": 0.0,
+            "svcscan.interactive_process_services": 0.0,
+            "callbacks.ngeneric": 0.0
+          },
+          "share": {
+            "malfind.commitCharge": 0.981,
+            "callbacks.ncallbacks": 0.006,
+            "malfind.protection": 0.0031,
+            "malfind.uniqueInjections": 0.0019,
+            "svcscan.kernel_drivers": 0.001,
+            "pslist.avg_handlers": 0.0009,
+            "handles.avg_handles_per_proc": 0.0005,
+            "svcscan.shared_process_services": 0.0005,
+            "handles.nevent": 0.0005,
+            "dlllist.avg_dlls_per_proc": 0.0004,
+            "svcscan.process_services": 0.0004,
+            "ldrmodules.not_in_load_avg": 0.0004,
+            "svcscan.nservices": 0.0003,
+            "ldrmodules.not_in_init_avg": 0.0003,
+            "malfind.ninjections": 0.0002,
+            "dlllist.ndlls": 0.0002,
+            "handles.nkey": 0.0002,
+            "handles.nsemaphore": 0.0002,
+            "pslist.nppid": 0.0002,
+            "pslist.avg_threads": 0.0002,
+            "handles.nfile": 0.0001,
+            "handles.ndirectory": 0.0001,
+            "ldrmodules.not_in_init": 0.0001,
+            "handles.nhandles": 0.0001,
+            "svcscan.nactive": 0.0001,
+            "handles.nmutant": 0.0001,
+            "handles.nsection": 0.0001,
+            "handles.nthread": 0.0001,
+            "handles.ntimer": 0.0001,
+            "psxview.not_in_eprocess_pool": 0.0001,
+            "ldrmodules.not_in_mem": 0.0001,
+            "ldrmodules.not_in_mem_avg": 0.0001,
+            "psxview.not_in_ethread_pool_false_avg": 0.0001,
+            "ldrmodules.not_in_load": 0.0001,
+            "psxview.not_in_ethread_pool": 0.0001,
+            "psxview.not_in_csrss_handles_false_avg": 0.0,
+            "psxview.not_in_csrss_handles": 0.0,
+            "psxview.not_in_session": 0.0,
+            "pslist.nproc": 0.0,
+            "modules.nmodules": 0.0,
+            "psxview.not_in_pspcid_list": 0.0,
+            "psxview.not_in_deskthrd_false_avg": 0.0,
+            "psxview.not_in_deskthrd": 0.0,
+            "psxview.not_in_session_false_avg": 0.0,
+            "handles.ndesktop": 0.0,
+            "psxview.not_in_pspcid_list_false_avg": 0.0,
+            "psxview.not_in_eprocess_pool_false_avg": 0.0,
+            "psxview.not_in_pslist_false_avg": 0.0,
+            "psxview.not_in_pslist": 0.0,
+            "callbacks.nanonymous": 0.0,
+            "pslist.nprocs64bit": 0.0,
+            "handles.nport": 0.0,
+            "svcscan.fs_drivers": 0.0,
+            "svcscan.interactive_process_services": 0.0,
+            "callbacks.ngeneric": 0.0
+          },
+          "top": [
+            "svcscan.shared_process_services",
+            "malfind.commitCharge",
+            "svcscan.nservices",
+            "callbacks.ncallbacks",
+            "svcscan.kernel_drivers",
+            "dlllist.avg_dlls_per_proc",
+            "svcscan.process_services",
+            "pslist.avg_handlers",
+            "handles.nthread",
+            "handles.avg_handles_per_proc"
+          ],
+          "top_reason_frequency": {
+            "svcscan.shared_process_services": 0.297,
+            "svcscan.nservices": 0.26,
+            "svcscan.kernel_drivers": 0.12,
+            "malfind.commitCharge": 0.1,
+            "callbacks.ncallbacks": 0.09,
+            "dlllist.avg_dlls_per_proc": 0.077,
+            "svcscan.process_services": 0.02,
+            "malfind.uniqueInjections": 0.013,
+            "psxview.not_in_eprocess_pool": 0.013,
+            "handles.nsemaphore": 0.003
+          },
+          "best_stump_feature": {
+            "name": "svcscan.nservices",
+            "stump_balanced_accuracy": 0.9959,
+            "shap_rank": 3,
+            "row_share": 0.0832,
+            "top_reason_frequency": 0.26
+          },
+          "stump_spearman": {
+            "row_share": 0.88,
+            "share": 0.752
+          },
+          "error_split": {
+            "top3_overlap": 0.252,
+            "top1_match": 0.267
+          },
+          "efficiency_max_relative_error": 1.4065698391668094e-15,
+          "shortcut_share": {
+            "row_share": 0.3205,
+            "share": 0.0023
+          }
+        },
+        "group": {
+          "row_share": {
+            "svcscan": 0.3152,
+            "dlllist": 0.1903,
+            "malfind": 0.1368,
+            "handles": 0.1067,
+            "callbacks": 0.1009,
+            "pslist": 0.0777,
+            "psxview": 0.0356,
+            "ldrmodules": 0.0305,
+            "modules": 0.0063
+          },
+          "share": {
+            "malfind": 0.9891,
+            "callbacks": 0.0061,
+            "svcscan": 0.002,
+            "pslist": 0.0009,
+            "ldrmodules": 0.0008,
+            "handles": 0.0005,
+            "dlllist": 0.0003,
+            "psxview": 0.0002,
+            "modules": 0.0
+          },
+          "top": [
+            "svcscan",
+            "dlllist",
+            "malfind",
+            "handles",
+            "callbacks"
+          ],
+          "top_reason_frequency": {
+            "svcscan": 0.653,
+            "malfind": 0.123,
+            "dlllist": 0.113,
+            "callbacks": 0.063,
+            "handles": 0.027
+          },
+          "best_stump_feature": {
+            "name": "svcscan",
+            "stump_balanced_accuracy": 0.9959,
+            "shap_rank": 1,
+            "row_share": 0.3152,
+            "top_reason_frequency": 0.653
+          },
+          "stump_spearman": {
+            "row_share": 0.733,
+            "share": 0.283
+          },
+          "error_split": {
+            "top3_overlap": 0.56,
+            "top1_match": 0.38
+          },
+          "efficiency_max_relative_error": 1.1296921747099635e-16
+        },
+        "seconds": 208.3
+      },
+      "1": {
+        "test_malware": 14367,
+        "flagged": 13326,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "feature": {
+          "row_share": {
+            "svcscan.shared_process_services": 0.1479,
+            "malfind.commitCharge": 0.1414,
+            "svcscan.kernel_drivers": 0.098,
+            "callbacks.ncallbacks": 0.0693,
+            "svcscan.nservices": 0.0529,
+            "handles.nthread": 0.037,
+            "pslist.avg_threads": 0.0285,
+            "handles.ntimer": 0.0266,
+            "pslist.avg_handlers": 0.0224,
+            "malfind.uniqueInjections": 0.0219,
+            "handles.avg_handles_per_proc": 0.0215,
+            "handles.nhandles": 0.0213,
+            "malfind.protection": 0.0204,
+            "dlllist.avg_dlls_per_proc": 0.0202,
+            "handles.nmutant": 0.0191,
+            "ldrmodules.not_in_mem_avg": 0.018,
+            "handles.nsection": 0.0166,
+            "handles.nfile": 0.0142,
+            "svcscan.process_services": 0.0136,
+            "dlllist.ndlls": 0.0133,
+            "ldrmodules.not_in_load": 0.0131,
+            "handles.nevent": 0.0127,
+            "ldrmodules.not_in_init": 0.0123,
+            "svcscan.nactive": 0.0118,
+            "handles.nkey": 0.0098,
+            "handles.nsemaphore": 0.0094,
+            "ldrmodules.not_in_mem": 0.0078,
+            "ldrmodules.not_in_load_avg": 0.0074,
+            "psxview.not_in_deskthrd_false_avg": 0.0071,
+            "pslist.nppid": 0.0067,
+            "psxview.not_in_csrss_handles_false_avg": 0.0064,
+            "handles.ndesktop": 0.0061,
+            "psxview.not_in_pslist_false_avg": 0.0056,
+            "psxview.not_in_session": 0.0054,
+            "handles.ndirectory": 0.0053,
+            "malfind.ninjections": 0.0049,
+            "psxview.not_in_ethread_pool_false_avg": 0.0047,
+            "psxview.not_in_pspcid_list": 0.0046,
+            "ldrmodules.not_in_init_avg": 0.0042,
+            "pslist.nproc": 0.0041,
+            "modules.nmodules": 0.0037,
+            "psxview.not_in_csrss_handles": 0.0034,
+            "psxview.not_in_deskthrd": 0.0033,
+            "psxview.not_in_pspcid_list_false_avg": 0.0032,
+            "psxview.not_in_ethread_pool": 0.0029,
+            "psxview.not_in_session_false_avg": 0.0028,
+            "psxview.not_in_eprocess_pool": 0.0027,
+            "psxview.not_in_pslist": 0.0026,
+            "psxview.not_in_eprocess_pool_false_avg": 0.0018,
+            "callbacks.ngeneric": 0.0,
+            "pslist.nprocs64bit": 0.0,
+            "handles.nport": 0.0,
+            "svcscan.fs_drivers": 0.0,
+            "svcscan.interactive_process_services": 0.0,
+            "callbacks.nanonymous": 0.0
+          },
+          "share": {
+            "malfind.commitCharge": 0.9935,
+            "malfind.uniqueInjections": 0.0016,
+            "callbacks.ncallbacks": 0.0009,
+            "svcscan.shared_process_services": 0.0009,
+            "svcscan.kernel_drivers": 0.0006,
+            "malfind.ninjections": 0.0003,
+            "dlllist.avg_dlls_per_proc": 0.0003,
+            "svcscan.nservices": 0.0002,
+            "ldrmodules.not_in_load": 0.0002,
+            "handles.nhandles": 0.0001,
+            "handles.avg_handles_per_proc": 0.0001,
+            "handles.ntimer": 0.0001,
+            "ldrmodules.not_in_mem_avg": 0.0001,
+            "handles.nmutant": 0.0001,
+            "handles.nevent": 0.0001,
+            "pslist.nproc": 0.0001,
+            "pslist.avg_threads": 0.0001,
+            "svcscan.nactive": 0.0001,
+            "ldrmodules.not_in_init_avg": 0.0001,
+            "ldrmodules.not_in_init": 0.0001,
+            "handles.nfile": 0.0,
+            "handles.nkey": 0.0,
+            "handles.nsection": 0.0,
+            "ldrmodules.not_in_load_avg": 0.0,
+            "psxview.not_in_pslist_false_avg": 0.0,
+            "psxview.not_in_csrss_handles_false_avg": 0.0,
+            "svcscan.process_services": 0.0,
+            "malfind.protection": 0.0,
+            "pslist.nppid": 0.0,
+            "handles.nthread": 0.0,
+            "psxview.not_in_ethread_pool": 0.0,
+            "handles.nsemaphore": 0.0,
+            "handles.ndesktop": 0.0,
+            "psxview.not_in_pspcid_list_false_avg": 0.0,
+            "dlllist.ndlls": 0.0,
+            "psxview.not_in_deskthrd": 0.0,
+            "pslist.avg_handlers": 0.0,
+            "ldrmodules.not_in_mem": 0.0,
+            "psxview.not_in_csrss_handles": 0.0,
+            "psxview.not_in_session": 0.0,
+            "psxview.not_in_pslist": 0.0,
+            "psxview.not_in_ethread_pool_false_avg": 0.0,
+            "psxview.not_in_deskthrd_false_avg": 0.0,
+            "handles.ndirectory": 0.0,
+            "psxview.not_in_pspcid_list": 0.0,
+            "psxview.not_in_session_false_avg": 0.0,
+            "modules.nmodules": 0.0,
+            "psxview.not_in_eprocess_pool": 0.0,
+            "psxview.not_in_eprocess_pool_false_avg": 0.0,
+            "callbacks.ngeneric": 0.0,
+            "pslist.nprocs64bit": 0.0,
+            "handles.nport": 0.0,
+            "svcscan.fs_drivers": 0.0,
+            "svcscan.interactive_process_services": 0.0,
+            "callbacks.nanonymous": 0.0
+          },
+          "top": [
+            "svcscan.shared_process_services",
+            "malfind.commitCharge",
+            "svcscan.kernel_drivers",
+            "callbacks.ncallbacks",
+            "svcscan.nservices",
+            "handles.nthread",
+            "pslist.avg_threads",
+            "handles.ntimer",
+            "pslist.avg_handlers",
+            "malfind.uniqueInjections"
+          ],
+          "top_reason_frequency": {
+            "svcscan.shared_process_services": 0.543,
+            "callbacks.ncallbacks": 0.22,
+            "malfind.commitCharge": 0.15,
+            "svcscan.kernel_drivers": 0.057,
+            "malfind.uniqueInjections": 0.017,
+            "psxview.not_in_eprocess_pool": 0.007,
+            "handles.nfile": 0.003,
+            "pslist.avg_handlers": 0.003
+          },
+          "best_stump_feature": {
+            "name": "svcscan.nservices",
+            "stump_balanced_accuracy": 0.9959,
+            "shap_rank": 5,
+            "row_share": 0.0529,
+            "top_reason_frequency": 0.0
+          },
+          "stump_spearman": {
+            "row_share": 0.861,
+            "share": 0.743
+          },
+          "error_split": {
+            "top3_overlap": 0.427,
+            "top1_match": 0.303
+          },
+          "efficiency_max_relative_error": 3.8294025006712705e-16,
+          "shortcut_share": {
+            "row_share": 0.3242,
+            "share": 0.0017
+          }
+        },
+        "group": {
+          "row_share": {
+            "svcscan": 0.4032,
+            "malfind": 0.1813,
+            "handles": 0.1696,
+            "callbacks": 0.0976,
+            "pslist": 0.0499,
+            "psxview": 0.0377,
+            "ldrmodules": 0.0319,
+            "dlllist": 0.0247,
+            "modules": 0.0041
+          },
+          "share": {
+            "malfind": 0.9961,
+            "svcscan": 0.0017,
+            "callbacks": 0.0009,
+            "handles": 0.0005,
+            "ldrmodules": 0.0003,
+            "dlllist": 0.0003,
+            "psxview": 0.0001,
+            "pslist": 0.0001,
+            "modules": 0.0
+          },
+          "top": [
+            "svcscan",
+            "malfind",
+            "handles",
+            "callbacks",
+            "pslist"
+          ],
+          "top_reason_frequency": {
+            "svcscan": 0.817,
+            "malfind": 0.163,
+            "handles": 0.007,
+            "psxview": 0.007,
+            "callbacks": 0.007
+          },
+          "best_stump_feature": {
+            "name": "svcscan",
+            "stump_balanced_accuracy": 0.9959,
+            "shap_rank": 1,
+            "row_share": 0.4032,
+            "top_reason_frequency": 0.817
+          },
+          "stump_spearman": {
+            "row_share": 0.5,
+            "share": 0.4
+          },
+          "error_split": {
+            "top3_overlap": 0.582,
+            "top1_match": 0.403
+          },
+          "efficiency_max_relative_error": 2.562253090043977e-16
+        },
+        "seconds": 211.0
+      }
+    }
+  },
+  "stability": {
+    "feature": {
+      "between_seeds": {
+        "autoencoder": {
+          "spearman": 0.929,
+          "top5_overlap": 4
+        },
+        "vae": {
+          "spearman": 0.93,
+          "top5_overlap": 5
+        }
+      },
+      "autoencoder_vs_vae": {
+        "42": {
+          "spearman": 0.925,
+          "top5_overlap": 4
+        },
+        "1": {
+          "spearman": 0.901,
+          "top5_overlap": 3
+        }
+      }
+    },
+    "group": {
+      "between_seeds": {
+        "autoencoder": {
+          "spearman": 0.933,
+          "top5_overlap": 4
+        },
+        "vae": {
+          "spearman": 0.65,
+          "top5_overlap": 4
+        }
+      },
+      "autoencoder_vs_vae": {
+        "42": {
+          "spearman": 0.867,
+          "top5_overlap": 5
+        },
+        "1": {
+          "spearman": 0.9,
+          "top5_overlap": 4
+        }
+      }
+    }
+  }
+}

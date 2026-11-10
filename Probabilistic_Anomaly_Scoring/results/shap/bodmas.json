@@ -1,0 +1,311 @@
+{
+  "data": {
+    "duplicates_dropped": 7,
+    "features": 2381,
+    "clean_rows": 77138,
+    "malware_rows": 57290,
+    "clean_cal": 15428,
+    "clean_test": 15428,
+    "clean_train": 46282,
+    "malware_fit": 28645,
+    "malware_test": 28645
+  },
+  "settings": {
+    "seeds": [
+      42,
+      1
+    ],
+    "n_max": 300,
+    "n_background": 100,
+    "alpha": 0.01,
+    "per_feature": false,
+    "groups": {
+      "byte_histogram": 256,
+      "byte_entropy_histogram": 256,
+      "strings": 104,
+      "general": 10,
+      "header": 62,
+      "section": 255,
+      "imports": 1280,
+      "exports": 128,
+      "data_directories": 30
+    }
+  },
+  "distance_check_max_relative_error": {
+    "per_group": 5.2906686298998054e-17
+  },
+  "runs": {
+    "autoencoder": {
+      "42": {
+        "test_malware": 28645,
+        "flagged": 3725,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "group": {
+          "row_share": {
+            "byte_entropy_histogram": 0.6883,
+            "data_directories": 0.1327,
+            "byte_histogram": 0.0785,
+            "section": 0.0487,
+            "strings": 0.0364,
+            "imports": 0.0126,
+            "exports": 0.0026,
+            "header": 0.0002,
+            "general": 0.0001
+          },
+          "share": {
+            "data_directories": 1.0,
+            "byte_entropy_histogram": 0.0,
+            "byte_histogram": 0.0,
+            "section": 0.0,
+            "imports": 0.0,
+            "strings": 0.0,
+            "header": 0.0,
+            "general": 0.0,
+            "exports": 0.0
+          },
+          "top": [
+            "byte_entropy_histogram",
+            "data_directories",
+            "byte_histogram",
+            "section",
+            "strings"
+          ],
+          "top_reason_frequency": {
+            "byte_entropy_histogram": 0.66,
+            "data_directories": 0.133,
+            "byte_histogram": 0.13,
+            "section": 0.06,
+            "strings": 0.013
+          },
+          "best_stump_feature": {
+            "name": "header",
+            "stump_balanced_accuracy": 0.7969,
+            "shap_rank": 8,
+            "row_share": 0.0002,
+            "top_reason_frequency": 0.0
+          },
+          "stump_spearman": {
+            "row_share": -0.15,
+            "share": 0.05
+          },
+          "error_split": {
+            "top3_overlap": 0.843,
+            "top1_match": 0.877
+          },
+          "efficiency_max_relative_error": 3.966147642590651e-09
+        },
+        "seconds": 660.9
+      },
+      "1": {
+        "test_malware": 28645,
+        "flagged": 3745,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "group": {
+          "row_share": {
+            "byte_entropy_histogram": 0.7276,
+            "data_directories": 0.116,
+            "byte_histogram": 0.071,
+            "section": 0.0489,
+            "strings": 0.0235,
+            "imports": 0.0104,
+            "exports": 0.0023,
+            "header": 0.0001,
+            "general": 0.0001
+          },
+          "share": {
+            "data_directories": 1.0,
+            "byte_entropy_histogram": 0.0,
+            "section": 0.0,
+            "byte_histogram": 0.0,
+            "imports": 0.0,
+            "header": 0.0,
+            "strings": 0.0,
+            "general": 0.0,
+            "exports": 0.0
+          },
+          "top": [
+            "byte_entropy_histogram",
+            "data_directories",
+            "byte_histogram",
+            "section",
+            "strings"
+          ],
+          "top_reason_frequency": {
+            "byte_entropy_histogram": 0.703,
+            "data_directories": 0.117,
+            "byte_histogram": 0.113,
+            "section": 0.057,
+            "strings": 0.007
+          },
+          "best_stump_feature": {
+            "name": "header",
+            "stump_balanced_accuracy": 0.7969,
+            "shap_rank": 8,
+            "row_share": 0.0001,
+            "top_reason_frequency": 0.0
+          },
+          "stump_spearman": {
+            "row_share": -0.15,
+            "share": 0.1
+          },
+          "error_split": {
+            "top3_overlap": 0.867,
+            "top1_match": 0.903
+          },
+          "efficiency_max_relative_error": 7.188623870546814e-10
+        },
+        "seconds": 647.9
+      }
+    },
+    "vae": {
+      "42": {
+        "test_malware": 28645,
+        "flagged": 3701,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "group": {
+          "row_share": {
+            "byte_entropy_histogram": 0.6957,
+            "data_directories": 0.1427,
+            "byte_histogram": 0.0677,
+            "section": 0.0502,
+            "strings": 0.0328,
+            "imports": 0.0084,
+            "exports": 0.0022,
+            "header": 0.0002,
+            "general": 0.0001
+          },
+          "share": {
+            "data_directories": 1.0,
+            "section": 0.0,
+            "byte_entropy_histogram": 0.0,
+            "byte_histogram": 0.0,
+            "header": 0.0,
+            "imports": 0.0,
+            "strings": 0.0,
+            "general": 0.0,
+            "exports": 0.0
+          },
+          "top": [
+            "byte_entropy_histogram",
+            "data_directories",
+            "byte_histogram",
+            "section",
+            "strings"
+          ],
+          "top_reason_frequency": {
+            "byte_entropy_histogram": 0.67,
+            "data_directories": 0.143,
+            "byte_histogram": 0.11,
+            "section": 0.063,
+            "strings": 0.013
+          },
+          "best_stump_feature": {
+            "name": "header",
+            "stump_balanced_accuracy": 0.7969,
+            "shap_rank": 8,
+            "row_share": 0.0002,
+            "top_reason_frequency": 0.0
+          },
+          "stump_spearman": {
+            "row_share": -0.15,
+            "share": 0.267
+          },
+          "error_split": {
+            "top3_overlap": 0.878,
+            "top1_match": 0.9
+          },
+          "efficiency_max_relative_error": 5.3663184926972304e-17
+        },
+        "seconds": 657.5
+      },
+      "1": {
+        "test_malware": 28645,
+        "flagged": 3699,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "group": {
+          "row_share": {
+            "byte_entropy_histogram": 0.6969,
+            "data_directories": 0.136,
+            "byte_histogram": 0.0716,
+            "section": 0.0509,
+            "strings": 0.0343,
+            "imports": 0.008,
+            "exports": 0.0021,
+            "header": 0.0001,
+            "general": 0.0001
+          },
+          "share": {
+            "data_directories": 1.0,
+            "section": 0.0,
+            "byte_entropy_histogram": 0.0,
+            "imports": 0.0,
+            "byte_histogram": 0.0,
+            "strings": 0.0,
+            "header": 0.0,
+            "general": 0.0,
+            "exports": 0.0
+          },
+          "top": [
+            "byte_entropy_histogram",
+            "data_directories",
+            "byte_histogram",
+            "section",
+            "strings"
+          ],
+          "top_reason_frequency": {
+            "byte_entropy_histogram": 0.667,
+            "data_directories": 0.137,
+            "byte_histogram": 0.12,
+            "section": 0.063,
+            "strings": 0.013
+          },
+          "best_stump_feature": {
+            "name": "header",
+            "stump_balanced_accuracy": 0.7969,
+            "shap_rank": 8,
+            "row_share": 0.0001,
+            "top_reason_frequency": 0.0
+          },
+          "stump_spearman": {
+            "row_share": -0.15,
+            "share": 0.133
+          },
+          "error_split": {
+            "top3_overlap": 0.877,
+            "top1_match": 0.903
+          },
+          "efficiency_max_relative_error": 1.1856785662479195e-16
+        },
+        "seconds": 685.4
+      }
+    }
+  },
+  "stability": {
+    "group": {
+      "between_seeds": {
+        "autoencoder": {
+          "spearman": 1.0,
+          "top5_overlap": 5
+        },
+        "vae": {
+          "spearman": 1.0,
+          "top5_overlap": 5
+        }
+      },
+      "autoencoder_vs_vae": {
+        "42": {
+          "spearman": 1.0,
+          "top5_overlap": 5
+        },
+        "1": {
+          "spearman": 1.0,
+          "top5_overlap": 5
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ B.Tech major project MP2026CSE75, Dept. of CSE, Graphic Era Deemed to be Univers
 
 Examiners seize more evidence than they can read, so they have to decide what to examine first (triage). This project scores every artefact (memory dump, executable, network flow) by how unusual it is compared with **clean data only**, turns the score into a p-value with a false-alarm rate fixed in advance, and audits what the score is really picking up. The base paper is Khalid, Iqbal & Saqib (2025), *Forensic Sci. Int.: Digital Investigation* 53, 301924.
 
-Status: the base paper is replicated. Its autoencoder, a variational autoencoder (VAE) and Isolation Forest are tested on three datasets with held-out, conformal and time-ordered evaluation, against a no-model distance-from-the-mean baseline. The SHAP audit is still to come; `src/protocol.py` fixes the partitions it will use.
+Status: the base paper is replicated. Its autoencoder, a variational autoencoder (VAE) and Isolation Forest are tested on three datasets with held-out, conformal and time-ordered evaluation, against a no-model distance-from-the-mean baseline. A SHAP audit checks what the explanations of their scores point at.
 
 ## Repository layout
 
@@ -25,7 +25,7 @@ python -m venv .venv && .venv/Scripts/activate      # Windows; source .venv/bin/
 pip install -r requirements.txt
 ```
 
-CIC MalMemAnalysis-2022 is included. CICIoT2023, BODMAS and Dumpware10 must be downloaded from their publishers into `Datasets/` (sources and expected layout in `Datasets/README.md`); BODMAS may not be redistributed. TensorFlow on CPU is not bit-for-bit deterministic, so reruns of the autoencoder and VAE vary slightly. The VAE results were produced in WSL2 (Ubuntu 24.04, Python 3.12) with the same `requirements.txt`, because Windows Smart App Control blocked TensorFlow on the development machine.
+CIC MalMemAnalysis-2022 is included. CICIoT2023, BODMAS and Dumpware10 must be downloaded from their publishers into `Datasets/` (sources and expected layout in `Datasets/README.md`); BODMAS may not be redistributed. TensorFlow on CPU is not bit-for-bit deterministic, so reruns of the autoencoder and VAE vary slightly. The VAE and SHAP results were produced in WSL2 (Ubuntu 24.04, Python 3.12) with the same `requirements.txt`, because Windows Smart App Control blocked TensorFlow on the development machine.
 
 ## Scripts
 
@@ -41,6 +41,7 @@ Run from any directory, e.g. `python Probabilistic_Anomaly_Scoring/src/heldout_e
 | `protocol.py` | Shared protocol: de-duplication, 60/20/20 clean split, conformal p-values, metrics, baselines | (library) |
 | `vae.py` | VAE (64-32-8-32-64) trained on clean rows; score = negative ELBO with z = mean | (library) |
 | `heldout_eval.py` | Held-out evaluation of the autoencoder, VAE and Isolation Forest with conformal thresholds, baselines, per-family recall; `--drop svcscan`, `--drop window`, `--temporal`; `--detectors` retrains only the named detectors (none: baselines only) and keeps the rest | `heldout/` |
+| `shap_audit.py` | SHAP of the autoencoder and VAE scores on flagged test malware: per feature (permutation SHAP) and per Volatility plugin / EMBER group (exact Shapley); shortcut share, agreement with the stump ranking, stability, agreement with the reconstruction-error reasons; `--drop svcscan`, `--drop window` | `shap/` |
 | `group_split.py` | Random vs hash-grouped splits for a supervised Random Forest on MalMem | `group_split/malmem.json` |
 | `dumpware10_benign_only.py` | Can any benign-only detector separate Dumpware10 malware images? | `dumpware10/benign_only.json` |
 | `triage_report.py` | Ranked triage list with score, p-value, top reconstruction-error features, PR curve | `triage/` |
@@ -88,6 +89,24 @@ Autoencoder (AE) and VAE: mean of 5 seeds. Distance: the no-model baseline (squa
 - **CICIoT2023 attack classes.** Recall comes from floods. DNS spoofing, ARP spoofing, vulnerability scans and web attacks are caught at 0–9%. Dropping the five window-sensitive features costs 0.21 recall.
 - **BODMAS over time.** Training before March 2020 and testing on later files did not raise false alarms (0.84% vs 1.15% on held-out older files). Recall stays low: worms 0.33, droppers 0.14, trojans 0.07, backdoors 0.00.
 - **Old thresholds on held-out data.** The former "1% budget" (99th percentile of training error) gives 0.93–1.19% false alarms on unseen clean rows, and 1.57% on the BODMAS temporal split.
+
+### SHAP audit: what do the explanations point at?
+
+SHAP splits each flagged artefact's score into per-feature contributions, measured against 100 clean calibration rows. This covers 300 flagged test malware rows per detector and seed (42 and 1), with the same splits and models as above. Shares are averaged per artefact, so every artefact counts equally. BODMAS uses exact Shapley values over its 9 feature groups.
+
+| Dataset | Largest reason for a flagged artefact (AE; VAE) | Share to the known shortcut | Spearman ρ with the stump ranking |
+|---|---|---|---|
+| CIC MalMem-2022 | `svcscan` plugin: 86% of dumps; 65–82% | `svcscan.*` 37–38%; 32% | 0.85–0.88 |
+| MalMem without `svcscan.*` | `handles` plugin, home of the next-best stump `handles.nmutant`: 38–74%; 76–82% | – | 0.81–0.84 |
+| CICIoT2023 | `Number` (packet-window size): 99% of flows; 99–100% | window features 97–98% | 0.37–0.56 |
+| CICIoT2023 without window features | `syn_count`, `ack_count`, `rst_count`, `ICMP` (flood and scan signals); the best stump, `HTTPS`, ranks 9th–17th | – | 0.33–0.61 |
+| BODMAS (9 groups) | `byte_entropy_histogram`: 66–70% of files; 67% | no shortcut | −0.15 (best stump group, `header`, ranks 8th of 9) |
+
+- **Where a lab shortcut exists, SHAP reports it as the main reason.** That's MalMem's running-services count and CICIoT2023's packet-window size, so an examiner reading these explanations would be reading a quirk of how the dataset was recorded. Without the shortcut, MalMem's explanations move to the plugin of the next-best stump, while CICIoT2023's move to plausible attack signals rather than the next stump. On BODMAS, which has no shortcut, they point to byte entropy (packed or encrypted content).
+- **Pooled averages mislead.** Averaging |SHAP| over all artefacts gives 98% to `malfind.commitCharge` on MalMem and 100% to `data_directories` on BODMAS, driven by a few extreme values.
+- **Stability.** Rankings agree between seeds and between AE and VAE at ρ 0.74–0.95 per feature (per MalMem plugin, down to 0.65). On BODMAS they are identical (ρ 1.00), consistent with both networks measuring distance from the mean there.
+- **The triage report's current reasons** (largest per-feature reconstruction errors) share only 0–43% of SHAP's top 3 on MalMem and CICIoT2023, but 84–88% on BODMAS.
+- **Checks.** On the distance baseline, whose exact SHAP values are known, both methods are exact (error ≤ 10⁻¹³). Contributions add up to each score (relative error ≤ 4 × 10⁻⁷).
 
 ### Audits and splits
 

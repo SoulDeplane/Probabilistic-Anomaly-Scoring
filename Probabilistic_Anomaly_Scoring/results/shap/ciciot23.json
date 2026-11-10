@@ -1,0 +1,571 @@
+{
+  "data": {
+    "non_finite_rows_dropped": 76,
+    "duplicates_dropped": 171608,
+    "clean_rows_available": 1093876,
+    "features": 39,
+    "clean_rows": 100000,
+    "malware_rows": 528365,
+    "clean_cal": 20000,
+    "clean_test": 20000,
+    "clean_train": 60000,
+    "malware_fit": 264182,
+    "malware_test": 264183
+  },
+  "settings": {
+    "seeds": [
+      42,
+      1
+    ],
+    "n_max": 300,
+    "n_background": 100,
+    "alpha": 0.01,
+    "per_feature": true,
+    "groups": {}
+  },
+  "distance_check_max_relative_error": {
+    "per_feature": 1.0073346979873844e-13
+  },
+  "runs": {
+    "autoencoder": {
+      "42": {
+        "test_malware": 264183,
+        "flagged": 256283,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "feature": {
+          "row_share": {
+            "Number": 0.9769,
+            "syn_count": 0.0067,
+            "rst_count": 0.0061,
+            "rst_flag_number": 0.0028,
+            "fin_count": 0.0026,
+            "syn_flag_number": 0.0007,
+            "ack_count": 0.0005,
+            "ack_flag_number": 0.0004,
+            "TCP": 0.0004,
+            "HTTPS": 0.0003,
+            "fin_flag_number": 0.0003,
+            "Tot size": 0.0002,
+            "ICMP": 0.0002,
+            "UDP": 0.0002,
+            "Header_Length": 0.0002,
+            "psh_flag_number": 0.0002,
+            "IAT": 0.0002,
+            "Std": 0.0002,
+            "AVG": 0.0001,
+            "Tot sum": 0.0001,
+            "Time_To_Live": 0.0001,
+            "ARP": 0.0001,
+            "Rate": 0.0001,
+            "LLC": 0.0001,
+            "Max": 0.0001,
+            "Min": 0.0001,
+            "Variance": 0.0001,
+            "IPv": 0.0,
+            "DNS": 0.0,
+            "Protocol Type": 0.0,
+            "DHCP": 0.0,
+            "SSH": 0.0,
+            "HTTP": 0.0,
+            "Telnet": 0.0,
+            "IGMP": 0.0,
+            "IRC": 0.0,
+            "cwr_flag_number": 0.0,
+            "ece_flag_number": 0.0,
+            "SMTP": 0.0
+          },
+          "share": {
+            "Number": 0.9864,
+            "syn_count": 0.0051,
+            "fin_count": 0.0027,
+            "rst_count": 0.0026,
+            "syn_flag_number": 0.0006,
+            "fin_flag_number": 0.0003,
+            "TCP": 0.0003,
+            "ack_flag_number": 0.0002,
+            "ack_count": 0.0002,
+            "ICMP": 0.0002,
+            "rst_flag_number": 0.0002,
+            "HTTPS": 0.0002,
+            "UDP": 0.0002,
+            "psh_flag_number": 0.0001,
+            "IAT": 0.0001,
+            "Rate": 0.0001,
+            "Tot size": 0.0001,
+            "Header_Length": 0.0001,
+            "Time_To_Live": 0.0001,
+            "ARP": 0.0001,
+            "Tot sum": 0.0,
+            "Std": 0.0,
+            "LLC": 0.0,
+            "AVG": 0.0,
+            "Protocol Type": 0.0,
+            "IPv": 0.0,
+            "DNS": 0.0,
+            "Max": 0.0,
+            "Min": 0.0,
+            "Variance": 0.0,
+            "SSH": 0.0,
+            "HTTP": 0.0,
+            "DHCP": 0.0,
+            "Telnet": 0.0,
+            "IGMP": 0.0,
+            "IRC": 0.0,
+            "cwr_flag_number": 0.0,
+            "ece_flag_number": 0.0,
+            "SMTP": 0.0
+          },
+          "top": [
+            "Number",
+            "syn_count",
+            "rst_count",
+            "rst_flag_number",
+            "fin_count",
+            "syn_flag_number",
+            "ack_count",
+            "ack_flag_number",
+            "TCP",
+            "HTTPS"
+          ],
+          "top_reason_frequency": {
+            "Number": 0.99,
+            "rst_count": 0.007,
+            "rst_flag_number": 0.003
+          },
+          "best_stump_feature": {
+            "name": "Number",
+            "stump_balanced_accuracy": 0.9825,
+            "shap_rank": 1,
+            "row_share": 0.9769,
+            "top_reason_frequency": 0.99
+          },
+          "stump_spearman": {
+            "row_share": 0.555,
+            "share": 0.509
+          },
+          "error_split": {
+            "top3_overlap": 0.302,
+            "top1_match": 0.0
+          },
+          "efficiency_max_relative_error": 2.947260673884664e-07,
+          "shortcut_share": {
+            "row_share": 0.9774,
+            "share": 0.9866
+          }
+        },
+        "seconds": 179.6
+      },
+      "1": {
+        "test_malware": 264183,
+        "flagged": 256531,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "feature": {
+          "row_share": {
+            "Number": 0.971,
+            "rst_count": 0.0093,
+            "fin_count": 0.004,
+            "syn_flag_number": 0.0036,
+            "rst_flag_number": 0.0021,
+            "syn_count": 0.0019,
+            "IRC": 0.0019,
+            "ack_count": 0.0013,
+            "Header_Length": 0.0006,
+            "ack_flag_number": 0.0005,
+            "ICMP": 0.0004,
+            "HTTPS": 0.0003,
+            "Tot sum": 0.0003,
+            "fin_flag_number": 0.0003,
+            "AVG": 0.0002,
+            "IAT": 0.0002,
+            "HTTP": 0.0002,
+            "Tot size": 0.0002,
+            "Time_To_Live": 0.0002,
+            "psh_flag_number": 0.0002,
+            "Max": 0.0002,
+            "Min": 0.0001,
+            "TCP": 0.0001,
+            "IPv": 0.0001,
+            "Rate": 0.0001,
+            "Std": 0.0001,
+            "SSH": 0.0001,
+            "Protocol Type": 0.0001,
+            "UDP": 0.0001,
+            "LLC": 0.0001,
+            "Variance": 0.0001,
+            "DNS": 0.0001,
+            "ARP": 0.0001,
+            "DHCP": 0.0,
+            "ece_flag_number": 0.0,
+            "cwr_flag_number": 0.0,
+            "IGMP": 0.0,
+            "Telnet": 0.0,
+            "SMTP": 0.0
+          },
+          "share": {
+            "Number": 0.9816,
+            "rst_count": 0.0091,
+            "fin_count": 0.0049,
+            "ack_count": 0.0009,
+            "rst_flag_number": 0.0006,
+            "Header_Length": 0.0005,
+            "syn_count": 0.0004,
+            "ICMP": 0.0003,
+            "fin_flag_number": 0.0002,
+            "syn_flag_number": 0.0002,
+            "ack_flag_number": 0.0002,
+            "Tot sum": 0.0001,
+            "Rate": 0.0001,
+            "AVG": 0.0001,
+            "Protocol Type": 0.0001,
+            "Time_To_Live": 0.0001,
+            "UDP": 0.0001,
+            "TCP": 0.0001,
+            "SSH": 0.0001,
+            "HTTPS": 0.0001,
+            "psh_flag_number": 0.0001,
+            "Tot size": 0.0001,
+            "HTTP": 0.0001,
+            "IPv": 0.0,
+            "IAT": 0.0,
+            "LLC": 0.0,
+            "Variance": 0.0,
+            "DNS": 0.0,
+            "ARP": 0.0,
+            "Max": 0.0,
+            "Std": 0.0,
+            "Min": 0.0,
+            "DHCP": 0.0,
+            "ece_flag_number": 0.0,
+            "IRC": 0.0,
+            "cwr_flag_number": 0.0,
+            "IGMP": 0.0,
+            "Telnet": 0.0,
+            "SMTP": 0.0
+          },
+          "top": [
+            "Number",
+            "rst_count",
+            "fin_count",
+            "syn_flag_number",
+            "rst_flag_number",
+            "syn_count",
+            "IRC",
+            "ack_count",
+            "Header_Length",
+            "ack_flag_number"
+          ],
+          "top_reason_frequency": {
+            "Number": 0.987,
+            "syn_flag_number": 0.007,
+            "IRC": 0.003,
+            "rst_count": 0.003
+          },
+          "best_stump_feature": {
+            "name": "Number",
+            "stump_balanced_accuracy": 0.9825,
+            "shap_rank": 1,
+            "row_share": 0.971,
+            "top_reason_frequency": 0.987
+          },
+          "stump_spearman": {
+            "row_share": 0.39,
+            "share": 0.417
+          },
+          "error_split": {
+            "top3_overlap": 0.003,
+            "top1_match": 0.0
+          },
+          "efficiency_max_relative_error": 4.30442593270274e-07,
+          "shortcut_share": {
+            "row_share": 0.9716,
+            "share": 0.9819
+          }
+        },
+        "seconds": 179.6
+      }
+    },
+    "vae": {
+      "42": {
+        "test_malware": 264183,
+        "flagged": 256530,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "feature": {
+          "row_share": {
+            "Number": 0.9747,
+            "syn_count": 0.007,
+            "fin_count": 0.0033,
+            "rst_count": 0.0021,
+            "ack_count": 0.002,
+            "syn_flag_number": 0.0018,
+            "Min": 0.0015,
+            "Protocol Type": 0.0009,
+            "rst_flag_number": 0.0008,
+            "ICMP": 0.0007,
+            "AVG": 0.0005,
+            "TCP": 0.0004,
+            "UDP": 0.0004,
+            "Tot size": 0.0004,
+            "ack_flag_number": 0.0003,
+            "fin_flag_number": 0.0003,
+            "Variance": 0.0003,
+            "Time_To_Live": 0.0003,
+            "HTTPS": 0.0003,
+            "Std": 0.0002,
+            "Header_Length": 0.0002,
+            "Max": 0.0002,
+            "LLC": 0.0002,
+            "DHCP": 0.0002,
+            "Tot sum": 0.0002,
+            "HTTP": 0.0002,
+            "ARP": 0.0001,
+            "IPv": 0.0001,
+            "psh_flag_number": 0.0001,
+            "Rate": 0.0001,
+            "SSH": 0.0001,
+            "IAT": 0.0001,
+            "DNS": 0.0001,
+            "cwr_flag_number": 0.0,
+            "IGMP": 0.0,
+            "IRC": 0.0,
+            "ece_flag_number": 0.0,
+            "Telnet": 0.0,
+            "SMTP": 0.0
+          },
+          "share": {
+            "Number": 0.9812,
+            "syn_count": 0.0062,
+            "fin_count": 0.0034,
+            "ack_count": 0.0018,
+            "rst_count": 0.0012,
+            "syn_flag_number": 0.0012,
+            "ICMP": 0.0006,
+            "Protocol Type": 0.0006,
+            "AVG": 0.0003,
+            "fin_flag_number": 0.0003,
+            "rst_flag_number": 0.0003,
+            "UDP": 0.0003,
+            "TCP": 0.0003,
+            "Variance": 0.0003,
+            "Tot size": 0.0003,
+            "Header_Length": 0.0002,
+            "HTTPS": 0.0002,
+            "Max": 0.0001,
+            "LLC": 0.0001,
+            "IPv": 0.0001,
+            "Time_To_Live": 0.0001,
+            "DHCP": 0.0001,
+            "ARP": 0.0001,
+            "psh_flag_number": 0.0001,
+            "Rate": 0.0001,
+            "Tot sum": 0.0001,
+            "HTTP": 0.0001,
+            "Std": 0.0001,
+            "SSH": 0.0001,
+            "ack_flag_number": 0.0001,
+            "IAT": 0.0,
+            "Min": 0.0,
+            "DNS": 0.0,
+            "cwr_flag_number": 0.0,
+            "IGMP": 0.0,
+            "IRC": 0.0,
+            "ece_flag_number": 0.0,
+            "Telnet": 0.0,
+            "SMTP": 0.0
+          },
+          "top": [
+            "Number",
+            "syn_count",
+            "fin_count",
+            "rst_count",
+            "ack_count",
+            "syn_flag_number",
+            "Min",
+            "Protocol Type",
+            "rst_flag_number",
+            "ICMP"
+          ],
+          "top_reason_frequency": {
+            "Number": 0.993,
+            "rst_count": 0.003,
+            "Min": 0.003
+          },
+          "best_stump_feature": {
+            "name": "Number",
+            "stump_balanced_accuracy": 0.9825,
+            "shap_rank": 1,
+            "row_share": 0.9747,
+            "top_reason_frequency": 0.993
+          },
+          "stump_spearman": {
+            "row_share": 0.4,
+            "share": 0.347
+          },
+          "error_split": {
+            "top3_overlap": 0.053,
+            "top1_match": 0.003
+          },
+          "efficiency_max_relative_error": 2.4793831246439044e-08,
+          "shortcut_share": {
+            "row_share": 0.9753,
+            "share": 0.9817
+          }
+        },
+        "seconds": 179.9
+      },
+      "1": {
+        "test_malware": 264183,
+        "flagged": 256612,
+        "explained": 300,
+        "excluded_non_finite_score": 0,
+        "feature": {
+          "row_share": {
+            "Number": 0.9624,
+            "rst_count": 0.0067,
+            "fin_count": 0.0048,
+            "syn_flag_number": 0.0046,
+            "ack_count": 0.0029,
+            "Rate": 0.0028,
+            "ICMP": 0.0028,
+            "rst_flag_number": 0.0025,
+            "fin_flag_number": 0.0019,
+            "syn_count": 0.0013,
+            "Tot sum": 0.0011,
+            "TCP": 0.001,
+            "HTTPS": 0.0007,
+            "Header_Length": 0.0007,
+            "Time_To_Live": 0.0005,
+            "HTTP": 0.0004,
+            "Protocol Type": 0.0004,
+            "DHCP": 0.0004,
+            "AVG": 0.0003,
+            "ack_flag_number": 0.0003,
+            "Min": 0.0002,
+            "Std": 0.0002,
+            "LLC": 0.0002,
+            "IPv": 0.0002,
+            "ARP": 0.0001,
+            "psh_flag_number": 0.0001,
+            "Max": 0.0001,
+            "IAT": 0.0001,
+            "UDP": 0.0001,
+            "Variance": 0.0001,
+            "Tot size": 0.0001,
+            "SSH": 0.0001,
+            "DNS": 0.0,
+            "cwr_flag_number": 0.0,
+            "ece_flag_number": 0.0,
+            "IRC": 0.0,
+            "IGMP": 0.0,
+            "Telnet": 0.0,
+            "SMTP": 0.0
+          },
+          "share": {
+            "Number": 0.9677,
+            "rst_count": 0.0058,
+            "fin_count": 0.0041,
+            "syn_flag_number": 0.0038,
+            "ICMP": 0.0029,
+            "ack_count": 0.0029,
+            "rst_flag_number": 0.0021,
+            "fin_flag_number": 0.0017,
+            "Rate": 0.0013,
+            "Tot sum": 0.0011,
+            "TCP": 0.001,
+            "HTTPS": 0.0007,
+            "Header_Length": 0.0007,
+            "Time_To_Live": 0.0005,
+            "syn_count": 0.0004,
+            "HTTP": 0.0004,
+            "Protocol Type": 0.0004,
+            "DHCP": 0.0004,
+            "AVG": 0.0003,
+            "ack_flag_number": 0.0002,
+            "Min": 0.0002,
+            "Std": 0.0002,
+            "LLC": 0.0002,
+            "IPv": 0.0002,
+            "ARP": 0.0001,
+            "psh_flag_number": 0.0001,
+            "Max": 0.0001,
+            "IAT": 0.0001,
+            "UDP": 0.0001,
+            "Variance": 0.0001,
+            "Tot size": 0.0001,
+            "SSH": 0.0001,
+            "DNS": 0.0,
+            "cwr_flag_number": 0.0,
+            "ece_flag_number": 0.0,
+            "IRC": 0.0,
+            "IGMP": 0.0,
+            "Telnet": 0.0,
+            "SMTP": 0.0
+          },
+          "top": [
+            "Number",
+            "rst_count",
+            "fin_count",
+            "syn_flag_number",
+            "ack_count",
+            "Rate",
+            "ICMP",
+            "rst_flag_number",
+            "fin_flag_number",
+            "syn_count"
+          ],
+          "top_reason_frequency": {
+            "Number": 0.997,
+            "Rate": 0.003
+          },
+          "best_stump_feature": {
+            "name": "Number",
+            "stump_balanced_accuracy": 0.9825,
+            "shap_rank": 1,
+            "row_share": 0.9624,
+            "top_reason_frequency": 0.997
+          },
+          "stump_spearman": {
+            "row_share": 0.374,
+            "share": 0.365
+          },
+          "error_split": {
+            "top3_overlap": 0.356,
+            "top1_match": 0.997
+          },
+          "efficiency_max_relative_error": 4.150481377925344e-08,
+          "shortcut_share": {
+            "row_share": 0.9665,
+            "share": 0.9703
+          }
+        },
+        "seconds": 178.7
+      }
+    }
+  },
+  "stability": {
+    "feature": {
+      "between_seeds": {
+        "autoencoder": {
+          "spearman": 0.787,
+          "top5_overlap": 4
+        },
+        "vae": {
+          "spearman": 0.768,
+          "top5_overlap": 4
+        }
+      },
+      "autoencoder_vs_vae": {
+        "42": {
+          "spearman": 0.808,
+          "top5_overlap": 4
+        },
+        "1": {
+          "spearman": 0.738,
+          "top5_overlap": 4
+        }
+      }
+    }
+  }
+}
