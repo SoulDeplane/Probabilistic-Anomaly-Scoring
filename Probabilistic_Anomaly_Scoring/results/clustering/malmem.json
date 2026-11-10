@@ -1,0 +1,714 @@
+{
+  "data": {
+    "rows": 58596,
+    "features": 55,
+    "class_counts": {
+      "Benign": 29298,
+      "Malware": 29298
+    },
+    "cat_counts": {
+      "Benign": 29298,
+      "Spyware": 10020,
+      "Ransomware": 9791,
+      "Trojan": 9487
+    },
+    "sub_cat_counts": {
+      "Benign": 29298,
+      "Transponder": 2410,
+      "Gator": 2200,
+      "Shade": 2128,
+      "Ako": 2000,
+      "180solutions": 2000,
+      "CWS": 2000,
+      "Refroso": 2000,
+      "Scar": 2000,
+      "Conti": 1988,
+      "Emotet": 1967,
+      "Maze": 1958,
+      "Zeus": 1950,
+      "Pysa": 1717,
+      "Reconyc": 1570,
+      "TIBS": 1410
+    }
+  },
+  "smote_check": {
+    "malware_rows": 29298,
+    "distinct_malware_dump_names": 28345,
+    "duplicate_feature_rows_all": 569
+  },
+  "dbscan_equivalence_check": [
+    {
+      "eps": 1.5,
+      "min_samples": 20,
+      "n_clusters": 9,
+      "identical": true
+    },
+    {
+      "eps": 2.3,
+      "min_samples": 30,
+      "n_clusters": 7,
+      "identical": true
+    },
+    {
+      "eps": 2.3,
+      "min_samples": 190,
+      "n_clusters": 2,
+      "identical": true
+    },
+    {
+      "eps": 3.0,
+      "min_samples": 60,
+      "n_clusters": 3,
+      "identical": true
+    }
+  ],
+  "replication": {
+    "kmeans_2": {
+      "target": "Class",
+      "paper_ari": 0.7544,
+      "ari": 0.7544,
+      "n_clusters": 2,
+      "noise_points": 0,
+      "confusion_matrix": {
+        "Benign": {
+          "0": 25590,
+          "1": 3708
+        },
+        "Malware": {
+          "0": 143,
+          "1": 29155
+        }
+      }
+    },
+    "gmm_2": {
+      "target": "Class",
+      "paper_ari": 0.9592,
+      "ari": 0.9592,
+      "n_clusters": 2,
+      "noise_points": 0,
+      "confusion_matrix": {
+        "Benign": {
+          "0": 28798,
+          "1": 500
+        },
+        "Malware": {
+          "0": 104,
+          "1": 29194
+        }
+      }
+    },
+    "gmm_4": {
+      "target": "Cat",
+      "paper_ari": 0.6449,
+      "ari": 0.6449,
+      "n_clusters": 4,
+      "noise_points": 0,
+      "confusion_matrix": {
+        "Benign": {
+          "0": 27820,
+          "1": 337,
+          "2": 1141,
+          "3": 0
+        },
+        "Ransomware": {
+          "0": 1,
+          "1": 1457,
+          "2": 504,
+          "3": 7829
+        },
+        "Spyware": {
+          "0": 0,
+          "1": 1817,
+          "2": 650,
+          "3": 7553
+        },
+        "Trojan": {
+          "0": 0,
+          "1": 1009,
+          "2": 127,
+          "3": 8351
+        }
+      }
+    },
+    "dbscan_16": {
+      "target": "Sub Cat",
+      "paper_ari": 0.569,
+      "ari": 0.569,
+      "n_clusters": 9,
+      "noise_points": 3036,
+      "confusion_matrix": {
+        "180solutions": {
+          "-1": 155,
+          "0": 1660,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 44,
+          "5": 92,
+          "6": 9,
+          "7": 29,
+          "8": 11
+        },
+        "Ako": {
+          "-1": 232,
+          "0": 1276,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 388,
+          "5": 48,
+          "6": 43,
+          "7": 13,
+          "8": 0
+        },
+        "Benign": {
+          "-1": 1051,
+          "0": 88,
+          "1": 27455,
+          "2": 349,
+          "3": 298,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 57
+        },
+        "CWS": {
+          "-1": 292,
+          "0": 1294,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 350,
+          "5": 33,
+          "6": 21,
+          "7": 10,
+          "8": 0
+        },
+        "Conti": {
+          "-1": 69,
+          "0": 1760,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 1,
+          "5": 86,
+          "6": 42,
+          "7": 23,
+          "8": 7
+        },
+        "Emotet": {
+          "-1": 66,
+          "0": 1722,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 84,
+          "6": 66,
+          "7": 23,
+          "8": 6
+        },
+        "Gator": {
+          "-1": 28,
+          "0": 2010,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 85,
+          "6": 44,
+          "7": 24,
+          "8": 9
+        },
+        "Maze": {
+          "-1": 135,
+          "0": 1598,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 151,
+          "5": 45,
+          "6": 13,
+          "7": 8,
+          "8": 8
+        },
+        "Pysa": {
+          "-1": 210,
+          "0": 1307,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 145,
+          "5": 36,
+          "6": 10,
+          "7": 9,
+          "8": 0
+        },
+        "Reconyc": {
+          "-1": 66,
+          "0": 1437,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 40,
+          "6": 0,
+          "7": 15,
+          "8": 12
+        },
+        "Refroso": {
+          "-1": 26,
+          "0": 1912,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 50,
+          "6": 0,
+          "7": 12,
+          "8": 0
+        },
+        "Scar": {
+          "-1": 51,
+          "0": 1881,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 49,
+          "6": 0,
+          "7": 19,
+          "8": 0
+        },
+        "Shade": {
+          "-1": 65,
+          "0": 1778,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 126,
+          "6": 112,
+          "7": 41,
+          "8": 6
+        },
+        "TIBS": {
+          "-1": 97,
+          "0": 814,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 120,
+          "5": 75,
+          "6": 0,
+          "7": 12,
+          "8": 292
+        },
+        "Transponder": {
+          "-1": 300,
+          "0": 1616,
+          "1": 43,
+          "2": 0,
+          "3": 0,
+          "4": 357,
+          "5": 53,
+          "6": 15,
+          "7": 15,
+          "8": 11
+        },
+        "Zeus": {
+          "-1": 193,
+          "0": 1682,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 30,
+          "5": 28,
+          "6": 8,
+          "7": 9,
+          "8": 0
+        }
+      }
+    }
+  },
+  "seeds": {
+    "kmeans_2": {
+      "target": "Class",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "ari": [
+        0.7544,
+        0.7544,
+        0.7544,
+        0.7544,
+        0.7544
+      ],
+      "mean": 0.7544,
+      "min": 0.7544,
+      "max": 0.7544
+    },
+    "gmm_2": {
+      "target": "Class",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "ari": [
+        0.9592,
+        0.9592,
+        0.0,
+        0.9592,
+        0.5105
+      ],
+      "mean": 0.6776,
+      "min": 0.0,
+      "max": 0.9592
+    },
+    "gmm_4": {
+      "target": "Cat",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "ari": [
+        0.6449,
+        0.6122,
+        0.6703,
+        0.6122,
+        0.6492
+      ],
+      "mean": 0.6378,
+      "min": 0.6122,
+      "max": 0.6703
+    }
+  },
+  "reference": {
+    "perfect_binary_split_vs_cat": 0.6667,
+    "perfect_binary_split_vs_sub_cat": 0.5338,
+    "kmeans_2_on_svcscan.nservices_only": 0.9851,
+    "gmm_2_on_svcscan.nservices_only": 0.5389,
+    "gmm_2_paper_vs_gmm_2_on_svcscan.nservices_only": 0.5297,
+    "kmeans_2_paper_vs_kmeans_2_on_svcscan.nservices_only": 0.7649,
+    "gmm_4_paper_vs_true_class": 0.788,
+    "dbscan_paper_vs_true_class": 0.7665
+  },
+  "no_svcscan": {
+    "dropped": [
+      "svcscan.nservices",
+      "svcscan.kernel_drivers",
+      "svcscan.fs_drivers",
+      "svcscan.process_services",
+      "svcscan.shared_process_services",
+      "svcscan.interactive_process_services",
+      "svcscan.nactive"
+    ],
+    "kmeans_2": {
+      "target": "Class",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "ari": [
+        0.7472,
+        0.7472,
+        0.7472,
+        0.7472,
+        0.7472
+      ],
+      "mean": 0.7472,
+      "min": 0.7472,
+      "max": 0.7472
+    },
+    "gmm_2": {
+      "target": "Class",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "ari": [
+        0.9587,
+        0.9587,
+        0.9587,
+        0.9587,
+        0.9587
+      ],
+      "mean": 0.9587,
+      "min": 0.9587,
+      "max": 0.9587
+    },
+    "gmm_4": {
+      "target": "Cat",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "ari": [
+        0.6432,
+        0.623,
+        0.6232,
+        0.6137,
+        0.6401
+      ],
+      "mean": 0.6286,
+      "min": 0.6137,
+      "max": 0.6432
+    },
+    "dbscan_16": {
+      "ari": 0.088,
+      "n_clusters": 8,
+      "noise_fraction": 0.0447
+    }
+  },
+  "deduplicated": {
+    "rows": 58027,
+    "kmeans_2": {
+      "target": "Class",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "ari": [
+        0.7527,
+        0.7527,
+        0.7527,
+        0.7526,
+        0.7527
+      ],
+      "mean": 0.7527,
+      "min": 0.7526,
+      "max": 0.7527
+    },
+    "gmm_2": {
+      "target": "Class",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "ari": [
+        0.9588,
+        0.9588,
+        0.9588,
+        0.9588,
+        0.9588
+      ],
+      "mean": 0.9588,
+      "min": 0.9588,
+      "max": 0.9588
+    },
+    "gmm_4": {
+      "target": "Cat",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "ari": [
+        0.5202,
+        0.6164,
+        0.6958,
+        0.6184,
+        0.6297
+      ],
+      "mean": 0.6161,
+      "min": 0.5202,
+      "max": 0.6958
+    },
+    "dbscan_16": {
+      "ari": 0.5746,
+      "n_clusters": 9,
+      "noise_fraction": 0.0519
+    }
+  },
+  "dbscan_grid": [
+    {
+      "eps": 1.5,
+      "min_samples": 50,
+      "ari": 0.375,
+      "n_clusters": 17,
+      "noise_fraction": 0.0551,
+      "ari_vs_class": 0.6177
+    },
+    {
+      "eps": 1.5,
+      "min_samples": 100,
+      "ari": 0.3182,
+      "n_clusters": 15,
+      "noise_fraction": 0.0741,
+      "ari_vs_class": 0.5806
+    },
+    {
+      "eps": 1.5,
+      "min_samples": 190,
+      "ari": 0.3072,
+      "n_clusters": 11,
+      "noise_fraction": 0.1177,
+      "ari_vs_class": 0.572
+    },
+    {
+      "eps": 1.5,
+      "min_samples": 300,
+      "ari": 0.3051,
+      "n_clusters": 7,
+      "noise_fraction": 0.1477,
+      "ari_vs_class": 0.5686
+    },
+    {
+      "eps": 2.0,
+      "min_samples": 50,
+      "ari": 0.0911,
+      "n_clusters": 12,
+      "noise_fraction": 0.0387,
+      "ari_vs_class": 0.0127
+    },
+    {
+      "eps": 2.0,
+      "min_samples": 100,
+      "ari": 0.5811,
+      "n_clusters": 12,
+      "noise_fraction": 0.0477,
+      "ari_vs_class": 0.7635
+    },
+    {
+      "eps": 2.0,
+      "min_samples": 190,
+      "ari": 0.3366,
+      "n_clusters": 11,
+      "noise_fraction": 0.0649,
+      "ari_vs_class": 0.5957
+    },
+    {
+      "eps": 2.0,
+      "min_samples": 300,
+      "ari": 0.32,
+      "n_clusters": 7,
+      "noise_fraction": 0.0999,
+      "ari_vs_class": 0.5864
+    },
+    {
+      "eps": 2.3,
+      "min_samples": 50,
+      "ari": 0.0908,
+      "n_clusters": 10,
+      "noise_fraction": 0.0352,
+      "ari_vs_class": 0.0125
+    },
+    {
+      "eps": 2.3,
+      "min_samples": 100,
+      "ari": 0.0906,
+      "n_clusters": 10,
+      "noise_fraction": 0.0398,
+      "ari_vs_class": 0.0125
+    },
+    {
+      "eps": 2.3,
+      "min_samples": 190,
+      "ari": 0.569,
+      "n_clusters": 9,
+      "noise_fraction": 0.0518,
+      "ari_vs_class": 0.7665
+    },
+    {
+      "eps": 2.3,
+      "min_samples": 300,
+      "ari": 0.5612,
+      "n_clusters": 6,
+      "noise_fraction": 0.0781,
+      "ari_vs_class": 0.7524
+    },
+    {
+      "eps": 2.6,
+      "min_samples": 50,
+      "ari": 0.0659,
+      "n_clusters": 8,
+      "noise_fraction": 0.0312,
+      "ari_vs_class": 0.0064
+    },
+    {
+      "eps": 2.6,
+      "min_samples": 100,
+      "ari": 0.058,
+      "n_clusters": 8,
+      "noise_fraction": 0.0364,
+      "ari_vs_class": 0.0057
+    },
+    {
+      "eps": 2.6,
+      "min_samples": 190,
+      "ari": 0.089,
+      "n_clusters": 8,
+      "noise_fraction": 0.0466,
+      "ari_vs_class": 0.0116
+    },
+    {
+      "eps": 2.6,
+      "min_samples": 300,
+      "ari": 0.0881,
+      "n_clusters": 5,
+      "noise_fraction": 0.0663,
+      "ari_vs_class": 0.0108
+    },
+    {
+      "eps": 3.0,
+      "min_samples": 50,
+      "ari": 0.0615,
+      "n_clusters": 8,
+      "noise_fraction": 0.0258,
+      "ari_vs_class": 0.0056
+    },
+    {
+      "eps": 3.0,
+      "min_samples": 100,
+      "ari": 0.0651,
+      "n_clusters": 5,
+      "noise_fraction": 0.0332,
+      "ari_vs_class": 0.0067
+    },
+    {
+      "eps": 3.0,
+      "min_samples": 190,
+      "ari": 0.0655,
+      "n_clusters": 5,
+      "noise_fraction": 0.0418,
+      "ari_vs_class": 0.0062
+    },
+    {
+      "eps": 3.0,
+      "min_samples": 300,
+      "ari": 0.0969,
+      "n_clusters": 6,
+      "noise_fraction": 0.0489,
+      "ari_vs_class": 0.0135
+    }
+  ],
+  "seconds": 1565.9
+}

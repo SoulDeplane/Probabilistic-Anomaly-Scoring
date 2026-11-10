@@ -10,7 +10,7 @@
 
 ## 1. Summary
 
-The base paper applies Isolation Forest and an autoencoder to CIC MalMem-2022 and reports accuracies of 0.8595 and 0.9759. We reproduced both results, then re-evaluated the models on unseen data, with a fixed false-alarm rate, full metrics and three datasets.
+The base paper applies Isolation Forest and an autoencoder to CIC MalMem-2022 and reports accuracies of 0.8595 and 0.9759. It also clusters the dataset with K-means, GMM and DBSCAN. We reproduced these results, then re-evaluated the models on unseen data, with a fixed false-alarm rate, full metrics and three datasets.
 
 1. **Replication.** Isolation Forest 0.8607 vs 0.8595; autoencoder 0.957–0.973 vs 0.9759.
 2. **Accuracy overstates performance.** Labelling every item clean already scores 0.952. Behind the paper's 0.976 are 716 false alarms and a precision of 0.668.
@@ -19,6 +19,7 @@ The base paper applies Isolation Forest and an autoencoder to CIC MalMem-2022 an
 5. **Other evidence types.** With our corrections, F1 is 0.90 on network traffic (CICIoT2023) but 0.19 on Windows executables (BODMAS).
 6. **Variational autoencoder.** A VAE matches the autoencoder on all three datasets. A model-free distance-from-the-mean score matches both on CICIoT2023 and BODMAS.
 7. **Explanations.** A SHAP audit shows that the explanations name each dataset's laboratory shortcut as the main reason for flagging an item.
+8. **Clustering.** All four clustering scores reproduce exactly. The 4-type and 16-family clusterings separate only benign from malware. Two-cluster K-means on a single feature beats every model. The best score (GMM, 0.96) holds for 3 of 5 seeds.
 
 ---
 
@@ -27,7 +28,7 @@ The base paper applies Isolation Forest and an autoencoder to CIC MalMem-2022 an
 | | Base paper | Present work |
 |---|---|---|
 | Datasets | CIC MalMem-2022 | MalMem-2022, CICIoT2023, BODMAS |
-| Models | Isolation Forest, autoencoder | Isolation Forest, autoencoder, variational autoencoder, model-free distance baseline |
+| Models | Isolation Forest, autoencoder; K-means, GMM and DBSCAN for clustering | Isolation Forest, autoencoder, variational autoencoder, model-free distance baseline; the paper's clustering models, replicated and audited |
 | Test data | Training rows reused; 2 of 15 malware families | Unseen rows; all malware families |
 | Preprocessing | No scaling for anomaly detection; duplicates retained | Scaling; duplicates removed |
 | Threshold | Mean + 3σ of training error | Conformal p-value at a 1% false-alarm rate |
@@ -92,6 +93,17 @@ The VAE also matches the autoencoder without the `svcscan` features and on newer
 | CICIoT2023 without window features | SYN, ACK and RST counts (attack traffic) | – |
 | BODMAS | Byte entropy (packed or encrypted files) | No shortcut exists |
 
+### 3.6 Clustering (MalMem-2022, all 58,596 rows)
+
+| Model, labels scored against | Paper ARI | Replication | Five seeds | Reference point |
+|---|---|---|---|---|
+| K-means, k = 2, benign / malware | 0.7544 | 0.7544 | 0.7544 | K-means on `svcscan.nservices` alone: 0.985 |
+| GMM, 2 components, benign / malware | 0.9592 | 0.9592 | 0.00–0.96 (mean 0.68) | – |
+| GMM, 4 components, benign + 3 types | 0.6449 | 0.6449 | 0.61–0.67 | Perfect benign/malware split: 0.667 |
+| DBSCAN, benign + 15 families | 0.5690 | 0.5690 | – | Perfect benign/malware split: 0.534 |
+
+ARI (Adjusted Rand Index) is 1 when clusters match the labels exactly and 0 for chance. GMM-4 and DBSCAN each place most rows of every malware type or family in a single cluster. DBSCAN's parameters were tuned against the labels: only 3 of 20 nearby settings exceed 0.5, and without the `svcscan` features it falls to 0.09. GMM-2 keeps 0.96 on every seed without `svcscan`, so the benign/malware structure itself does not depend on the shortcut.
+
 ---
 
 ## 4. Qualitative Assessment
@@ -114,6 +126,7 @@ The VAE also matches the autoencoder without the `svcscan` features and on newer
 | Unstable threshold | Fixed 1% false-alarm rate |
 | One dataset, one run | Three datasets, five seeds |
 | SHAP output not validated | SHAP audit: explanations compared with single-feature rules and with models retrained without the shortcut features |
+| Clustering: one seed, DBSCAN tuned against the labels, no reference scores | Five seeds, a parameter grid, a one-feature clustering and the score of a perfect benign/malware split as reference points |
 
 ### 4.3 Explainability
 
@@ -128,7 +141,7 @@ The paper's SHAP analysis highlights `svcscan` features. Our dataset audit shows
 - BODMAS remains largely unsolved (F1 0.19).
 - The VAE brings no detection gain over the autoencoder, and on CICIoT2023 and BODMAS neither network beats a model-free distance score.
 - Where a dataset contains a laboratory shortcut, explanations report that shortcut rather than malware behaviour.
-- The paper's clustering experiments were not replicated.
+- Clustering was audited on MalMem only, as in the paper; none of the tested models separates malware types or families.
 
 **Remaining work**
-- Replication of the paper's clustering experiments.
+- None within the project's scope. The paper's anomaly-detection and clustering experiments are both replicated and audited.

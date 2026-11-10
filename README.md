@@ -4,7 +4,7 @@ B.Tech major project MP2026CSE75, Dept. of CSE, Graphic Era Deemed to be Univers
 
 Examiners seize more evidence than they can read, so they have to decide what to examine first (triage). This project scores every artefact (memory dump, executable, network flow) by how unusual it is compared with **clean data only**, turns the score into a p-value with a false-alarm rate fixed in advance, and audits what the score is really picking up. The base paper is Khalid, Iqbal & Saqib (2025), *Forensic Sci. Int.: Digital Investigation* 53, 301924.
 
-Status: the base paper is replicated. Its autoencoder, a variational autoencoder (VAE) and Isolation Forest are tested on three datasets with held-out, conformal and time-ordered evaluation, against a no-model distance-from-the-mean baseline. A SHAP audit checks what the explanations of their scores point at.
+Status: the base paper is replicated, both its anomaly detection and its clustering. Its autoencoder, a variational autoencoder (VAE) and Isolation Forest are tested on three datasets with held-out, conformal and time-ordered evaluation, against a no-model distance-from-the-mean baseline. A SHAP audit checks what the explanations of their scores point at.
 
 ## Repository layout
 
@@ -34,6 +34,7 @@ Run from any directory, e.g. `python Probabilistic_Anomaly_Scoring/src/heldout_e
 | Script | What it does | Output (`results/`) |
 |---|---|---|
 | `replicate_khalid.py` | Base paper's Isolation Forest and autoencoder on its exact MalMem subset | `replication/results.json` |
+| `replicate_khalid_clustering.py` | Base paper's K-means, GMM and DBSCAN on all MalMem rows, then an audit: 5 seeds, one-feature and benign-vs-malware reference ARIs, no `svcscan.*`, no duplicates, DBSCAN parameter grid | `clustering/malmem.json` |
 | `khalid_ae_other_datasets.py` | Same pipeline, unchanged, on CICIoT2023, Dumpware10, BODMAS | `replication/<dataset>.json` |
 | `prove_imbalance.py` | Tests A–F: is class imbalance the problem? (no; scaling is) | `prove_imbalance/` |
 | `scaled_on_paper_testset.py` | Scaled autoencoder on the paper's own test set | `replication/scaled_paper_testset.json` |
@@ -107,6 +108,24 @@ SHAP splits each flagged artefact's score into per-feature contributions, measur
 - **Stability.** Rankings agree between seeds and between AE and VAE at ρ 0.74–0.95 per feature (per MalMem plugin, down to 0.65). On BODMAS they are identical (ρ 1.00), consistent with both networks measuring distance from the mean there.
 - **Reconstruction-error reasons vs SHAP.** The largest per-feature reconstruction errors share only 0–43% of SHAP's top 3 on MalMem and CICIoT2023, but 84–88% on BODMAS. The triage report therefore gives SHAP reasons for flagged artefacts and keeps the error reasons alongside for comparison.
 - **Checks.** On the distance baseline, whose exact SHAP values are known, both methods are exact (error ≤ 10⁻¹³). Contributions add up to each score (relative error ≤ 4 × 10⁻⁷).
+
+### Clustering: the base paper's second experiment
+
+The paper clusters all 58,596 standardised MalMem rows without labels, then scores the clusters against the labels with the Adjusted Rand Index (ARI: 1 = clusters match the labels exactly, 0 = chance). Following the authors' notebooks reproduces all four ARIs exactly.
+
+| Model (labels scored against) | Paper | Replication | 5 seeds | Reference point | Without `svcscan.*` |
+|---|---|---|---|---|---|
+| K-means, k = 2 (benign / malware) | 0.7544 | 0.7544 | 0.7544 every seed | K-means on `svcscan.nservices` alone: **0.985** | 0.747 |
+| GMM, 2 components (benign / malware) | 0.9592 | 0.9592 | 0.959 ×3, 0.51, **0.00** (mean 0.68) | same | 0.959 every seed |
+| GMM, 4 components (benign + 3 types) | 0.6449 | 0.6449 | 0.61–0.67 | a perfect benign/malware split with no type information: **0.667** | 0.61–0.64 |
+| DBSCAN, eps 2.3, min_samples 190 (benign + 15 families) | 0.5690 | 0.5690 (9 clusters) | deterministic | a perfect benign/malware split: **0.534** | **0.088** |
+
+- **The "multivariate" clusterings do not find malware types or families.** GMM-4 puts most rows of all three malware types into one cluster (7,553–8,351 rows each), and DBSCAN puts most rows of every family into one cluster. Both score about as well as a split that only separates benign from malware.
+- **One feature beats every model.** Two-cluster K-means on `svcscan.nservices` alone, still with no labels, reaches ARI 0.985, above the paper's best (GMM-2, 0.959).
+- **GMM-2's 0.96 depends on the seed.** Seed 42 gives 0.959. Of four other seeds, two give 0.959, one 0.51 and one 0.00 (the clusters ignore the class). Benign/malware structure itself is real: without `svcscan.*`, GMM-2 still reaches 0.959 on every seed.
+- **DBSCAN's settings were picked against the labels.** Over a 5 × 4 grid around the paper's values (eps 1.5–3.0, min_samples 50–300), only 3 of 20 settings exceed 0.5. At the same eps 2.3, min_samples 100 gives 0.09. The paper tuned these by random search scored with ARI, which needs the labels the method is meant to work without. Without `svcscan.*`, DBSCAN falls to 0.088.
+- Removing the 569 duplicate rows moves K-means, GMM-2 and DBSCAN by less than 0.01 at seed 42. GMM-4 drops to 0.52 at seed 42 (0.52–0.70 over seeds).
+- DBSCAN runs through a chunked implementation that returns sklearn's labels exactly (checked on subsamples at four settings), because the full neighbour lists (about 370 million pairs) did not fit in memory.
 
 ### Audits and splits
 

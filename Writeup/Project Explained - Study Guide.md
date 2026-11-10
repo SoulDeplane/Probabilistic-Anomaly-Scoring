@@ -100,14 +100,20 @@ Commits on GitHub: `0ac8933`, `3f63fb9`, `4a8bb80`, `b5b3036`, `50df781`, `5546d
     - Without the shortcut, MalMem moves to `handles` (the next-best stump's plugin) and CICIoT to SYN/ACK/RST counts. BODMAS points to byte entropy.
     - Checked on the distance baseline, whose exact SHAP values are known.
 18. **Triage report uses SHAP** for its top reasons (`src/triage_report.py`); the reconstruction-error reasons are kept for comparison.
-19. **Writeups and repository.**
+19. **Base paper's clustering replicated and audited** (`src/replicate_khalid_clustering.py`, all 58,596 MalMem rows).
+    - All four scores reproduce exactly: K-means 0.7544, GMM-2 0.9592, GMM-4 0.6449, DBSCAN 0.5690 (ARI: 1 = clusters match the labels, 0 = chance).
+    - GMM-4 (3 malware types) and DBSCAN (15 families) only separate benign from malware. A perfect benign/malware split scores 0.667 and 0.534 on the same labels.
+    - K-means on `svcscan.nservices` alone, with no labels, scores **0.985**, above every model.
+    - GMM-2's 0.96 holds for 3 of 5 seeds; the others give 0.51 and 0.00.
+    - DBSCAN's settings were tuned against the labels: only 3 of 20 nearby settings pass 0.5, and without `svcscan.*` it falls to 0.09.
+20. **Writeups and repository.**
     - Synopsis (renamed from "Synposis") and slides switched to BODMAS; Fig. 4.1 and the slide-11 image redrawn.
     - 10 references fixed or added; 15 s interval and SMOTE claim sourced (Carrier et al., p. 184); typos fixed.
     - `requirements.txt`, a real README, `X_scaled` renamed.
 
 ## 4. To change
 
-1. ✔ **Built:** the VAE (Step 4), the SHAP audit (Step 5) and SHAP reasons in the triage report (Step 7).
+1. ✔ **Built:** the VAE (Step 4), the SHAP audit (Step 5), SHAP reasons in the triage report (Step 7) and the clustering replication.
 2. ✔ **Dataset switch:** Dr. Rehan's approval for the revised synopsis and slides.
 3. ✔ **Check the redrawn figures:** synopsis Fig. 4.1 and the slide-11 pipeline image.
 4. ✔ **Prawiranata & Hadiprakoso:** downloaded through college IEEE access.
@@ -148,6 +154,7 @@ flag = p <= 0.01                                     # at most 1% false alarms
 | AE vs VAE? | Both get conformal p-values here. The VAE's score has a probability meaning (negative ELBO ≈ −log P(clean)), but it detects no better: it ties the AE in 5 of 6 tests |
 | Is a neural network needed? | On MalMem yes (recall 0.99 vs 0.52 for distance from the mean); on CICIoT and BODMAS distance from the mean does as well |
 | Do the SHAP explanations help? | They name the shortcut: `svcscan` for 86% of flagged MalMem dumps, `Number` for 99% of CICIoT flows. They describe the lab setup, not the malware |
+| Does the paper's clustering hold up? | The numbers reproduce exactly, but the 4-type and 16-family clusterings only split benign from malware, and K-means on one feature (0.985) beats every model |
 | Why did transfer fail? | Unscaled features up to 3.1 × 10⁶ and 4.3 × 10⁹ |
 | Why not SMOTE? | Tests B, C and D never raised recall |
 | Why drop Dumpware10? | Clean-only detection caught ≤5% at 1% false alarms (supervised 0.98 AUC) |
