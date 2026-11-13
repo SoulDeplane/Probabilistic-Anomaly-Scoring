@@ -63,67 +63,6 @@
       "UPLOADING_ATTACK": 1252
     }
   },
-  "dumpware10": {
-    "files": 34352,
-    "size_bytes": 6495231402,
-    "csv_data_rows": 0,
-    "class_counts_per_variant": {
-      "Adposhel": {
-        "TEST": 93,
-        "TRAINING": 364
-      },
-      "Allaple": {
-        "TEST": 88,
-        "TRAINING": 349
-      },
-      "Amonetize": {
-        "TEST": 87,
-        "TRAINING": 349
-      },
-      "AutoRun": {
-        "TEST": 38,
-        "TRAINING": 158
-      },
-      "BrowseFox": {
-        "TEST": 38,
-        "TRAINING": 152
-      },
-      "Dinwod": {
-        "TEST": 29,
-        "TRAINING": 98
-      },
-      "InstallCore": {
-        "TEST": 91,
-        "TRAINING": 376
-      },
-      "MultiPlug": {
-        "TEST": 98,
-        "TRAINING": 390
-      },
-      "Other": {
-        "TEST": 121,
-        "TRAINING": 487
-      },
-      "VBA": {
-        "TEST": 100,
-        "TRAINING": 399
-      },
-      "Vilsel": {
-        "TEST": 78,
-        "TRAINING": 311
-      }
-    },
-    "variants": [
-      "224/224",
-      "224/300",
-      "300/224",
-      "300/300",
-      "4096/224",
-      "4096/300",
-      "SQUAREROOT/224",
-      "SQUAREROOT/300"
-    ]
-  },
   "bodmas": {
     "files": 3,
     "size_bytes": 278383000,

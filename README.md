@@ -25,7 +25,7 @@ python -m venv .venv && .venv/Scripts/activate      # Windows; source .venv/bin/
 pip install -r requirements.txt
 ```
 
-CIC MalMemAnalysis-2022 is included. CICIoT2023, BODMAS and Dumpware10 must be downloaded from their publishers into `Datasets/` (sources and expected layout in `Datasets/README.md`); BODMAS may not be redistributed. TensorFlow on CPU is not bit-for-bit deterministic, so reruns of the autoencoder and VAE vary slightly. The VAE and SHAP results were produced in WSL2 (Ubuntu 24.04, Python 3.12) with the same `requirements.txt`, because Windows Smart App Control blocked TensorFlow on the development machine.
+CIC MalMemAnalysis-2022 is included. CICIoT2023 and BODMAS must be downloaded from their publishers into `Datasets/` (sources and expected layout in `Datasets/README.md`); BODMAS may not be redistributed. Dumpware10 was used only for its duplicate audit, and its local data has been deleted; its results stay in `results/audit/dumpware10.json` and `results/dumpware10/`. Rerunning the Dumpware10 scripts needs the dataset downloaded again into `Datasets/dumpware10/` and its file list restored with `git checkout 26cf6e2 -- Datasets/inventory/dumpware10_files.csv`. TensorFlow on CPU is not bit-for-bit deterministic, so reruns of the autoencoder and VAE vary slightly. The VAE and SHAP results were produced in WSL2 (Ubuntu 24.04, Python 3.12) with the same `requirements.txt`, because Windows Smart App Control blocked TensorFlow on the development machine.
 
 ## Scripts
 
