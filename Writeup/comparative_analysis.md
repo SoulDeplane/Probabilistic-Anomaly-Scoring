@@ -61,6 +61,8 @@ The paper reports accuracy only; its other figures are derived from its confusio
 | CICIoT2023 | 0.89% | 0.971 | 0.845 | 0.904 | 0.993 | 0.14 |
 | BODMAS | 1.07% | 0.130 | 0.380 | 0.194 | 0.732 | 0.01 |
 
+"Unseen data" means items the model never saw while it was trained or while its threshold was set. Before training, 20% of the clean items and half of the malware are held back, and they are used only for this final measurement. The base paper, by contrast, tested on the same clean items it trained on.
+
 Precision and F1 are computed at the paper's ratio of 20 clean items per malware item. "Paper pipeline F1" is the paper's method applied unchanged.
 
 ### 3.3 Robustness
