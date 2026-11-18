@@ -65,6 +65,16 @@ The paper reports accuracy only; its other figures are derived from its confusio
 
 Precision and F1 are computed at the paper's ratio of 20 clean items per malware item. "Paper pipeline F1" is the paper's method applied unchanged.
 
+**Why BODMAS scores low.** A clean-only detector can flag only what looks unusual, and most BODMAS malware does not look unusual next to its benign software.
+
+- **Low recall drives low precision.** At the 1% false-alarm line, each malware item in the 20:1 test mix comes with about 0.21 flagged clean items (20 × 1.07%), against 0.13 caught malware items. Only 0.13 / (0.13 + 0.21) ≈ 38% of flags are malware, which gives F1 0.19.
+- **Benign software is highly varied.** Its 77,142 benign executables include installers, games, drivers and packed applications, so "normal" covers a wide range and most malware falls inside it. ROC-AUC is 0.73, against 0.999 on MalMem-2022.
+- **No laboratory shortcut.** The best single feature reaches 99.66% on MalMem-2022 (near-idle clean captures) and 98.7% balanced accuracy on CICIoT2023 (packet-window size), but only 78.4% on BODMAS, against 57.4% for always predicting benign.
+- **The detector measures distance from the average.** A model-free distance-from-the-mean score matches the autoencoder (F1 0.190 vs 0.194), and SHAP names byte entropy as the main reason for 66–70% of flagged files. Mainly packed or encrypted malware is caught, and much benign software is packed as well.
+- **Recall depends on malware type:** worms 0.33, droppers 0.14, trojans 0.07, backdoors 0.00.
+
+Class imbalance, missing scaling and drift over time are ruled out: rebalancing never raised recall, the features are scaled, and false alarms stayed at 0.84% on newer files. A supervised single-feature rule, which sees malware labels, reaches only F1 0.23 on the same test. BODMAS therefore shows the difficulty of label-free detection on realistic data, which the laboratory datasets conceal.
+
 ### 3.3 Robustness
 
 | Check | Result |
